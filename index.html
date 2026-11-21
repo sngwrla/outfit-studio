@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오늘 뭐 입지? - 성별 맞춤 쇼핑몰 & 모델 피팅 코디 스튜디오</title>
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --primary: #0f172a;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --text: #1e293b;
+      --sub: #64748b;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif; }
+    body { background-color: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 20px 14px 44px; }
+    .container { width: 100%; max-width: 590px; }
+
+    .ad-box {
+      background: #e2e8f0; color: #64748b; font-size: 12px; text-align: center;
+      padding: 13px; border-radius: 10px; margin-bottom: 16px; border: 1px dashed #cbd5e1;
+    }
+
+    header { text-align: center; margin-bottom: 20px; }
+    header h1 { font-size: 22px; font-weight: 800; color: var(--primary); margin-bottom: 5px; letter-spacing: -0.4px; }
+    header p { font-size: 13.5px; color: var(--sub); }
+
+    .card {
+      background: var(--card); border-radius: 18px; padding: 20px;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05); margin-bottom: 16px;
+      border: 1px solid rgba(226, 232, 240, 0.85);
+    }
+    .section-title { font-size: 13.5px; font-weight: 700; margin-bottom: 9px; color: var(--primary); }
+
+    .btn-group { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 16px; }
+    .btn-group.tpo-group { grid-template-columns: repeat(3, 1fr); }
+    .option-btn {
+      padding: 10px 8px; border: 1.5px solid var(--border); border-radius: 10px;
+      background: #fff; font-size: 13px; font-weight: 600; color: var(--text);
+      cursor: pointer; transition: all 0.14s; word-break: keep-all;
+    }
+    .option-btn:hover { border-color: #93c5fd; }
+    .option-btn.active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+
+    .submit-btn {
+      width: 100%; padding: 14px; background: var(--primary); color: #fff;
+      border: none; border-radius: 12px; font-size: 15.5px; font-weight: 700;
+      cursor: pointer; transition: background 0.15s;
+    }
+    .submit-btn:hover { background: #1e293b; }
+
+    #result-area { display: none; animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .result-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+    .badge { display: inline-block; background: #dbeafe; color: #1d4ed8; font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
+    .result-title { font-size: 18px; font-weight: 800; color: var(--primary); margin-bottom: 14px; line-height: 1.35; }
+
+    .studio-grid {
+      display: grid; grid-template-columns: 184px 1fr; gap: 14px;
+      background: #f8fafc; border: 1px solid var(--border); border-radius: 16px;
+      padding: 14px; margin-bottom: 16px; align-items: start;
+    }
+    .model-panel {
+      background: linear-gradient(180deg, #f8fafc 0%, #eef2f6 65%, #e2e8f0 100%);
+      border: 1px solid #cbd5e1; border-radius: 14px;
+      padding: 10px 8px 10px; display: flex; flex-direction: column; align-items: center;
+      position: sticky; top: 12px;
+    }
+    .model-meta-row {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      gap: 4px; margin-bottom: 4px;
+    }
+    .fit-tag {
+      font-size: 10px; font-weight: 700; color: #0f172a;
+      background: rgba(255,255,255,0.88); padding: 2px 7px; border-radius: 999px;
+      border: 1px solid #cbd5e1;
+    }
+    .pose-label { font-size: 10px; font-weight: 600; color: var(--sub); }
+
+    .parts-panel { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+    .part-editor {
+      background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px;
+      padding: 10px 11px; transition: border-color 0.15s;
+    }
+    .part-editor.focus-part { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1); }
+    .part-top-row { display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-bottom: 7px; }
+    .part-badge-name { font-size: 12px; font-weight: 800; color: var(--primary); }
+    .item-select {
+      flex: 1; max-width: 210px; padding: 5px 8px; border-radius: 8px;
+      border: 1px solid #cbd5e1; background: #f8fafc; font-size: 12px; font-weight: 600;
+      color: var(--text); cursor: pointer; outline: none;
+    }
+    .item-select:focus { border-color: var(--accent); background: #fff; }
+
+    .swatch-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+    .swatch-list { display: flex; flex-wrap: wrap; gap: 5px; }
+    .swatch-btn {
+      width: 19px; height: 19px; border-radius: 50%; border: 1.5px solid rgba(15, 23, 42, 0.2);
+      cursor: pointer; transition: transform 0.12s, box-shadow 0.12s; padding: 0;
+    }
+    .swatch-btn:hover { transform: scale(1.14); }
+    .swatch-btn.selected { box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px var(--accent); transform: scale(1.1); }
+    .selected-color-text { font-size: 11px; font-weight: 700; color: var(--accent); white-space: nowrap; }
+
+    .recommend-box {
+      background: #f8fafc; border: 1px solid #dbeafe; border-radius: 14px;
+      padding: 13px; margin-bottom: 14px;
+    }
+    .recommend-box.item-rec-box {
+      background: #fefce8; border-color: #fde68a;
+    }
+    .rec-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 9px; gap: 8px; flex-wrap: wrap; }
+    .rec-title { font-size: 12.5px; font-weight: 800; color: var(--primary); }
+    .rec-sub { font-size: 11px; color: var(--sub); font-weight: 600; }
+
+    .rec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .rec-card {
+      background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 10px;
+      padding: 9px 10px; cursor: pointer; text-align: left; transition: all 0.14s;
+    }
+    .rec-card:hover { border-color: #60a5fa; transform: translateY(-1px); }
+    .rec-card.active { border-color: var(--accent); background: #eff6ff; }
+    .rec-card-title { font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 5px; }
+    .chips-line { display: flex; align-items: center; gap: 4px; margin-bottom: 4px; }
+    .mini-chip { width: 14px; height: 14px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.2); flex-shrink: 0; }
+    .rec-card-desc { font-size: 11px; color: var(--sub); line-height: 1.35; }
+
+    .outfit-list { list-style: none; border-top: 1px solid var(--border); margin-bottom: 14px; }
+    .outfit-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 11px 0; border-bottom: 1px solid var(--border); gap: 8px; flex-wrap: wrap;
+    }
+    .item-left { display: flex; align-items: center; gap: 9px; min-width: 0; flex: 1; }
+    .color-dot { width: 16px; height: 16px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.2); flex-shrink: 0; }
+    .item-part { font-size: 12px; font-weight: 700; color: var(--sub); width: 42px; flex-shrink: 0; }
+    .item-name { font-size: 13px; font-weight: 600; color: var(--primary); word-break: keep-all; line-height: 1.35; }
+
+    .mall-links { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+    .mall-btn {
+      font-size: 11px; font-weight: 700; text-decoration: none;
+      padding: 5px 8px; border-radius: 6px; white-space: nowrap; transition: opacity 0.12s;
+    }
+    .mall-btn:hover { opacity: 0.85; }
+    .mall-m1 { color: #ffffff; background: #111827; }
+    .mall-m2 { color: #1e3a8a; background: #dbeafe; }
+    .mall-m3 { color: #831843; background: #fce7f3; }
+
+    .tip-box {
+      background: #f8fafc; border-left: 3.5px solid var(--accent); padding: 12px 14px;
+      font-size: 13px; line-height: 1.55; color: #334155; border-radius: 0 10px 10px 0;
+    }
+    .notice-line { font-size: 11px; color: var(--sub); margin-top: 8px; line-height: 1.45; }
+
+    @media (max-width: 540px) {
+      .btn-group.tpo-group { grid-template-columns: repeat(2, 1fr); }
+      .studio-grid { grid-template-columns: 1fr; }
+      .model-panel { position: static; width: 100%; }
+      .rec-grid { grid-template-columns: 1fr; }
+      .item-select { max-width: 190px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="ad-box">광고 영역 (구글 애드센스 상단 배너 위치)</div>
+
+    <header>
+      <h1>오늘 뭐 입지? 코디 스튜디오</h1>
+      <p>성별·기온·상황별 색조합과 옷 매칭을 모델 피팅 디테일로 확인하세요</p>
+    </header>
+
+    <div class="card">
+      <div class="section-title">1. 성별</div>
+      <div class="btn-group" id="gender-group">
+        <button type="button" class="option-btn active" data-val="male">남성</button>
+        <button type="button" class="option-btn" data-val="female">여성</button>
+      </div>
+
+      <div class="section-title">2. 오늘 기온 (체감 날씨)</div>
+      <div class="btn-group" id="temp-group">
+        <button type="button" class="option-btn" data-val="cold">한파 (4°C 이하)</button>
+        <button type="button" class="option-btn active" data-val="chilly">쌀쌀함 (5~11°C)</button>
+        <button type="button" class="option-btn" data-val="mild">선선함 (12~19°C)</button>
+        <button type="button" class="option-btn" data-val="warm">따뜻·더움 (20°C+)</button>
+      </div>
+
+      <div class="section-title">3. 상황 (TPO)</div>
+      <div class="btn-group tpo-group" id="tpo-group">
+        <button type="button" class="option-btn active" data-val="daily">데일리·캠퍼스</button>
+        <button type="button" class="option-btn" data-val="date">소개팅·데이트</button>
+        <button type="button" class="option-btn" data-val="wedding">결혼식 하객룩</button>
+        <button type="button" class="option-btn" data-val="office">출근·면접</button>
+        <button type="button" class="option-btn" data-val="travel">여행·나들이</button>
+        <button type="button" class="option-btn" data-val="workout">운동·헬스·산책</button>
+      </div>
+
+      <button type="button" class="submit-btn" onclick="generateOutfit()">모델 피팅 코디 스튜디오 열기</button>
+    </div>
+
+    <div class="card" id="result-area">
+      <div class="result-top">
+        <span class="badge" id="res-badge">룩북 모델 피팅 뷰</span>
+        <span class="rec-sub" id="res-context-label"></span>
+      </div>
+      <div class="result-title" id="res-title">코디 조합 제목</div>
+
+      <div class="studio-grid">
+        <div class="model-panel">
+          <div class="model-meta-row">
+            <span class="fit-tag" id="model-fit-tag">밸런스 핏</span>
+            <span class="pose-label">스탠딩 포즈</span>
+          </div>
+          <div id="mannequin-preview"></div>
+        </div>
+
+        <div class="parts-panel" id="parts-editor-list"></div>
+      </div>
+
+      <div class="recommend-box" id="color-rec-box">
+        <div class="rec-header">
+          <div class="rec-title" id="color-rec-title">🎨 선택한 색과 어울리는 추천 색조합 (4종)</div>
+          <span class="rec-sub">클릭 시 배색 적용</span>
+        </div>
+        <div class="rec-grid" id="color-rec-grid"></div>
+      </div>
+
+      <div class="recommend-box item-rec-box" id="item-rec-box">
+        <div class="rec-header">
+          <div class="rec-title" id="item-rec-title">🧥 선택한 아이템과 어울리는 추천 옷 조합</div>
+          <span class="rec-sub">클릭 시 옷 조합 적용</span>
+        </div>
+        <div class="rec-grid" id="item-rec-grid"></div>
+      </div>
+
+      <ul class="outfit-list" id="res-list"></ul>
+      <div class="tip-box" id="res-tip">코디 팁</div>
+      <p class="notice-line">
+        * 남성은 무신사·4910·하이버, 여성은 에이블리·지그재그·W컨셉 검색 결과로 연결되며, 기온·상황에 어긋나는 조합은 자동 보정됩니다.
+      </p>
+    </div>
+
+    <div class="ad-box">광고 영역 (구글 애드센스 하단 배너 위치)</div>
+  </div>
+
+  <script>
+    const COLOR_PALETTE = [
+      { name: "블랙", hex: "#18181b" },
+      { name: "화이트", hex: "#ffffff" },
+      { name: "아이보리", hex: "#f5f5dc" },
+      { name: "그레이", hex: "#9ca3af" },
+      { name: "차콜", hex: "#374151" },
+      { name: "네이비", hex: "#1e3a8a" },
+      { name: "데님블루", hex: "#3b82f6" },
+      { name: "카키", hex: "#556b2f" },
+      { name: "베이지", hex: "#d6c7b2" },
+      { name: "버건디", hex: "#7f1d1d" }
+    ];
+
+    function getHexByName(name) {
+      const found = COLOR_PALETTE.find(c => c.name === name);
+      return found ? found.hex : "#18181b";
+    }
+
+    const CLOTHING_CATALOG = {
+      outer: [
+        { id: "none", label: "착용 안 함 (생략)", kw: "", style: "none" },
+        { id: "blouson", label: "블루종 자켓", kw: "블루종", style: "blouson" },
+        { id: "short_padding", label: "숏패딩", kw: "숏패딩", style: "puffer" },
+        { id: "long_padding", label: "롱패딩", kw: "롱패딩", style: "long" },
+        { id: "coat", label: "싱글/발마칸 울 코트", kw: "울 코트", style: "coat" },
+        { id: "blazer", label: "테일러드 블레이저", kw: "블레이저", style: "blazer" },
+        { id: "cardigan", label: "헤비/크롭 가디건", kw: "가디건", style: "cardigan" },
+        { id: "biker", label: "레더 바이커 자켓", kw: "바이커 자켓", style: "biker" },
+        { id: "shirt_jacket", label: "코튼 셔츠자켓", kw: "셔츠자켓", style: "shirt_jk" },
+        { id: "windbreaker", label: "윈드브레이커(바람막이)", kw: "바람막이", style: "wind" }
+      ],
+      top: [
+        { id: "crew_knit", label: "크루넥 니트", kw: "크루넥 니트", style: "knit" },
+        { id: "halfzip_knit", label: "하프집업 니트", kw: "하프집업 니트", style: "halfzip" },
+        { id: "turtleneck", label: "터틀넥 니트", kw: "터틀넥 니트", style: "turtleneck" },
+        { id: "shirt", label: "옥스포드/드레스 셔츠", kw: "셔츠", style: "shirt" },
+        { id: "hoodie", label: "헤비 후드티", kw: "후드티", style: "hoodie" },
+        { id: "sweatshirt", label: "스웻셔츠(맨투맨)", kw: "맨투맨", style: "sweat" },
+        { id: "short_tee", label: "오버핏/기본 반팔티", kw: "반팔티", style: "short_tee" },
+        { id: "knit_polo", label: "카라 니트 반팔", kw: "니트 반팔", style: "polo" },
+        { id: "blouse", label: "블라우스/니트 탑", kw: "블라우스", style: "blouse" },
+        { id: "athleisure_top", label: "기능성/애슬레저 탑", kw: "기능성 반팔", style: "short_tee" }
+      ],
+      bottom: [
+        { id: "wide_slacks", label: "와이드 슬랙스", kw: "와이드 슬랙스", style: "wide_slacks" },
+        { id: "tapered_slacks", label: "테이퍼드/기모 슬랙스", kw: "슬랙스", style: "tapered" },
+        { id: "wide_denim", label: "와이드 데님 팬츠", kw: "와이드 데님", style: "wide_denim" },
+        { id: "straight_denim", label: "스트레이트/생지 데님", kw: "데님 팬츠", style: "straight" },
+        { id: "corduroy", label: "코듀로이 팬츠", kw: "코듀로이 팬츠", style: "corduroy" },
+        { id: "chino", label: "치노 팬츠", kw: "치노 팬츠", style: "tapered" },
+        { id: "cargo", label: "카고/파라슈트 팬츠", kw: "카고 팬츠", style: "cargo" },
+        { id: "jogger", label: "조거/트랙 팬츠", kw: "조거팬츠", style: "jogger" },
+        { id: "shorts_skirt", label: "쇼츠/미디·롱 스커트", kw: "와이드 팬츠", style: "short_bot" }
+      ],
+      shoes: [
+        { id: "german_sneakers", label: "독일군/레더 스니커즈", kw: "레더 스니커즈", style: "sneaker" },
+        { id: "canvas_sneakers", label: "캔버스/데일리 스니커즈", kw: "스니커즈", style: "sneaker" },
+        { id: "running_shoes", label: "러닝/트레일 슈즈", kw: "러닝화", style: "sneaker" },
+        { id: "derby", label: "더비슈즈/구두", kw: "더비슈즈", style: "derby" },
+        { id: "loafer", label: "페니/레더 로퍼", kw: "로퍼", style: "loafer" },
+        { id: "ankle_boots", label: "첼시/앵클부츠", kw: "앵클부츠", style: "ankle_boots" },
+        { id: "long_boots", label: "롱부츠", kw: "롱부츠", style: "long_boots" },
+        { id: "sandal", label: "샌들/슬라이드/힐", kw: "샌들", style: "sandal" }
+      ]
+    };
+
+    function sanitizeItemForContext(partKey, itemId, temp, tpo) {
+      let id = itemId;
+
+      if (temp === "cold") {
+        if (partKey === "outer" && id === "none") id = "short_padding";
+        if (partKey === "top" && (id === "short_tee" || id === "knit_polo")) id = "crew_knit";
+        if (partKey === "bottom" && id === "shorts_skirt" && tpo === "workout") id = "jogger";
+        if (partKey === "shoes" && id === "sandal") id = "ankle_boots";
+      }
+
+      if (temp === "warm") {
+        if (partKey === "outer" && (id === "long_padding" || id === "short_padding" || id === "coat")) {
+          id = (tpo === "wedding" || tpo === "office") ? "blazer" : "none";
+        }
+        if (partKey === "outer" && id !== "none" && (tpo === "daily" || tpo === "workout")) {
+          id = "none";
+        }
+        if (partKey === "top" && (id === "turtleneck" || id === "hoodie" || id === "halfzip_knit")) {
+          id = (tpo === "workout") ? "athleisure_top" : "short_tee";
+        }
+        if (partKey === "bottom" && id === "corduroy") id = "wide_slacks";
+        if (partKey === "shoes" && (id === "long_boots" || id === "ankle_boots")) {
+          id = (tpo === "wedding" || tpo === "office") ? "loafer" : "canvas_sneakers";
+        }
+      }
+
+      if (tpo === "workout") {
+        if (partKey === "outer" && (id === "coat" || id === "blazer" || id === "biker")) id = "windbreaker";
+        if (partKey === "top" && (id === "shirt" || id === "blouse")) id = "athleisure_top";
+        if (partKey === "bottom" && (id === "wide_slacks" || id === "tapered_slacks" || id === "corduroy")) id = "jogger";
+        if (partKey === "shoes" && (id === "derby" || id === "loafer" || id === "ankle_boots" || id === "long_boots")) {
+          id = "running_shoes";
+        }
+      }
+
+      if (tpo === "wedding" || tpo === "office") {
+        if (partKey === "outer" && (id === "windbreaker" || id === "long_padding")) id = "coat";
+        if (partKey === "top" && id === "hoodie") id = "shirt";
+        if (partKey === "bottom" && id === "jogger") id = "tapered_slacks";
+        if (partKey === "shoes" && (id === "running_shoes" || id === "sandal")) id = "loafer";
+      }
+
+      return id;
+    }
+
+    function sanitizeColorForContext(colorName, temp) {
+      if (temp === "cold" && colorName === "화이트") return "아이보리";
+      return colorName;
+    }
+
+    const COLOR_HARMONY_MAP = {
+      "블랙": [
+        { title: "모던 클래식", colors: ["블랙", "아이보리", "차콜", "블랙"] },
+        { title: "카키 포인트 스트릿", colors: ["블랙", "카키", "블랙", "화이트"] },
+        { title: "그레이 데님 밸런스", colors: ["블랙", "그레이", "데님블루", "화이트"] },
+        { title: "딥 버건디 무드", colors: ["블랙", "버건디", "차콜", "블랙"] }
+      ],
+      "화이트": [
+        { title: "네이비 정석 매치", colors: ["네이비", "화이트", "차콜", "블랙"] },
+        { title: "소프트 톤온톤", colors: ["베이지", "화이트", "아이보리", "베이지"] },
+        { title: "데님 캐주얼", colors: ["그레이", "화이트", "데님블루", "화이트"] },
+        { title: "블랙 대비 포멀", colors: ["블랙", "화이트", "블랙", "블랙"] }
+      ],
+      "아이보리": [
+        { title: "네이비·베이지 호감룩", colors: ["네이비", "아이보리", "베이지", "블랙"] },
+        { title: "베이지·버건디 따뜻함", colors: ["베이지", "아이보리", "버건디", "블랙"] },
+        { title: "차콜 모던 대비", colors: ["차콜", "아이보리", "차콜", "블랙"] },
+        { title: "카키 내추럴 무드", colors: ["카키", "아이보리", "데님블루", "베이지"] }
+      ],
+      "그레이": [
+        { title: "차콜 시크 모노톤", colors: ["차콜", "그레이", "블랙", "블랙"] },
+        { title: "네이비 산뜻 캐주얼", colors: ["네이비", "그레이", "데님블루", "화이트"] },
+        { title: "아이보리 부드러움", colors: ["그레이", "아이보리", "차콜", "화이트"] },
+        { title: "베이지 크리미 믹스", colors: ["베이지", "그레이", "아이보리", "블랙"] }
+      ],
+      "차콜": [
+        { title: "아이보리 깔끔 대비", colors: ["차콜", "아이보리", "차콜", "블랙"] },
+        { title: "버건디 포인트 룩", colors: ["차콜", "버건디", "블랙", "블랙"] },
+        { title: "데님블루 데일리", colors: ["차콜", "화이트", "데님블루", "화이트"] },
+        { title: "베이지 온화한 믹스", colors: ["차콜", "베이지", "차콜", "블랙"] }
+      ],
+      "네이비": [
+        { title: "화이트·그레이 정석", colors: ["네이비", "화이트", "그레이", "블랙"] },
+        { title: "베이지 치노 조화", colors: ["네이비", "아이보리", "베이지", "블랙"] },
+        { title: "데님 톤온톤 캐주얼", colors: ["네이비", "화이트", "데님블루", "화이트"] },
+        { title: "버건디 클래식 액센트", colors: ["네이비", "버건디", "차콜", "블랙"] }
+      ],
+      "데님블루": [
+        { title: "블랙·화이트 기본기", colors: ["블랙", "화이트", "데님블루", "화이트"] },
+        { title: "베이지 가디건 감성", colors: ["베이지", "아이보리", "데님블루", "베이지"] },
+        { title: "네이비 클린 룩", colors: ["네이비", "화이트", "데님블루", "블랙"] },
+        { title: "카키 워크웨어 무드", colors: ["카키", "아이보리", "데님블루", "블랙"] }
+      ],
+      "카키": [
+        { title: "블랙·화이트 밀리터리", colors: ["카키", "화이트", "블랙", "화이트"] },
+        { title: "아이보리 내추럴 룩", colors: ["카키", "아이보리", "베이지", "베이지"] },
+        { title: "차콜 묵직한 밸런스", colors: ["카키", "차콜", "차콜", "블랙"] },
+        { title: "데님블루 야외 캐주얼", colors: ["카키", "화이트", "데님블루", "화이트"] }
+      ],
+      "베이지": [
+        { title: "네이비·아이보리 정석", colors: ["베이지", "네이비", "아이보리", "블랙"] },
+        { title: "블랙 중심 밸런스", colors: ["베이지", "아이보리", "블랙", "블랙"] },
+        { title: "데님블루 산뜻한 조화", colors: ["베이지", "화이트", "데님블루", "화이트"] },
+        { title: "버건디 시즌 무드", colors: ["베이지", "버건디", "차콜", "블랙"] }
+      ],
+      "버건디": [
+        { title: "블랙·차콜 세련된 대비", colors: ["블랙", "버건디", "차콜", "블랙"] },
+        { title: "베이지·아이보리 부드러움", colors: ["베이지", "버건디", "아이보리", "블랙"] },
+        { title: "네이비 클래식 조합", colors: ["네이비", "버건디", "그레이", "블랙"] },
+        { title: "데님블루 캐주얼 포인트", colors: ["차콜", "버건디", "데님블루", "화이트"] }
+      ]
+    };
+
+    function getItemCombinationsFor(partKey, itemId, temp, tpo) {
+      const rawCombos = {
+        outer: [
+          { name: "미니멀 슬랙스 세트", ids: [itemId, "crew_knit", "wide_slacks", "loafer"] },
+          { name: "데일리 데님 캐주얼", ids: [itemId, "sweatshirt", "wide_denim", "german_sneakers"] },
+          { name: "단정 셔츠 레이어드", ids: [itemId, "shirt", "tapered_slacks", "derby"] },
+          { name: "활동성 트레이닝", ids: [itemId, "athleisure_top", "jogger", "running_shoes"] }
+        ],
+        top: [
+          { name: "클래식 자켓·슬랙스", ids: ["blazer", itemId, "wide_slacks", "loafer"] },
+          { name: "부드러운 가디건·데님", ids: ["cardigan", itemId, "wide_denim", "german_sneakers"] },
+          { name: "블루종·치노 캐주얼", ids: ["blouson", itemId, "chino", "canvas_sneakers"] },
+          { name: "코트·테이퍼드 정석", ids: ["coat", itemId, "tapered_slacks", "derby"] }
+        ],
+        bottom: [
+          { name: "블루종·니트 매치", ids: ["blouson", "crew_knit", itemId, "german_sneakers"] },
+          { name: "가디건·셔츠 레이어드", ids: ["cardigan", "shirt", itemId, "loafer"] },
+          { name: "코트·터틀넥 무드", ids: ["coat", "turtleneck", itemId, "ankle_boots"] },
+          { name: "바람막이·반팔/긴팔", ids: ["windbreaker", "short_tee", itemId, "running_shoes"] }
+        ],
+        shoes: [
+          { name: "코트·니트·슬랙스", ids: ["coat", "crew_knit", "wide_slacks", itemId] },
+          { name: "블루종·티셔츠·데님", ids: ["blouson", "sweatshirt", "straight_denim", itemId] },
+          { name: "블레이저·셔츠·슬랙스", ids: ["blazer", "shirt", "tapered_slacks", itemId] },
+          { name: "가디건·이너·데님", ids: ["cardigan", "crew_knit", "wide_denim", itemId] }
+        ]
+      }[partKey];
+
+      const partKeys = ["outer", "top", "bottom", "shoes"];
+      return rawCombos.map(c => {
+        const cleanIds = c.ids.map((id, idx) => sanitizeItemForContext(partKeys[idx], id, temp, tpo));
+        const cleanDesc = partKeys
+          .filter((_, idx) => !(idx === 0 && cleanIds[0] === "none"))
+          .map((pk, idx) => getItemObj(pk, cleanIds[idx]).kw || getItemObj(pk, cleanIds[idx]).label)
+          .slice(1, 4)
+          .join(" + ");
+        return {
+          name: c.name,
+          ids: cleanIds,
+          desc: cleanDesc
+        };
+      });
+    }
+
+    const TPO_DEFAULT_PARTS = {
+      daily: { outer: "blouson", top: "crew_knit", bottom: "wide_denim", shoes: "german_sneakers", colors: ["블랙", "카키", "데님블루", "화이트"], title: "데일리·캠퍼스 깔끔 캐주얼", tip: "상·하의 중 하나는 차분한 톤으로 잡고 상의나 아우터 컬러로 포인트를 주면 무난합니다." },
+      date: { outer: "cardigan", top: "turtleneck", bottom: "wide_slacks", shoes: "loafer", colors: ["네이비", "아이보리", "베이지", "블랙"], title: "소개팅·데이트 호감형 룩", tip: "과한 색 대비보다 3가지 안팎의 조화로운 컬러와 깔끔한 핏이 데이트에서 가장 안정적입니다." },
+      wedding: { outer: "blazer", top: "shirt", bottom: "tapered_slacks", shoes: "loafer", colors: ["네이비", "화이트", "차콜", "블랙"], title: "결혼식 하객룩 정석 조합", tip: "예식장에서는 과한 패턴이나 노출을 피하고 네이비·차콜·화이트·블랙 계열로 정돈하는 것이 좋습니다." },
+      office: { outer: "coat", top: "shirt", bottom: "tapered_slacks", shoes: "derby", colors: ["차콜", "화이트", "블랙", "블랙"], title: "출근·면접 신뢰감 포멀룩", tip: "겉옷을 벗었을 때의 셔츠·니트 정돈 상태와 깔끔한 구두·로퍼 매치가 인상을 좌우합니다." },
+      travel: { outer: "shirt_jacket", top: "sweatshirt", bottom: "cargo", shoes: "running_shoes", colors: ["베이지", "아이보리", "카키", "화이트"], title: "여행·나들이 활동성 코디", tip: "오래 걸어도 편한 신발과 체온 조절이 쉬운 아우터·이너 구성으로 동선 피로를 줄여보세요." },
+      workout: { outer: "windbreaker", top: "athleisure_top", bottom: "jogger", shoes: "running_shoes", colors: ["블랙", "그레이", "블랙", "화이트"], title: "운동·헬스·산책 애슬레저", tip: "땀 배출과 움직임이 편한 기능성·트레이닝 소재 위주로 구성하면 실외와 헬스장 모두 쾌적합니다." }
+    };
+
+    const PART_META = [
+      { key: "outer", label: "아우터" },
+      { key: "top", label: "상의" },
+      { key: "bottom", label: "하의" },
+      { key: "shoes", label: "신발" }
+    ];
+
+    let state = {
+      gender: "male",
+      temp: "chilly",
+      tpo: "daily",
+      focusPart: "top",
+      activeColorRecIdx: -1,
+      activeItemRecIdx: -1,
+      title: "",
+      tip: "",
+      parts: {
+        outer: { itemId: "blouson", colorName: "블랙" },
+        top: { itemId: "crew_knit", colorName: "카키" },
+        bottom: { itemId: "wide_denim", colorName: "데님블루" },
+        shoes: { itemId: "german_sneakers", colorName: "화이트" }
+      }
+    };
+
+    function getItemObj(partKey, itemId) {
+      return CLOTHING_CATALOG[partKey].find(x => x.id === itemId) || CLOTHING_CATALOG[partKey][0];
+    }
+
+    // 성별에 따른 주요 쇼핑몰 링크 생성 (남성: 무신사·4910·하이버 / 여성: 에이블리·지그재그·W컨셉)
+    function buildMallLinks(gender, colorName, itemObj) {
+      if (!itemObj || !itemObj.kw) return null;
+      const prefix = gender === "male" ? "남자 " : "여자 ";
+      const q = `${prefix}${colorName} ${itemObj.kw}`.trim();
+      const enc = encodeURIComponent(q);
+
+      if (gender === "male") {
+        return [
+          { label: "무신사", cls: "mall-m1", url: `https://www.musinsa.com/search/goods?keyword=${enc}` },
+          { label: "4910", cls: "mall-m2", url: `https://4910.kr/search?keyword=${enc}` },
+          { label: "하이버", cls: "mall-m3", url: `https://www.hiver.co.kr/search?keyword=${enc}` }
+        ];
+      }
+
+      return [
+        { label: "에이블리", cls: "mall-m1", url: `https://a-bly.com/search?query=${enc}` },
+        { label: "지그재그", cls: "mall-m2", url: `https://zigzag.kr/search?keyword=${enc}` },
+        { label: "W컨셉", cls: "mall-m3", url: `https://www.wconcept.co.kr/Search?query=${enc}` }
+      ];
+    }
+
+    document.querySelectorAll(".btn-group").forEach(group => {
+      group.addEventListener("click", e => {
+        const btn = e.target.closest(".option-btn");
+        if (!btn) return;
+        group.querySelectorAll(".option-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      });
+    });
+
+    function renderModelPoseSVG() {
+      const outerObj = getItemObj("outer", state.parts.outer.itemId);
+      const topObj = getItemObj("top", state.parts.top.itemId);
+      const bottomObj = getItemObj("bottom", state.parts.bottom.itemId);
+      const shoesObj = getItemObj("shoes", state.parts.shoes.itemId);
+
+      const outerHex = getHexByName(state.parts.outer.colorName);
+      const topHex = getHexByName(state.parts.top.colorName);
+      const bottomHex = getHexByName(state.parts.bottom.colorName);
+      const shoesHex = getHexByName(state.parts.shoes.colorName);
+
+      const hasOuter = outerObj.style !== "none";
+      const isFemale = state.gender === "female";
+      const skin = "#f5cfb0";
+      const hair = "#1e293b";
+      const line = "#1e293b";
+
+      let bottomDetailSvg = "";
+      if (bottomObj.style === "short_bot") {
+        if (isFemale) {
+          bottomDetailSvg = `
+            <path d="M51 118 L89 118 L97 164 L43 164 Z" fill="${bottomHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M56 164 L54 208 L65 208 L66 164 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
+            <path d="M74 164 L75 208 L86 208 L84 164 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
+          `;
+        } else {
+          bottomDetailSvg = `
+            <path d="M50 118 L90 118 L92 159 L72 159 L70 138 L68 159 L48 159 Z" fill="${bottomHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
+            <line x1="58" y1="120" x2="57" y2="155" stroke="${line}" stroke-width="0.9" opacity="0.35"/>
+            <line x1="82" y1="120" x2="83" y2="155" stroke="${line}" stroke-width="0.9" opacity="0.35"/>
+            <path d="M51 159 L49 208 L65 208 L67 159 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
+            <path d="M73 159 L75 208 L91 208 L89 159 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
+          `;
+        }
+      } else if (bottomObj.style === "wide_slacks" || bottomObj.style === "wide_denim" || bottomObj.style === "corduroy" || bottomObj.style === "cargo") {
+        bottomDetailSvg = `
+          <path d="M49 118 L91 118 L97 208 L73 208 L70 152 L67 208 L43 208 Z"
+                fill="${bottomHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
+          <line x1="58" y1="122" x2="56" y2="203" stroke="${line}" stroke-width="0.95" opacity="0.32"/>
+          <line x1="82" y1="122" x2="84" y2="203" stroke="${line}" stroke-width="0.95" opacity="0.32"/>
+          ${bottomObj.style === "cargo" ? `
+            <rect x="43" y="150" width="8" height="16" rx="1.5" fill="${bottomHex}" stroke="${line}" stroke-width="1.2"/>
+            <rect x="89" y="150" width="8" height="16" rx="1.5" fill="${bottomHex}" stroke="${line}" stroke-width="1.2"/>
+          ` : ""}
+          ${bottomObj.style === "corduroy" ? `
+            <line x1="52" y1="122" x2="48" y2="205" stroke="${line}" stroke-width="0.6" opacity="0.22"/>
+            <line x1="62" y1="122" x2="60" y2="205" stroke="${line}" stroke-width="0.6" opacity="0.22"/>
+            <line x1="78" y1="122" x2="80" y2="205" stroke="${line}" stroke-width="0.6" opacity="0.22"/>
+            <line x1="88" y1="122" x2="92" y2="205" stroke="${line}" stroke-width="0.6" opacity="0.22"/>
+          ` : ""}
+        `;
+      } else {
+        bottomDetailSvg = `
+          <path d="M51 118 L89 118 L88 208 L74 208 L70 150 L66 208 L52 208 Z"
+                fill="${bottomHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
+          <line x1="59" y1="122" x2="58" y2="203" stroke="${line}" stroke-width="0.9" opacity="0.28"/>
+          <line x1="81" y1="122" x2="82" y2="203" stroke="${line}" stroke-width="0.9" opacity="0.28"/>
+          ${bottomObj.style === "jogger" ? `
+            <line x1="52" y1="203" x2="66" y2="203" stroke="${line}" stroke-width="1.8"/>
+            <line x1="74" y1="203" x2="88" y2="203" stroke="${line}" stroke-width="1.8"/>
+          ` : ""}
+        `;
+      }
+
+      let shoesDetailSvg = "";
+      if (shoesObj.style === "long_boots") {
+        shoesDetailSvg = `
+          <path d="M51 168 L66 168 L67 217 L42 217 L42 206 L51 204 Z" fill="${shoesHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M74 168 L89 168 L89 204 L98 206 L98 217 L73 217 Z" fill="${shoesHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
+          <rect x="42" y="213" width="25" height="4" fill="#ffffff" opacity="0.35"/>
+          <rect x="73" y="213" width="25" height="4" fill="#ffffff" opacity="0.35"/>
+        `;
+      } else if (shoesObj.style === "ankle_boots") {
+        shoesDetailSvg = `
+          <path d="M51 187 L66 187 L67 217 L42 217 L42 206 L51 204 Z" fill="${shoesHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M74 187 L89 187 L89 204 L98 206 L98 217 L73 217 Z" fill="${shoesHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
+          <line x1="42" y1="214" x2="67" y2="214" stroke="#ffffff" stroke-width="1.5" opacity="0.4"/>
+          <line x1="73" y1="214" x2="98" y2="214" stroke="#ffffff" stroke-width="1.5" opacity="0.4"/>
+        `;
+      } else if (shoesObj.style === "sandal") {
+        shoesDetailSvg = `
+          <rect x="44" y="210" width="23" height="7" rx="3" fill="${shoesHex}" stroke="${line}" stroke-width="1.4"/>
+          <rect x="73" y="210" width="23" height="7" rx="3" fill="${shoesHex}" stroke="${line}" stroke-width="1.4"/>
+          <path d="M49 203 L49 210 M60 203 L60 210 M80 203 L80 210 M91 203 L91 210" stroke="${shoesHex}" stroke-width="2.2"/>
+        `;
+      } else {
+        shoesDetailSvg = `
+          <path d="M49 205 L66 205 L67 217 L41 217 C41 210 44 206 49 205 Z" fill="${shoesHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M74 205 L91 205 C96 206 99 210 99 217 L73 217 Z" fill="${shoesHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
+          <rect x="41" y="214" width="26" height="3" rx="1" fill="#f8fafc" stroke="${line}" stroke-width="0.9"/>
+          <rect x="73" y="214" width="26" height="3" rx="1" fill="#f8fafc" stroke="${line}" stroke-width="0.9"/>
+        `;
+      }
+
+      const isShortTop = topObj.style === "short_tee" || topObj.style === "polo" || topObj.style === "blouse";
+      const topDetailSvg = `
+        <path d="M50 48 L62 48 L70 57 L78 48 L90 48 L92 121 L48 121 Z"
+              fill="${topHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
+        <line x1="49" y1="115" x2="91" y2="115" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
+        ${topObj.style === "turtleneck" ? `
+          <rect x="63" y="38" width="14" height="12" rx="3" fill="${topHex}" stroke="${line}" stroke-width="1.5"/>
+          <line x1="63" y1="43" x2="77" y2="43" stroke="${line}" stroke-width="0.8" opacity="0.35"/>
+        ` : ""}
+        ${topObj.style === "shirt" || topObj.style === "polo" ? `
+          <path d="M62 48 L70 59 L78 48" fill="none" stroke="${line}" stroke-width="1.4"/>
+          <line x1="70" y1="59" x2="70" y2="96" stroke="${line}" stroke-width="1" stroke-dasharray="2,2" opacity="0.5"/>
+        ` : ""}
+        ${topObj.style === "hoodie" ? `
+          <line x1="66" y1="56" x2="66" y2="76" stroke="${line}" stroke-width="1.2" opacity="0.55"/>
+          <line x1="74" y1="56" x2="74" y2="76" stroke="${line}" stroke-width="1.2" opacity="0.55"/>
+        ` : ""}
+        ${!hasOuter ? (
+          isShortTop
+            ? `
+              <path d="M50 48 L33 74 L43 80 L50 65 Z" fill="${topHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M90 48 L107 74 L97 80 L90 65 Z" fill="${topHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M35 75 L29 108 L39 110 L42 79 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
+              <path d="M105 75 L111 108 L101 110 L98 79 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
+            `
+            : `
+              <path d="M50 48 L30 109 L40 112 L50 66 Z" fill="${topHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M90 48 L111 94 L102 99 L89 66 Z" fill="${topHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
+              <circle cx="34" cy="114" r="4.5" fill="${skin}" stroke="${line}" stroke-width="1.2"/>
+              <circle cx="108" cy="100" r="4.5" fill="${skin}" stroke="${line}" stroke-width="1.2"/>
+            `
+        ) : ""}
+      `;
+
+      let outerDetailSvg = "";
+      if (hasOuter) {
+        const isLong = outerObj.style === "coat" || outerObj.style === "long";
+        const isPuffer = outerObj.style === "puffer";
+        const isBlazer = outerObj.style === "blazer";
+        const bottomY = isLong ? 168 : 123;
+        const leftSleeveEnd = isLong ? 122 : 110;
+        const rightSleeveEndX = isLong ? 111 : 112;
+        const rightSleeveEndY = isLong ? 112 : 96;
+        const wEx = isPuffer ? 4 : 0;
+
+        outerDetailSvg = `
+          <path d="M${48 - wEx} 47 L63 47 L57 ${bottomY} L${44 - wEx} ${bottomY} Z"
+                fill="${outerHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M${92 + wEx} 47 L77 47 L83 ${bottomY} L${96 + wEx} ${bottomY} Z"
+                fill="${outerHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M${48 - wEx} 47 L27 ${leftSleeveEnd} L38 ${leftSleeveEnd + 3} L49 66 Z"
+                fill="${outerHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
+          <line x1="28" y1="${leftSleeveEnd - 4}" x2="39" y2="${leftSleeveEnd - 1}" stroke="${line}" stroke-width="1.2" opacity="0.5"/>
+          <circle cx="31" cy="${leftSleeveEnd + 7}" r="4.5" fill="${skin}" stroke="${line}" stroke-width="1.2"/>
+          <path d="M${92 + wEx} 47 L${rightSleeveEndX} ${rightSleeveEndY} L${rightSleeveEndX - 9} ${rightSleeveEndY + 5} L90 66 Z"
+                fill="${outerHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
+          <circle cx="${rightSleeveEndX + 2}" cy="${rightSleeveEndY + 4}" r="4.5" fill="${skin}" stroke="${line}" stroke-width="1.2"/>
+          ${isBlazer ? `
+            <polygon points="63,47 68,78 58,64" fill="${outerHex}" stroke="${line}" stroke-width="1.3"/>
+            <polygon points="77,47 72,78 82,64" fill="${outerHex}" stroke="${line}" stroke-width="1.3"/>
+          ` : `
+            <path d="M63 47 L67 74 M77 47 L73 74" stroke="${line}" stroke-width="1.25" opacity="0.6"/>
+          `}
+          ${isPuffer ? `
+            <line x1="${45 - wEx}" y1="74" x2="59" y2="74" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
+            <line x1="${44 - wEx}" y1="98" x2="58" y2="98" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
+            <line x1="81" y1="74" x2="${95 + wEx}" y2="74" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
+            <line x1="82" y1="98" x2="${96 + wEx}" y2="98" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
+          ` : ""}
+        `;
+      }
+
+      return `
+        <svg viewBox="0 0 140 232" width="158" height="228" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="70" cy="221" rx="36" ry="5" fill="#94a3b8" opacity="0.4" />
+          <g transform="rotate(-2.5 70 28)">
+            ${isFemale
+              ? `<path d="M50 25 C50 8, 90 8, 90 25 L93 58 L47 58 Z" fill="${hair}" stroke="${line}" stroke-width="1.4"/>`
+              : `<path d="M54 22 C54 10, 86 10, 86 22 L87 28 L53 28 Z" fill="${hair}" stroke="${line}" stroke-width="1.4"/>`
+            }
+            <circle cx="70" cy="27" r="13" fill="${skin}" stroke="${line}" stroke-width="1.5"/>
+            <circle cx="65.5" cy="27" r="1.3" fill="${line}"/>
+            <circle cx="74.5" cy="27" r="1.3" fill="${line}"/>
+            <path d="M67.5 32.5 Q70 34.2 72.5 32.5" fill="none" stroke="${line}" stroke-width="1.2" stroke-linecap="round"/>
+          </g>
+          <rect x="65" y="39" width="10" height="10" rx="2" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
+          ${bottomDetailSvg}
+          ${shoesDetailSvg}
+          ${topDetailSvg}
+          ${outerDetailSvg}
+        </svg>
+      `;
+    }
+
+    function renderPartsEditor() {
+      const container = document.getElementById("parts-editor-list");
+      container.innerHTML = PART_META.map(meta => {
+        const partState = state.parts[meta.key];
+        const catalog = CLOTHING_CATALOG[meta.key];
+        const isFocused = state.focusPart === meta.key;
+
+        const optionsHtml = catalog.map(opt =>
+          `<option value="${opt.id}" ${partState.itemId === opt.id ? "selected" : ""}>${opt.label}</option>`
+        ).join("");
+
+        const swatchesHtml = COLOR_PALETTE.map(c => `
+          <button type="button"
+                  class="swatch-btn ${partState.colorName === c.name ? "selected" : ""}"
+                  style="background:${c.hex}"
+                  title="${c.name}"
+                  onclick="onSelectPartColor('${meta.key}', '${c.name}')">
+          </button>
+        `).join("");
+
+        return `
+          <div class="part-editor ${isFocused ? "focus-part" : ""}" onclick="setFocusPart('${meta.key}')">
+            <div class="part-top-row">
+              <span class="part-badge-name">${meta.label}</span>
+              <select class="item-select"
+                      onchange="onChangePartItem('${meta.key}', this.value)"
+                      onclick="event.stopPropagation()">
+                ${optionsHtml}
+              </select>
+            </div>
+            <div class="swatch-row">
+              <div class="swatch-list" onclick="event.stopPropagation()">${swatchesHtml}</div>
+              <span class="selected-color-text">${partState.colorName}</span>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function getSanitizedColorRecs(chosenColor) {
+      const baseList = COLOR_HARMONY_MAP[chosenColor] || COLOR_HARMONY_MAP["블랙"];
+      return baseList.map(rec => {
+        const cleanColors = rec.colors.map(c => sanitizeColorForContext(c, state.temp));
+        return {
+          title: rec.title,
+          colors: cleanColors,
+          desc: cleanColors.join("+")
+        };
+      });
+    }
+
+    function renderColorRecommendations() {
+      const focusKey = state.focusPart;
+      const focusLabel = PART_META.find(m => m.key === focusKey).label;
+      const chosenColor = state.parts[focusKey].colorName;
+
+      document.getElementById("color-rec-title").innerText =
+        `🎨 ${focusLabel} '${chosenColor}'과 어울리는 추천 색조합 (4종)`;
+
+      const list = getSanitizedColorRecs(chosenColor);
+      const grid = document.getElementById("color-rec-grid");
+
+      grid.innerHTML = list.map((rec, idx) => {
+        const chips = rec.colors.map((cName, i) => {
+          if (i === 0 && state.parts.outer.itemId === "none") return "";
+          return `<span class="mini-chip" style="background:${getHexByName(cName)}" title="${cName}"></span>`;
+        }).join("");
+
+        return `
+          <button type="button"
+                  class="rec-card ${state.activeColorRecIdx === idx ? "active" : ""}"
+                  onclick="applyColorHarmony(${idx})">
+            <div class="rec-card-title">${idx + 1}. ${rec.title}</div>
+            <div class="chips-line">${chips}</div>
+            <div class="rec-card-desc">${rec.desc}</div>
+          </button>
+        `;
+      }).join("");
+    }
+
+    function renderItemRecommendations() {
+      const focusKey = state.focusPart;
+      const focusLabel = PART_META.find(m => m.key === focusKey).label;
+      const currentItem = getItemObj(focusKey, state.parts[focusKey].itemId);
+
+      document.getElementById("item-rec-title").innerText =
+        `🧥 '${currentItem.label}'(${focusLabel})과 어울리는 추천 옷 조합`;
+
+      const combos = getItemCombinationsFor(focusKey, currentItem.id, state.temp, state.tpo);
+      const grid = document.getElementById("item-rec-grid");
+
+      grid.innerHTML = combos.map((combo, idx) => `
+        <button type="button"
+                class="rec-card ${state.activeItemRecIdx === idx ? "active" : ""}"
+                onclick="applyItemCombination(${idx})">
+          <div class="rec-card-title">${idx + 1}. ${combo.name}</div>
+          <div class="rec-card-desc">${combo.desc}</div>
+        </button>
+      `).join("");
+    }
+
+    function setFocusPart(partKey) {
+      if (state.focusPart === partKey) return;
+      state.focusPart = partKey;
+      state.activeColorRecIdx = -1;
+      state.activeItemRecIdx = -1;
+      renderAllResultViews();
+    }
+
+    function onSelectPartColor(partKey, colorName) {
+      state.focusPart = partKey;
+      state.parts[partKey].colorName = sanitizeColorForContext(colorName, state.temp);
+      state.activeColorRecIdx = -1;
+      renderAllResultViews();
+    }
+
+    function applyColorHarmony(recIdx) {
+      const chosenColor = state.parts[state.focusPart].colorName;
+      const list = getSanitizedColorRecs(chosenColor);
+      const rec = list[recIdx];
+      if (!rec) return;
+
+      state.activeColorRecIdx = recIdx;
+      PART_META.forEach((m, idx) => {
+        state.parts[m.key].colorName = rec.colors[idx];
+      });
+      renderAllResultViews();
+    }
+
+    function onChangePartItem(partKey, newItemId) {
+      state.focusPart = partKey;
+      state.parts[partKey].itemId = sanitizeItemForContext(partKey, newItemId, state.temp, state.tpo);
+      state.activeItemRecIdx = -1;
+      renderAllResultViews();
+    }
+
+    function applyItemCombination(comboIdx) {
+      const focusKey = state.focusPart;
+      const currentItem = getItemObj(focusKey, state.parts[focusKey].itemId);
+      const combos = getItemCombinationsFor(focusKey, currentItem.id, state.temp, state.tpo);
+      const combo = combos[comboIdx];
+      if (!combo) return;
+
+      state.activeItemRecIdx = comboIdx;
+      PART_META.forEach((m, idx) => {
+        state.parts[m.key].itemId = combo.ids[idx];
+      });
+      renderAllResultViews();
+    }
+
+    function renderOutfitList() {
+      const listEl = document.getElementById("res-list");
+      listEl.innerHTML = PART_META.map(meta => {
+        const partState = state.parts[meta.key];
+        const itemObj = getItemObj(meta.key, partState.itemId);
+        const hex = getHexByName(partState.colorName);
+        const isNone = itemObj.style === "none";
+
+        const displayName = isNone ? itemObj.label : `${partState.colorName} ${itemObj.label}`;
+        const links = buildMallLinks(state.gender, partState.colorName, itemObj);
+
+        const actionHtml = links
+          ? `
+            <div class="mall-links">
+              ${links.map(l => `<a href="${l.url}" target="_blank" rel="noopener noreferrer" class="mall-btn ${l.cls}">${l.label}</a>`).join("")}
+            </div>
+          `
+          : `<span style="font-size:12px; color:#94a3b8;">생략</span>`;
+
+        return `
+          <li class="outfit-item">
+            <div class="item-left">
+              <span class="color-dot" style="background:${hex}"></span>
+              <span class="item-part">${meta.label}</span>
+              <span class="item-name">${displayName}</span>
+            </div>
+            ${actionHtml}
+          </li>
+        `;
+      }).join("");
+    }
+
+    function renderAllResultViews() {
+      document.getElementById("res-title").innerText = state.title;
+      document.getElementById("res-tip").innerHTML = `<strong>💡 코디 포인트:</strong> ${state.tip}`;
+
+      const outerObj = getItemObj("outer", state.parts.outer.itemId);
+      const bottomObj = getItemObj("bottom", state.parts.bottom.itemId);
+      const fitLabel = outerObj.style === "none"
+        ? (bottomObj.style.includes("wide") ? "와이드 핏" : "스탠다드 핏")
+        : (bottomObj.style.includes("wide") ? "레이어드 와이드" : "밸런스 세미");
+      document.getElementById("model-fit-tag").innerText = fitLabel;
+
+      document.getElementById("mannequin-preview").innerHTML = renderModelPoseSVG();
+      renderPartsEditor();
+      renderColorRecommendations();
+      renderItemRecommendations();
+      renderOutfitList();
+    }
+
+    function generateOutfit() {
+      const gender = document.querySelector("#gender-group .active").dataset.val;
+      const temp = document.querySelector("#temp-group .active").dataset.val;
+      const tpo = document.querySelector("#tpo-group .active").dataset.val;
+
+      const tpoDef = TPO_DEFAULT_PARTS[tpo] || TPO_DEFAULT_PARTS.daily;
+
+      const tempLabels = {
+        cold: "한파(4°C 이하)",
+        chilly: "쌀쌀함(5~11°C)",
+        mild: "선선함(12~19°C)",
+        warm: "따뜻·더움(20°C+)"
+      };
+      const tpoLabels = {
+        daily: "데일리·캠퍼스",
+        date: "소개팅·데이트",
+        wedding: "결혼식 하객룩",
+        office: "출근·면접",
+        travel: "여행·나들이",
+        workout: "운동·헬스·산책"
+      };
+
+      document.getElementById("res-context-label").innerText =
+        `${gender === "male" ? "남성" : "여성"} · ${tempLabels[temp]} · ${tpoLabels[tpo]}`;
+
+      const rawOuter = (temp === "warm" && tpo !== "wedding" && tpo !== "office") ? "none" : tpoDef.outer;
+      const rawTop = (temp === "warm" && (tpo === "daily" || tpo === "workout")) ? "short_tee" : tpoDef.top;
+      const rawBottom = (temp === "cold" && tpo === "date") ? "corduroy" : tpoDef.bottom;
+      const rawShoes = tpoDef.shoes;
+
+      state = {
+        gender,
+        temp,
+        tpo,
+        focusPart: "top",
+        activeColorRecIdx: -1,
+        activeItemRecIdx: -1,
+        title: `${tpoLabels[tpo]} · ${tempLabels[temp]} 맞춤 코디`,
+        tip: tpoDef.tip,
+        parts: {
+          outer: {
+            itemId: sanitizeItemForContext("outer", rawOuter, temp, tpo),
+            colorName: sanitizeColorForContext(tpoDef.colors[0], temp)
+          },
+          top: {
+            itemId: sanitizeItemForContext("top", rawTop, temp, tpo),
+            colorName: sanitizeColorForContext(tpoDef.colors[1], temp)
+          },
+          bottom: {
+            itemId: sanitizeItemForContext("bottom", rawBottom, temp, tpo),
+            colorName: sanitizeColorForContext(tpoDef.colors[2], temp)
+          },
+          shoes: {
+            itemId: sanitizeItemForContext("shoes", rawShoes, temp, tpo),
+            colorName: sanitizeColorForContext(tpoDef.colors[3], temp)
+          }
+        }
+      };
+
+      renderAllResultViews();
+
+      const resArea = document.getElementById("result-area");
+      resArea.style.display = "block";
+      resArea.scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>
