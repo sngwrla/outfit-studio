@@ -14,6 +14,8 @@
     gtag('config', 'G-068K79KZMT');
   </script>
   <title>오늘 뭐 입지? - 성별 맞춤 쇼핑몰 & 모델 피팅 코디 스튜디오</title>
+  </script>
+  -->
   <style>
     :root {
       --bg: #f1f5f9;
@@ -47,13 +49,17 @@
 
     .btn-group { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 16px; }
     .btn-group.tpo-group { grid-template-columns: repeat(3, 1fr); }
+    .btn-group.body-group { grid-template-columns: repeat(2, 1fr); }
     .option-btn {
       padding: 10px 8px; border: 1.5px solid var(--border); border-radius: 10px;
       background: #fff; font-size: 13px; font-weight: 600; color: var(--text);
       cursor: pointer; transition: all 0.14s; word-break: keep-all;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
     }
+    .option-btn .btn-sub { font-size: 10.5px; font-weight: 500; color: var(--sub); }
     .option-btn:hover { border-color: #93c5fd; }
     .option-btn.active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+    .option-btn.active .btn-sub { color: #1d4ed8; }
 
     .submit-btn {
       width: 100%; padding: 14px; background: var(--primary); color: #fff;
@@ -67,7 +73,13 @@
 
     .result-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
     .badge { display: inline-block; background: #dbeafe; color: #1d4ed8; font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
-    .result-title { font-size: 18px; font-weight: 800; color: var(--primary); margin-bottom: 14px; line-height: 1.35; }
+    .result-title { font-size: 18px; font-weight: 800; color: var(--primary); margin-bottom: 10px; line-height: 1.35; }
+
+    .body-guide-banner {
+      background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px;
+      padding: 10px 13px; margin-bottom: 14px; font-size: 12.5px; color: #166534; line-height: 1.5;
+    }
+    .body-guide-banner strong { color: #14532d; }
 
     .studio-grid {
       display: grid; grid-template-columns: 184px 1fr; gap: 14px;
@@ -180,7 +192,7 @@
 
     <header>
       <h1>오늘 뭐 입지? 코디 스튜디오</h1>
-      <p>성별·기온·상황별 색조합과 옷 매칭을 모델 피팅 디테일로 확인하세요</p>
+      <p>성별·체형·기온·상황별 색조합과 옷 매칭을 모델 피팅 디테일로 확인하세요</p>
     </header>
 
     <div class="card">
@@ -190,7 +202,27 @@
         <button type="button" class="option-btn" data-val="female">여성</button>
       </div>
 
-      <div class="section-title">2. 오늘 기온 (체감 날씨)</div>
+      <div class="section-title">2. 체형</div>
+      <div class="btn-group body-group" id="body-group">
+        <button type="button" class="option-btn" data-val="slim">
+          <span>슬림·마른 체형</span>
+          <span class="btn-sub">볼륨 보완·레이어드 핏</span>
+        </button>
+        <button type="button" class="option-btn active" data-val="standard">
+          <span>보통·균형 체형</span>
+          <span class="btn-sub">스탠다드·트렌디 핏</span>
+        </button>
+        <button type="button" class="option-btn" data-val="muscular">
+          <span>근육·역삼각 체형</span>
+          <span class="btn-sub">어깨·하체 밸런스 핏</span>
+        </button>
+        <button type="button" class="option-btn" data-val="chubby">
+          <span>통통·듬직한 체형</span>
+          <span class="btn-sub">체형 커버·세로 라인</span>
+        </button>
+      </div>
+
+      <div class="section-title">3. 오늘 기온 (체감 날씨)</div>
       <div class="btn-group" id="temp-group">
         <button type="button" class="option-btn" data-val="cold">한파 (4°C 이하)</button>
         <button type="button" class="option-btn active" data-val="chilly">쌀쌀함 (5~11°C)</button>
@@ -198,7 +230,7 @@
         <button type="button" class="option-btn" data-val="warm">따뜻·더움 (20°C+)</button>
       </div>
 
-      <div class="section-title">3. 상황 (TPO)</div>
+      <div class="section-title">4. 상황 (TPO)</div>
       <div class="btn-group tpo-group" id="tpo-group">
         <button type="button" class="option-btn active" data-val="daily">데일리·캠퍼스</button>
         <button type="button" class="option-btn" data-val="date">소개팅·데이트</button>
@@ -208,21 +240,23 @@
         <button type="button" class="option-btn" data-val="workout">운동·헬스·산책</button>
       </div>
 
-      <button type="button" class="submit-btn" onclick="generateOutfit()">모델 피팅 코디 스튜디오 열기</button>
+      <button type="button" class="submit-btn" onclick="generateOutfit()">체형 맞춤 코디 스튜디오 열기</button>
     </div>
 
     <div class="card" id="result-area">
       <div class="result-top">
-        <span class="badge" id="res-badge">룩북 모델 피팅 뷰</span>
+        <span class="badge" id="res-badge">체형 맞춤 모델 피팅</span>
         <span class="rec-sub" id="res-context-label"></span>
       </div>
       <div class="result-title" id="res-title">코디 조합 제목</div>
+
+      <div class="body-guide-banner" id="body-guide-banner"></div>
 
       <div class="studio-grid">
         <div class="model-panel">
           <div class="model-meta-row">
             <span class="fit-tag" id="model-fit-tag">밸런스 핏</span>
-            <span class="pose-label">스탠딩 포즈</span>
+            <span class="pose-label" id="model-body-label">보통 체형</span>
           </div>
           <div id="mannequin-preview"></div>
         </div>
@@ -249,7 +283,7 @@
       <ul class="outfit-list" id="res-list"></ul>
       <div class="tip-box" id="res-tip">코디 팁</div>
       <p class="notice-line">
-        * 남성은 무신사·4910·하이버, 여성은 에이블리·지그재그·W컨셉 검색 결과로 연결되며, 기온·상황에 어긋나는 조합은 자동 보정됩니다.
+        * 남성은 무신사·4910·하이버, 여성은 에이블리·지그재그·W컨셉 검색 결과로 연결되며, 선택한 체형·기온·상황에 맞게 실루엣과 아이템이 자동 보정됩니다.
       </p>
     </div>
 
@@ -274,6 +308,37 @@
       const found = COLOR_PALETTE.find(c => c.name === name);
       return found ? found.hex : "#18181b";
     }
+
+    const BODY_PROFILES = {
+      slim: {
+        label: "슬림·마른 체형",
+        shortLabel: "슬림 체형",
+        fitKeyword: "오버핏 ",
+        banner: "<strong>🧍 슬림·마른 체형 코디 전략:</strong> 딱 붙는 핏보다 적당한 여유가 있는 세미오버·와이드 실루엣과 밝은 톤(아이보리·베이지·라이트그레이) 상의로 상체 볼륨감을 살려주는 것이 좋습니다.",
+        tip: "너무 타이트한 상의는 마른 인상을 강조할 수 있으니 두께감 있는 니트·셔츠자켓과 와이드 팬츠로 입체감을 더해 보세요."
+      },
+      standard: {
+        label: "보통·균형 체형",
+        shortLabel: "보통 체형",
+        fitKeyword: "",
+        banner: "<strong>🧍 보통·균형 체형 코디 전략:</strong> 정핏부터 세미와이드까지 폭넓게 소화 가능하므로, 상의·하의 실루엣 대비(예: 단정한 상의 + 와이드 하의)와 3색 이내 컬러 밸런스에 집중하면 가장 세련됩니다.",
+        tip: "상·하의 중 하나는 차분한 톤으로 잡고 상의나 아우터 컬러로 포인트를 주면 깔끔한 비율이 살아납니다."
+      },
+      muscular: {
+        label: "근육·역삼각 체형",
+        shortLabel: "근육 체형",
+        fitKeyword: "세미와이드 ",
+        banner: "<strong>💪 근육·역삼각 체형 코디 전략:</strong> 상체 어깨·흉곽이 발달해 있으므로 과한 패드나 뻣뻣한 오버핏보다는 어깨선이 자연스럽게 떨어지는 상의와 스트레이트·와이드 하의로 상·하체 비율을 맞추는 것이 핵심입니다.",
+        tip: "스키니한 하의는 상체가 지나치게 커 보일 수 있으니 스트레이트·와이드 팬츠로 하체 볼륨을 맞춰 안정적인 실루엣을 만들어 보세요."
+      },
+      chubby: {
+        label: "통통·듬직한 체형",
+        shortLabel: "통통 체형",
+        fitKeyword: "세미와이드 ",
+        banner: "<strong>🧥 통통·듬직한 체형 코디 전략:</strong> 아우터나 상·하의를 짙은 톤(네이비·차콜·블랙)으로 연결해 세로 라인을 길게 만들고, 목선이 답답하지 않은 셔츠·크루넥과 깔끔하게 떨어지는 슬랙스·스트레이트 팬츠를 추천합니다.",
+        tip: "허벅지와 종아리 라인이 도드라지지 않는 세미와이드·테이퍼드 핏 하의를 선택하고, 아우터를 오픈해 세로 시선을 유도해 보세요."
+      }
+    };
 
     const CLOTHING_CATALOG = {
       outer: [
@@ -323,7 +388,7 @@
       ]
     };
 
-    function sanitizeItemForContext(partKey, itemId, temp, tpo) {
+    function sanitizeItemForContext(partKey, itemId, temp, tpo, bodyType = "standard") {
       let id = itemId;
 
       if (temp === "cold") {
@@ -363,6 +428,18 @@
         if (partKey === "top" && id === "hoodie") id = "shirt";
         if (partKey === "bottom" && id === "jogger") id = "tapered_slacks";
         if (partKey === "shoes" && (id === "running_shoes" || id === "sandal")) id = "loafer";
+      }
+
+      // 체형별 아이템 자동 보정
+      if (bodyType === "chubby") {
+        if (partKey === "top" && id === "turtleneck") id = "shirt";
+        if (partKey === "outer" && id === "short_padding") id = "coat";
+      }
+      if (bodyType === "muscular") {
+        if (partKey === "bottom" && id === "tapered_slacks" && tpo !== "wedding") id = "wide_slacks";
+      }
+      if (bodyType === "slim") {
+        if (partKey === "bottom" && id === "tapered_slacks" && tpo === "daily") id = "wide_denim";
       }
 
       return id;
@@ -436,7 +513,7 @@
       ]
     };
 
-    function getItemCombinationsFor(partKey, itemId, temp, tpo) {
+    function getItemCombinationsFor(partKey, itemId, temp, tpo, bodyType) {
       const rawCombos = {
         outer: [
           { name: "미니멀 슬랙스 세트", ids: [itemId, "crew_knit", "wide_slacks", "loafer"] },
@@ -466,7 +543,7 @@
 
       const partKeys = ["outer", "top", "bottom", "shoes"];
       return rawCombos.map(c => {
-        const cleanIds = c.ids.map((id, idx) => sanitizeItemForContext(partKeys[idx], id, temp, tpo));
+        const cleanIds = c.ids.map((id, idx) => sanitizeItemForContext(partKeys[idx], id, temp, tpo, bodyType));
         const cleanDesc = partKeys
           .filter((_, idx) => !(idx === 0 && cleanIds[0] === "none"))
           .map((pk, idx) => getItemObj(pk, cleanIds[idx]).kw || getItemObj(pk, cleanIds[idx]).label)
@@ -498,6 +575,7 @@
 
     let state = {
       gender: "male",
+      bodyType: "standard",
       temp: "chilly",
       tpo: "daily",
       focusPart: "top",
@@ -517,11 +595,17 @@
       return CLOTHING_CATALOG[partKey].find(x => x.id === itemId) || CLOTHING_CATALOG[partKey][0];
     }
 
-    // 성별에 따른 주요 쇼핑몰 링크 생성 (남성: 무신사·4910·하이버 / 여성: 에이블리·지그재그·W컨셉)
-    function buildMallLinks(gender, colorName, itemObj) {
+    function buildMallLinks(gender, bodyType, partKey, colorName, itemObj) {
       if (!itemObj || !itemObj.kw) return null;
       const prefix = gender === "male" ? "남자 " : "여자 ";
-      const q = `${prefix}${colorName} ${itemObj.kw}`.trim();
+      let fitHint = "";
+      if (partKey === "top" || partKey === "outer") {
+        if (bodyType === "slim") fitHint = "오버핏 ";
+        else if (bodyType === "muscular") fitHint = "세미오버 ";
+      } else if (partKey === "bottom") {
+        if (bodyType === "chubby" || bodyType === "muscular") fitHint = "세미와이드 ";
+      }
+      const q = `${prefix}${colorName} ${fitHint}${itemObj.kw}`.replace(/\s+/g, " ").trim();
       const enc = encodeURIComponent(q);
 
       if (gender === "male") {
@@ -561,36 +645,67 @@
 
       const hasOuter = outerObj.style !== "none";
       const isFemale = state.gender === "female";
+      const bodyType = state.bodyType;
       const skin = "#f5cfb0";
       const hair = "#1e293b";
       const line = "#1e293b";
+
+      // 체형별 어깨/허리/하체 폭 보정값
+      let shoulderDelta = 0;
+      let waistDelta = 0;
+      let hipDelta = 0;
+      let sleeveThick = 0;
+
+      if (bodyType === "slim") {
+        shoulderDelta = -3.5;
+        waistDelta = -3.5;
+        hipDelta = -3;
+        sleeveThick = -1.5;
+      } else if (bodyType === "muscular") {
+        shoulderDelta = 5.5;
+        waistDelta = 0.5;
+        hipDelta = 2;
+        sleeveThick = 2.2;
+      } else if (bodyType === "chubby") {
+        shoulderDelta = 4;
+        waistDelta = 6.5;
+        hipDelta = 5.5;
+        sleeveThick = 2.5;
+      }
+
+      const sL = 50 - shoulderDelta;
+      const sR = 90 + shoulderDelta;
+      const wL = 48 - waistDelta;
+      const wR = 92 + waistDelta;
+      const bL = 51 - hipDelta;
+      const bR = 89 + hipDelta;
 
       let bottomDetailSvg = "";
       if (bottomObj.style === "short_bot") {
         if (isFemale) {
           bottomDetailSvg = `
-            <path d="M51 118 L89 118 L97 164 L43 164 Z" fill="${bottomHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
-            <path d="M56 164 L54 208 L65 208 L66 164 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
-            <path d="M74 164 L75 208 L86 208 L84 164 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
+            <path d="M${bL} 118 L${bR} 118 L${97 + hipDelta} 164 L${43 - hipDelta} 164 Z" fill="${bottomHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M${56 - hipDelta * 0.4} 164 L${54 - hipDelta * 0.4} 208 L65 208 L66 164 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
+            <path d="M74 164 L75 208 L${86 + hipDelta * 0.4} 208 L${84 + hipDelta * 0.4} 164 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
           `;
         } else {
           bottomDetailSvg = `
-            <path d="M50 118 L90 118 L92 159 L72 159 L70 138 L68 159 L48 159 Z" fill="${bottomHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M${bL - 1} 118 L${bR + 1} 118 L${92 + hipDelta} 159 L72 159 L70 138 L68 159 L${48 - hipDelta} 159 Z" fill="${bottomHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
             <line x1="58" y1="120" x2="57" y2="155" stroke="${line}" stroke-width="0.9" opacity="0.35"/>
             <line x1="82" y1="120" x2="83" y2="155" stroke="${line}" stroke-width="0.9" opacity="0.35"/>
-            <path d="M51 159 L49 208 L65 208 L67 159 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
-            <path d="M73 159 L75 208 L91 208 L89 159 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
+            <path d="M${51 - hipDelta * 0.4} 159 L${49 - hipDelta * 0.4} 208 L65 208 L67 159 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
+            <path d="M73 159 L75 208 L${91 + hipDelta * 0.4} 208 L${89 + hipDelta * 0.4} 159 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
           `;
         }
       } else if (bottomObj.style === "wide_slacks" || bottomObj.style === "wide_denim" || bottomObj.style === "corduroy" || bottomObj.style === "cargo") {
         bottomDetailSvg = `
-          <path d="M49 118 L91 118 L97 208 L73 208 L70 152 L67 208 L43 208 Z"
+          <path d="M${bL - 2} 118 L${bR + 2} 118 L${97 + hipDelta * 0.7} 208 L73 208 L70 152 L67 208 L${43 - hipDelta * 0.7} 208 Z"
                 fill="${bottomHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
           <line x1="58" y1="122" x2="56" y2="203" stroke="${line}" stroke-width="0.95" opacity="0.32"/>
           <line x1="82" y1="122" x2="84" y2="203" stroke="${line}" stroke-width="0.95" opacity="0.32"/>
           ${bottomObj.style === "cargo" ? `
-            <rect x="43" y="150" width="8" height="16" rx="1.5" fill="${bottomHex}" stroke="${line}" stroke-width="1.2"/>
-            <rect x="89" y="150" width="8" height="16" rx="1.5" fill="${bottomHex}" stroke="${line}" stroke-width="1.2"/>
+            <rect x="${43 - hipDelta * 0.5}" y="150" width="8" height="16" rx="1.5" fill="${bottomHex}" stroke="${line}" stroke-width="1.2"/>
+            <rect x="${89 + hipDelta * 0.5}" y="150" width="8" height="16" rx="1.5" fill="${bottomHex}" stroke="${line}" stroke-width="1.2"/>
           ` : ""}
           ${bottomObj.style === "corduroy" ? `
             <line x1="52" y1="122" x2="48" y2="205" stroke="${line}" stroke-width="0.6" opacity="0.22"/>
@@ -601,13 +716,13 @@
         `;
       } else {
         bottomDetailSvg = `
-          <path d="M51 118 L89 118 L88 208 L74 208 L70 150 L66 208 L52 208 Z"
+          <path d="M${bL} 118 L${bR} 118 L${88 + hipDelta * 0.5} 208 L74 208 L70 150 L66 208 L${52 - hipDelta * 0.5} 208 Z"
                 fill="${bottomHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
           <line x1="59" y1="122" x2="58" y2="203" stroke="${line}" stroke-width="0.9" opacity="0.28"/>
           <line x1="81" y1="122" x2="82" y2="203" stroke="${line}" stroke-width="0.9" opacity="0.28"/>
           ${bottomObj.style === "jogger" ? `
-            <line x1="52" y1="203" x2="66" y2="203" stroke="${line}" stroke-width="1.8"/>
-            <line x1="74" y1="203" x2="88" y2="203" stroke="${line}" stroke-width="1.8"/>
+            <line x1="${52 - hipDelta * 0.5}" y1="203" x2="66" y2="203" stroke="${line}" stroke-width="1.8"/>
+            <line x1="74" y1="203" x2="${88 + hipDelta * 0.5}" y2="203" stroke="${line}" stroke-width="1.8"/>
           ` : ""}
         `;
       }
@@ -644,9 +759,9 @@
 
       const isShortTop = topObj.style === "short_tee" || topObj.style === "polo" || topObj.style === "blouse";
       const topDetailSvg = `
-        <path d="M50 48 L62 48 L70 57 L78 48 L90 48 L92 121 L48 121 Z"
+        <path d="M${sL} 48 L62 48 L70 57 L78 48 L${sR} 48 L${wR} 121 L${wL} 121 Z"
               fill="${topHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
-        <line x1="49" y1="115" x2="91" y2="115" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
+        <line x1="${wL + 1}" y1="115" x2="${wR - 1}" y2="115" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
         ${topObj.style === "turtleneck" ? `
           <rect x="63" y="38" width="14" height="12" rx="3" fill="${topHex}" stroke="${line}" stroke-width="1.5"/>
           <line x1="63" y1="43" x2="77" y2="43" stroke="${line}" stroke-width="0.8" opacity="0.35"/>
@@ -662,16 +777,16 @@
         ${!hasOuter ? (
           isShortTop
             ? `
-              <path d="M50 48 L33 74 L43 80 L50 65 Z" fill="${topHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
-              <path d="M90 48 L107 74 L97 80 L90 65 Z" fill="${topHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
-              <path d="M35 75 L29 108 L39 110 L42 79 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
-              <path d="M105 75 L111 108 L101 110 L98 79 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
+              <path d="M${sL} 48 L${33 - shoulderDelta} 74 L${43 - shoulderDelta + sleeveThick} 80 L${sL} 65 Z" fill="${topHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M${sR} 48 L${107 + shoulderDelta} 74 L${97 + shoulderDelta - sleeveThick} 80 L${sR} 65 Z" fill="${topHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M${35 - shoulderDelta} 75 L${29 - shoulderDelta} 108 L${39 - shoulderDelta + sleeveThick * 0.6} 110 L${42 - shoulderDelta + sleeveThick * 0.6} 79 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
+              <path d="M${105 + shoulderDelta} 75 L${111 + shoulderDelta} 108 L${101 + shoulderDelta - sleeveThick * 0.6} 110 L${98 + shoulderDelta - sleeveThick * 0.6} 79 Z" fill="${skin}" stroke="${line}" stroke-width="1.3"/>
             `
             : `
-              <path d="M50 48 L30 109 L40 112 L50 66 Z" fill="${topHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
-              <path d="M90 48 L111 94 L102 99 L89 66 Z" fill="${topHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
-              <circle cx="34" cy="114" r="4.5" fill="${skin}" stroke="${line}" stroke-width="1.2"/>
-              <circle cx="108" cy="100" r="4.5" fill="${skin}" stroke="${line}" stroke-width="1.2"/>
+              <path d="M${sL} 48 L${30 - shoulderDelta} 109 L${40 - shoulderDelta + sleeveThick} 112 L${sL} 66 Z" fill="${topHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M${sR} 48 L${111 + shoulderDelta} 94 L${102 + shoulderDelta - sleeveThick} 99 L${sR - 1} 66 Z" fill="${topHex}" stroke="${line}" stroke-width="1.5" stroke-linejoin="round"/>
+              <circle cx="${34 - shoulderDelta}" cy="114" r="4.5" fill="${skin}" stroke="${line}" stroke-width="1.2"/>
+              <circle cx="${108 + shoulderDelta}" cy="100" r="4.5" fill="${skin}" stroke="${line}" stroke-width="1.2"/>
             `
         ) : ""}
       `;
@@ -683,20 +798,25 @@
         const isBlazer = outerObj.style === "blazer";
         const bottomY = isLong ? 168 : 123;
         const leftSleeveEnd = isLong ? 122 : 110;
-        const rightSleeveEndX = isLong ? 111 : 112;
+        const rightSleeveEndX = isLong ? (111 + shoulderDelta) : (112 + shoulderDelta);
         const rightSleeveEndY = isLong ? 112 : 96;
         const wEx = isPuffer ? 4 : 0;
 
+        const oSL = sL - 2 - wEx;
+        const oSR = sR + 2 + wEx;
+        const oBL = wL - 4 - wEx;
+        const oBR = wR + 4 + wEx;
+
         outerDetailSvg = `
-          <path d="M${48 - wEx} 47 L63 47 L57 ${bottomY} L${44 - wEx} ${bottomY} Z"
+          <path d="M${oSL} 47 L63 47 L57 ${bottomY} L${oBL} ${bottomY} Z"
                 fill="${outerHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
-          <path d="M${92 + wEx} 47 L77 47 L83 ${bottomY} L${96 + wEx} ${bottomY} Z"
+          <path d="M${oSR} 47 L77 47 L83 ${bottomY} L${oBR} ${bottomY} Z"
                 fill="${outerHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
-          <path d="M${48 - wEx} 47 L27 ${leftSleeveEnd} L38 ${leftSleeveEnd + 3} L49 66 Z"
+          <path d="M${oSL} 47 L${27 - shoulderDelta} ${leftSleeveEnd} L${38 - shoulderDelta + sleeveThick} ${leftSleeveEnd + 3} L${sL - 1} 66 Z"
                 fill="${outerHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
-          <line x1="28" y1="${leftSleeveEnd - 4}" x2="39" y2="${leftSleeveEnd - 1}" stroke="${line}" stroke-width="1.2" opacity="0.5"/>
-          <circle cx="31" cy="${leftSleeveEnd + 7}" r="4.5" fill="${skin}" stroke="${line}" stroke-width="1.2"/>
-          <path d="M${92 + wEx} 47 L${rightSleeveEndX} ${rightSleeveEndY} L${rightSleeveEndX - 9} ${rightSleeveEndY + 5} L90 66 Z"
+          <line x1="${28 - shoulderDelta}" y1="${leftSleeveEnd - 4}" x2="${39 - shoulderDelta + sleeveThick}" y2="${leftSleeveEnd - 1}" stroke="${line}" stroke-width="1.2" opacity="0.5"/>
+          <circle cx="${31 - shoulderDelta}" cy="${leftSleeveEnd + 7}" r="4.5" fill="${skin}" stroke="${line}" stroke-width="1.2"/>
+          <path d="M${oSR} 47 L${rightSleeveEndX} ${rightSleeveEndY} L${rightSleeveEndX - 9 - sleeveThick} ${rightSleeveEndY + 5} L${sR} 66 Z"
                 fill="${outerHex}" stroke="${line}" stroke-width="1.6" stroke-linejoin="round"/>
           <circle cx="${rightSleeveEndX + 2}" cy="${rightSleeveEndY + 4}" r="4.5" fill="${skin}" stroke="${line}" stroke-width="1.2"/>
           ${isBlazer ? `
@@ -706,17 +826,17 @@
             <path d="M63 47 L67 74 M77 47 L73 74" stroke="${line}" stroke-width="1.25" opacity="0.6"/>
           `}
           ${isPuffer ? `
-            <line x1="${45 - wEx}" y1="74" x2="59" y2="74" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
-            <line x1="${44 - wEx}" y1="98" x2="58" y2="98" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
-            <line x1="81" y1="74" x2="${95 + wEx}" y2="74" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
-            <line x1="82" y1="98" x2="${96 + wEx}" y2="98" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
+            <line x1="${oBL + 1}" y1="74" x2="59" y2="74" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
+            <line x1="${oBL}" y1="98" x2="58" y2="98" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
+            <line x1="81" y1="74" x2="${oBR - 1}" y2="74" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
+            <line x1="82" y1="98" x2="${oBR}" y2="98" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
           ` : ""}
         `;
       }
 
       return `
         <svg viewBox="0 0 140 232" width="158" height="228" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="70" cy="221" rx="36" ry="5" fill="#94a3b8" opacity="0.4" />
+          <ellipse cx="70" cy="221" rx="${36 + hipDelta * 0.8}" ry="5" fill="#94a3b8" opacity="0.4" />
           <g transform="rotate(-2.5 70 28)">
             ${isFemale
               ? `<path d="M50 25 C50 8, 90 8, 90 25 L93 58 L47 58 Z" fill="${hair}" stroke="${line}" stroke-width="1.4"/>`
@@ -824,7 +944,7 @@
       document.getElementById("item-rec-title").innerText =
         `🧥 '${currentItem.label}'(${focusLabel})과 어울리는 추천 옷 조합`;
 
-      const combos = getItemCombinationsFor(focusKey, currentItem.id, state.temp, state.tpo);
+      const combos = getItemCombinationsFor(focusKey, currentItem.id, state.temp, state.tpo, state.bodyType);
       const grid = document.getElementById("item-rec-grid");
 
       grid.innerHTML = combos.map((combo, idx) => `
@@ -867,7 +987,7 @@
 
     function onChangePartItem(partKey, newItemId) {
       state.focusPart = partKey;
-      state.parts[partKey].itemId = sanitizeItemForContext(partKey, newItemId, state.temp, state.tpo);
+      state.parts[partKey].itemId = sanitizeItemForContext(partKey, newItemId, state.temp, state.tpo, state.bodyType);
       state.activeItemRecIdx = -1;
       renderAllResultViews();
     }
@@ -875,7 +995,7 @@
     function applyItemCombination(comboIdx) {
       const focusKey = state.focusPart;
       const currentItem = getItemObj(focusKey, state.parts[focusKey].itemId);
-      const combos = getItemCombinationsFor(focusKey, currentItem.id, state.temp, state.tpo);
+      const combos = getItemCombinationsFor(focusKey, currentItem.id, state.temp, state.tpo, state.bodyType);
       const combo = combos[comboIdx];
       if (!combo) return;
 
@@ -895,7 +1015,7 @@
         const isNone = itemObj.style === "none";
 
         const displayName = isNone ? itemObj.label : `${partState.colorName} ${itemObj.label}`;
-        const links = buildMallLinks(state.gender, partState.colorName, itemObj);
+        const links = buildMallLinks(state.gender, state.bodyType, meta.key, partState.colorName, itemObj);
 
         const actionHtml = links
           ? `
@@ -919,8 +1039,10 @@
     }
 
     function renderAllResultViews() {
+      const bodyProf = BODY_PROFILES[state.bodyType] || BODY_PROFILES.standard;
       document.getElementById("res-title").innerText = state.title;
-      document.getElementById("res-tip").innerHTML = `<strong>💡 코디 포인트:</strong> ${state.tip}`;
+      document.getElementById("body-guide-banner").innerHTML = bodyProf.banner;
+      document.getElementById("res-tip").innerHTML = `<strong>💡 체형·TPO 코디 포인트:</strong> ${state.tip} ${bodyProf.tip}`;
 
       const outerObj = getItemObj("outer", state.parts.outer.itemId);
       const bottomObj = getItemObj("bottom", state.parts.bottom.itemId);
@@ -928,6 +1050,7 @@
         ? (bottomObj.style.includes("wide") ? "와이드 핏" : "스탠다드 핏")
         : (bottomObj.style.includes("wide") ? "레이어드 와이드" : "밸런스 세미");
       document.getElementById("model-fit-tag").innerText = fitLabel;
+      document.getElementById("model-body-label").innerText = bodyProf.shortLabel;
 
       document.getElementById("mannequin-preview").innerHTML = renderModelPoseSVG();
       renderPartsEditor();
@@ -938,10 +1061,12 @@
 
     function generateOutfit() {
       const gender = document.querySelector("#gender-group .active").dataset.val;
+      const bodyType = document.querySelector("#body-group .active").dataset.val;
       const temp = document.querySelector("#temp-group .active").dataset.val;
       const tpo = document.querySelector("#tpo-group .active").dataset.val;
 
       const tpoDef = TPO_DEFAULT_PARTS[tpo] || TPO_DEFAULT_PARTS.daily;
+      const bodyProf = BODY_PROFILES[bodyType] || BODY_PROFILES.standard;
 
       const tempLabels = {
         cold: "한파(4°C 이하)",
@@ -959,38 +1084,56 @@
       };
 
       document.getElementById("res-context-label").innerText =
-        `${gender === "male" ? "남성" : "여성"} · ${tempLabels[temp]} · ${tpoLabels[tpo]}`;
+        `${gender === "male" ? "남성" : "여성"} · ${bodyProf.shortLabel} · ${tempLabels[temp]} · ${tpoLabels[tpo]}`;
 
-      const rawOuter = (temp === "warm" && tpo !== "wedding" && tpo !== "office") ? "none" : tpoDef.outer;
-      const rawTop = (temp === "warm" && (tpo === "daily" || tpo === "workout")) ? "short_tee" : tpoDef.top;
-      const rawBottom = (temp === "cold" && tpo === "date") ? "corduroy" : tpoDef.bottom;
-      const rawShoes = tpoDef.shoes;
+      let rawOuter = (temp === "warm" && tpo !== "wedding" && tpo !== "office") ? "none" : tpoDef.outer;
+      let rawTop = (temp === "warm" && (tpo === "daily" || tpo === "workout")) ? "short_tee" : tpoDef.top;
+      let rawBottom = (temp === "cold" && tpo === "date") ? "corduroy" : tpoDef.bottom;
+      let rawShoes = tpoDef.shoes;
+      let rawColors = [...tpoDef.colors];
+
+      // 체형별 초기 추천 아이템·배색 최적화
+      if (bodyType === "slim") {
+        if (rawOuter === "blouson") rawOuter = "shirt_jacket";
+        if (rawBottom === "tapered_slacks" && tpo !== "wedding" && tpo !== "office") rawBottom = "wide_slacks";
+        if (rawColors[1] === "블랙") rawColors[1] = "아이보리";
+      } else if (bodyType === "muscular") {
+        if (rawOuter === "short_padding") rawOuter = "blouson";
+        if (rawTop === "turtleneck") rawTop = "crew_knit";
+        if (rawBottom === "tapered_slacks" && tpo !== "wedding") rawBottom = "wide_slacks";
+      } else if (bodyType === "chubby") {
+        if (rawOuter === "short_padding" || rawOuter === "blouson") rawOuter = "coat";
+        if (rawTop === "turtleneck" || rawTop === "hoodie") rawTop = "shirt";
+        if (rawBottom === "cargo") rawBottom = "wide_slacks";
+        if (rawColors[0] === "아이보리" || rawColors[0] === "베이지") rawColors[0] = "차콜";
+      }
 
       state = {
         gender,
+        bodyType,
         temp,
         tpo,
         focusPart: "top",
         activeColorRecIdx: -1,
         activeItemRecIdx: -1,
-        title: `${tpoLabels[tpo]} · ${tempLabels[temp]} 맞춤 코디`,
+        title: `${bodyProf.label} · ${tpoLabels[tpo]} 맞춤 코디`,
         tip: tpoDef.tip,
         parts: {
           outer: {
-            itemId: sanitizeItemForContext("outer", rawOuter, temp, tpo),
-            colorName: sanitizeColorForContext(tpoDef.colors[0], temp)
+            itemId: sanitizeItemForContext("outer", rawOuter, temp, tpo, bodyType),
+            colorName: sanitizeColorForContext(rawColors[0], temp)
           },
           top: {
-            itemId: sanitizeItemForContext("top", rawTop, temp, tpo),
-            colorName: sanitizeColorForContext(tpoDef.colors[1], temp)
+            itemId: sanitizeItemForContext("top", rawTop, temp, tpo, bodyType),
+            colorName: sanitizeColorForContext(rawColors[1], temp)
           },
           bottom: {
-            itemId: sanitizeItemForContext("bottom", rawBottom, temp, tpo),
-            colorName: sanitizeColorForContext(tpoDef.colors[2], temp)
+            itemId: sanitizeItemForContext("bottom", rawBottom, temp, tpo, bodyType),
+            colorName: sanitizeColorForContext(rawColors[2], temp)
           },
           shoes: {
-            itemId: sanitizeItemForContext("shoes", rawShoes, temp, tpo),
-            colorName: sanitizeColorForContext(tpoDef.colors[3], temp)
+            itemId: sanitizeItemForContext("shoes", rawShoes, temp, tpo, bodyType),
+            colorName: sanitizeColorForContext(rawColors[3], temp)
           }
         }
       };
