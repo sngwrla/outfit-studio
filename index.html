@@ -23,68 +23,73 @@
       --primary: #0f172a;
       --accent: #2563eb;
       --accent-soft: #eff6ff;
+      --green: #16a34a;
+      --green-soft: #f0fdf4;
+      --amber: #d97706;
+      --amber-soft: #fffbeb;
+      --red: #dc2626;
+      --red-soft: #fef2f2;
       --text: #1e293b;
       --sub: #64748b;
       --border: #e2e8f0;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif; }
-    body { background-color: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 18px 14px 44px; }
-    .container { width: 100%; max-width: 640px; }
+    body { background-color: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 18px 14px 56px; }
+    .container { width: 100%; max-width: 780px; }
 
     .ad-box {
       background: #e2e8f0; color: #64748b; font-size: 12px; text-align: center;
-      padding: 11px; border-radius: 10px; margin-bottom: 14px; border: 1px dashed #cbd5e1;
+      padding: 10px; border-radius: 10px; margin-bottom: 14px; border: 1px dashed #cbd5e1;
     }
 
     header { text-align: center; margin-bottom: 16px; }
-    header h1 { font-size: 21px; font-weight: 800; color: var(--primary); margin-bottom: 4px; letter-spacing: -0.4px; }
+    .brand-pill {
+      display: inline-block; background: #dbeafe; color: #1d4ed8; font-size: 11px;
+      font-weight: 800; padding: 3px 10px; border-radius: 999px; margin-bottom: 6px;
+    }
+    header h1 { font-size: 22px; font-weight: 800; color: var(--primary); margin-bottom: 4px; letter-spacing: -0.5px; }
     header p { font-size: 13px; color: var(--sub); }
 
     .card {
       background: var(--card); border-radius: 18px; padding: 18px;
       box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05); margin-bottom: 14px;
-      border: 1px solid rgba(226, 232, 240, 0.85);
+      border: 1px solid rgba(226, 232, 240, 0.9);
     }
 
-    /* 간편 입력 패널 (2열 컴팩트 그리드) */
-    .setup-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;
-    }
-    .setup-block {
-      background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: 11px 12px;
-    }
+    /* 입력 그리드 */
+    .setup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+    .setup-block { background: #f8fafc; border: 1px solid var(--border); border-radius: 13px; padding: 12px; }
     .setup-block.full { grid-column: 1 / -1; }
     .section-title {
       font-size: 12.5px; font-weight: 800; margin-bottom: 8px; color: var(--primary);
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex; justify-content: space-between; align-items: center; gap: 6px;
     }
-    .section-title span.sub-hint { font-size: 11px; font-weight: 600; color: var(--accent); }
+    .sub-hint { font-size: 11px; font-weight: 600; color: var(--accent); }
 
     .btn-group { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
-    .btn-group.tpo-group { grid-template-columns: repeat(3, 1fr); }
-    .btn-group.body-group { grid-template-columns: repeat(4, 1fr); }
+    .btn-group.quad-group { grid-template-columns: repeat(4, 1fr); }
+    .btn-group.penta-group { grid-template-columns: repeat(5, 1fr); }
     .option-btn {
-      padding: 8px 6px; border: 1.5px solid var(--border); border-radius: 9px;
-      background: #fff; font-size: 12.5px; font-weight: 600; color: var(--text);
+      padding: 8px 5px; border: 1.5px solid var(--border); border-radius: 9px;
+      background: #fff; font-size: 12px; font-weight: 700; color: var(--text);
       cursor: pointer; transition: all 0.14s; word-break: keep-all;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
     }
     .option-btn .btn-sub { font-size: 10px; font-weight: 500; color: var(--sub); }
     .option-btn:hover { border-color: #93c5fd; }
     .option-btn.active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
     .option-btn.active .btn-sub { color: #1d4ed8; }
 
-    /* 키 / 몸무게 입력 */
+    /* 키 · 몸무게 */
     .hw-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .hw-field {
       background: #fff; border: 1.5px solid var(--border); border-radius: 9px;
       padding: 6px 10px; display: flex; align-items: center; justify-content: space-between; gap: 6px;
     }
-    .hw-field:focus-within { border-color: var(--accent); }
-    .hw-label { font-size: 11.5px; font-weight: 700; color: var(--sub); white-space: nowrap; }
+    .hw-label { font-size: 11.5px; font-weight: 700; color: var(--sub); }
     .hw-input-wrap { display: flex; align-items: center; gap: 3px; }
     .hw-input {
-      width: 56px; border: none; outline: none; text-align: right;
+      width: 52px; border: none; outline: none; text-align: right;
       font-size: 14px; font-weight: 800; color: var(--primary); background: transparent;
     }
     .hw-unit { font-size: 11.5px; font-weight: 700; color: var(--sub); }
@@ -93,129 +98,231 @@
       font-size: 10.5px; font-weight: 600; color: var(--sub); background: #fff;
       border: 1px solid #cbd5e1; border-radius: 999px; padding: 2px 8px; cursor: pointer;
     }
-    .quick-chip:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* 기준 아이템 선택 */
+    .closet-picker-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; margin-top: 8px; }
+    .closet-select {
+      width: 100%; padding: 8px 10px; border-radius: 9px; border: 1.5px solid #cbd5e1;
+      background: #fff; font-size: 13px; font-weight: 700; color: var(--primary); outline: none;
+    }
+    .closet-swatches { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+    .c-swatch {
+      width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(15, 23, 42, 0.2);
+      cursor: pointer; transition: transform 0.12s;
+    }
+    .c-swatch.active { box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent); transform: scale(1.1); }
 
     .submit-btn {
-      width: 100%; padding: 13px; background: var(--primary); color: #fff;
-      border: none; border-radius: 12px; font-size: 15px; font-weight: 700;
+      width: 100%; padding: 14px; background: var(--primary); color: #fff;
+      border: none; border-radius: 12px; font-size: 15px; font-weight: 800;
       cursor: pointer; transition: background 0.15s;
     }
     .submit-btn:hover { background: #1e293b; }
 
+    /* 결과 스튜디오 */
     #result-area { display: none; animation: fadeIn 0.25s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-    .result-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
-    .badge { display: inline-block; background: #dbeafe; color: #1d4ed8; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; }
-    .result-title { font-size: 17px; font-weight: 800; color: var(--primary); margin-bottom: 10px; line-height: 1.3; }
-
-    /* 한눈에 요약 스트립 */
-    .summary-strip {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
-      background: #f8fafc; border: 1px solid var(--border); border-radius: 12px;
-      padding: 8px; margin-bottom: 12px;
+    .score-header {
+      display: flex; justify-content: space-between; align-items: center; gap: 10px;
+      background: #f8fafc; border: 1px solid var(--border); border-radius: 14px;
+      padding: 12px 14px; margin-bottom: 10px; flex-wrap: wrap;
     }
-    .sum-cell {
-      background: #fff; border: 1px solid #e2e8f0; border-radius: 8px;
-      padding: 6px 7px; display: flex; align-items: center; gap: 6px; min-width: 0;
-      cursor: pointer; transition: border-color 0.12s;
+    .score-left h2 { font-size: 16px; font-weight: 800; color: var(--primary); margin-bottom: 3px; }
+    .score-left p { font-size: 12px; color: var(--sub); }
+    .score-badge-box {
+      display: flex; align-items: center; gap: 8px; background: #fff;
+      border: 2px solid #bfdbfe; border-radius: 12px; padding: 7px 13px;
     }
-    .sum-cell:hover { border-color: #93c5fd; }
-    .sum-cell.active { border-color: var(--accent); background: #eff6ff; }
-    .sum-dot { width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.25); flex-shrink: 0; }
-    .sum-text { min-width: 0; }
-    .sum-part { font-size: 9.5px; font-weight: 700; color: var(--sub); }
-    .sum-val { font-size: 11px; font-weight: 700; color: var(--primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .score-badge-box.danger { border-color: #fca5a5; background: var(--red-soft); }
+    .score-badge-box.warn { border-color: #fcd34d; background: var(--amber-soft); }
+    .score-badge-box.excellent { border-color: #86efac; background: var(--green-soft); }
+    .score-num { font-size: 22px; font-weight: 900; color: var(--accent); }
+    .score-badge-box.danger .score-num { color: var(--red); }
+    .score-badge-box.warn .score-num { color: var(--amber); }
+    .score-badge-box.excellent .score-num { color: var(--green); }
+    .score-label { font-size: 11px; font-weight: 800; color: var(--text); line-height: 1.25; }
 
-    .body-guide-banner {
-      background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px;
-      padding: 9px 12px; margin-bottom: 12px; font-size: 12px; color: #166534; line-height: 1.45;
+    /* 4대 항목 세부 점수 브레이크다운 바 */
+    .breakdown-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin-bottom: 12px;
     }
-    .body-guide-banner strong { color: #14532d; }
+    .bd-card {
+      background: #f8fafc; border: 1px solid var(--border); border-radius: 10px;
+      padding: 8px 9px; text-align: center;
+    }
+    .bd-title { font-size: 10.5px; font-weight: 700; color: var(--sub); margin-bottom: 3px; }
+    .bd-val { font-size: 14px; font-weight: 900; color: var(--primary); }
+    .bd-val.low { color: var(--red); }
+    .bd-val.mid { color: var(--amber); }
+    .bd-val.high { color: var(--green); }
 
-    /* 스튜디오: 좌측 고디테일 룩북 모델 / 우측 컴팩트 컨트롤 */
+    /* TPO 실수 방지 & 상세 코디 리포트 박스 */
+    .report-box {
+      border-radius: 13px; padding: 13px 14px; margin-bottom: 12px;
+      font-size: 12.5px; line-height: 1.6; border: 1.5px solid;
+    }
+    .report-box.excellent { background: var(--green-soft); border-color: #86efac; color: #14532d; }
+    .report-box.warn { background: var(--amber-soft); border-color: #fde68a; color: #78350f; }
+    .report-box.danger { background: var(--red-soft); border-color: #fca5a5; color: #7f1d1d; }
+    .report-title { font-size: 13.5px; font-weight: 900; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .report-list { padding-left: 16px; display: flex; flex-direction: column; gap: 4px; }
+
+    /* 공유 액션 바 */
+    .share-action-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+    .action-pill-btn {
+      padding: 9px 12px; border-radius: 10px; font-size: 12.5px; font-weight: 800;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
+      border: 1.5px solid; transition: all 0.15s;
+    }
+    .btn-save-img { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn-copy-link { background: #fff; color: var(--primary); border-color: #cbd5e1; }
+
+    /* 스튜디오 2단 레이아웃 */
     .studio-grid {
-      display: grid; grid-template-columns: 214px 1fr; gap: 12px;
+      display: grid; grid-template-columns: 266px 1fr; gap: 12px;
       background: #f8fafc; border: 1px solid var(--border); border-radius: 16px;
       padding: 12px; margin-bottom: 14px; align-items: start;
     }
     .model-panel {
-      background: radial-gradient(circle at 50% 24%, #ffffff 0%, #eef2f6 62%, #dbe4ee 100%);
-      border: 1px solid #cbd5e1; border-radius: 14px;
-      padding: 9px 8px 8px; display: flex; flex-direction: column; align-items: center;
-      position: sticky; top: 10px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
+      background-color: #ffffff;
+      background-image: radial-gradient(#e2e8f0 1.25px, transparent 1.25px);
+      background-size: 18px 18px;
+      border: 1.5px solid #e2e8f0; border-radius: 15px;
+      padding: 10px 9px; display: flex; flex-direction: column; align-items: center;
+      position: sticky; top: 10px;
     }
-    .model-meta-row {
-      width: 100%; display: flex; justify-content: space-between; align-items: center;
-      gap: 4px; margin-bottom: 2px;
+    .model-top-bar { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 4px; margin-bottom: 4px; }
+    .ratio-pill {
+      font-size: 10.5px; font-weight: 800; color: var(--primary);
+      background: #f1f5f9; padding: 2px 8px; border-radius: 999px; border: 1px solid #cbd5e1;
     }
-    .fit-tag {
-      font-size: 10px; font-weight: 700; color: #0f172a;
-      background: rgba(255,255,255,0.9); padding: 2px 7px; border-radius: 999px;
-      border: 1px solid #cbd5e1;
-    }
-    .pose-label { font-size: 10px; font-weight: 700; color: var(--accent); }
-    .model-spec-footer {
-      width: 100%; text-align: center; font-size: 10.5px; font-weight: 700;
-      color: #475569; background: rgba(255,255,255,0.75); border-radius: 8px;
-      padding: 4px 6px; margin-top: 2px; border: 1px solid rgba(203,213,225,0.8);
+    .upload-custom-btn {
+      font-size: 10.5px; font-weight: 700; color: var(--accent); background: #eff6ff;
+      border: 1px solid #bfdbfe; border-radius: 999px; padding: 2px 8px; cursor: pointer;
     }
 
+    .ratio-bar-wrap { width: 100%; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 5px 7px; margin-top: 4px; }
+    .ratio-bar-track { width: 100%; height: 7px; background: #e2e8f0; border-radius: 999px; overflow: hidden; display: flex; }
+    .ratio-upper-fill { background: #64748b; height: 100%; transition: width 0.25s ease; }
+    .ratio-lower-fill { background: var(--accent); height: 100%; transition: width 0.25s ease; }
+    .ratio-bar-labels { display: flex; justify-content: space-between; font-size: 10px; font-weight: 700; color: var(--sub); margin-top: 3px; }
+
+    .compare-box {
+      width: 100%; margin-top: 7px; padding-top: 7px; border-top: 1px dashed #cbd5e1;
+      display: flex; flex-direction: column; gap: 5px;
+    }
+    .compare-row { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+    .compare-label { font-size: 10.5px; font-weight: 800; color: var(--primary); }
+    .compare-toggle { display: inline-flex; background: #f1f5f9; border-radius: 7px; padding: 2px; border: 1px solid #cbd5e1; }
+    .cmp-btn {
+      border: none; background: transparent; font-size: 10px; font-weight: 700;
+      color: var(--sub); padding: 3px 7px; border-radius: 5px; cursor: pointer;
+    }
+    .cmp-btn.active { background: #fff; color: var(--accent); box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+
+    .custom-img-wrap { width: 224px; height: 310px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 10px; position: relative; }
+    .custom-img-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .reset-img-btn {
+      position: absolute; top: 6px; right: 6px; background: rgba(15, 23, 42, 0.75);
+      color: #fff; border: none; border-radius: 6px; font-size: 10px; padding: 3px 7px; cursor: pointer;
+    }
+    .model-spec-footer {
+      width: 100%; text-align: center; font-size: 10.5px; font-weight: 700;
+      color: #1e293b; background: #f8fafc; border-radius: 8px;
+      padding: 5px 6px; margin-top: 6px; border: 1px solid #e2e8f0;
+    }
+
+    /* 우측 부위별 컨트롤 + 타쇼핑몰 믹스매치 & 견적 */
     .parts-panel { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
     .part-editor {
       background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 11px;
-      padding: 8px 10px; transition: border-color 0.15s; cursor: pointer;
+      padding: 8px 10px; transition: border-color 0.15s;
     }
-    .part-editor.focus-part { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1); }
+    .part-editor.anchor-part { border-color: #93c5fd; background: #f8fbff; }
+    .part-editor.ng-part { border-color: #fca5a5; background: #fffafa; }
+
     .part-top-row { display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-bottom: 6px; }
+    .part-name-wrap { display: flex; align-items: center; gap: 5px; }
     .part-badge-name { font-size: 12px; font-weight: 800; color: var(--primary); }
+    .anchor-tag { font-size: 9.5px; font-weight: 800; color: #1d4ed8; background: #dbeafe; padding: 1px 6px; border-radius: 4px; }
+    .ng-tag { font-size: 9.5px; font-weight: 800; color: #b91c1c; background: #fee2e2; padding: 1px 6px; border-radius: 4px; }
+
     .item-select {
-      flex: 1; max-width: 225px; padding: 4px 8px; border-radius: 7px;
+      width: 100%; padding: 5px 8px; border-radius: 7px; margin-bottom: 6px;
       border: 1px solid #cbd5e1; background: #f8fafc; font-size: 12px; font-weight: 600;
       color: var(--text); cursor: pointer; outline: none;
     }
-    .item-select:focus { border-color: var(--accent); background: #fff; }
-
-    .swatch-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+    .swatch-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 6px; }
     .swatch-list { display: flex; flex-wrap: wrap; gap: 4.5px; }
     .swatch-btn {
-      width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid rgba(15, 23, 42, 0.22);
-      cursor: pointer; transition: transform 0.12s, box-shadow 0.12s; padding: 0;
+      width: 17px; height: 17px; border-radius: 50%; border: 1.5px solid rgba(15, 23, 42, 0.22);
+      cursor: pointer; padding: 0;
     }
-    .swatch-btn:hover { transform: scale(1.14); }
     .swatch-btn.selected { box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px var(--accent); transform: scale(1.1); }
     .selected-color-text { font-size: 11px; font-weight: 700; color: var(--accent); white-space: nowrap; }
 
-    /* 탭 전환식 추천 영역 (한눈에 간편하게) */
-    .rec-tabs-wrap {
-      background: #f8fafc; border: 1px solid #dbeafe; border-radius: 14px;
-      padding: 11px 12px; margin-bottom: 14px;
+    /* 타쇼핑몰 출처 & 견적 입력 행 (1번 기능) */
+    .mall-budget-row {
+      display: grid; grid-template-columns: 1fr 94px; gap: 6px; align-items: center;
+      padding-top: 6px; border-top: 1px dashed #e2e8f0;
     }
-    .rec-tab-bar { display: flex; gap: 6px; margin-bottom: 9px; }
-    .rec-tab-btn {
-      flex: 1; padding: 7px 8px; border-radius: 8px; border: 1px solid #cbd5e1;
-      background: #fff; font-size: 12px; font-weight: 700; color: var(--sub); cursor: pointer;
+    .mall-source-select {
+      padding: 4px 6px; border-radius: 6px; border: 1px solid #cbd5e1;
+      font-size: 11px; font-weight: 700; color: var(--text); background: #f8fafc;
     }
-    .rec-tab-btn.active {
-      background: var(--primary); color: #fff; border-color: var(--primary);
+    .price-input-box {
+      display: flex; align-items: center; background: #f8fafc; border: 1px solid #cbd5e1;
+      border-radius: 6px; padding: 3px 6px;
     }
-    .rec-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 6px; flex-wrap: wrap; }
-    .rec-title { font-size: 12px; font-weight: 800; color: var(--primary); }
-    .rec-sub { font-size: 10.5px; color: var(--sub); font-weight: 600; }
+    .price-input {
+      width: 100%; border: none; background: transparent; text-align: right;
+      font-size: 11.5px; font-weight: 800; color: var(--primary); outline: none;
+    }
+    .price-unit { font-size: 10.5px; color: var(--sub); font-weight: 700; margin-left: 2px; }
 
-    .rec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
-    .rec-card {
-      background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 9px;
-      padding: 8px 9px; cursor: pointer; text-align: left; transition: all 0.14s;
+    /* 타쇼핑몰 합산 견적 요약 바 */
+    .total-budget-banner {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+      background: #0f172a; color: #fff; border-radius: 12px; padding: 11px 14px; margin-bottom: 14px;
     }
-    .rec-card:hover { border-color: #60a5fa; transform: translateY(-1px); }
-    .rec-card.active { border-color: var(--accent); background: #eff6ff; }
-    .rec-card-title { font-size: 11.5px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
-    .chips-line { display: flex; align-items: center; gap: 4px; margin-bottom: 3px; }
-    .mini-chip { width: 13px; height: 13px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.2); flex-shrink: 0; }
-    .rec-card-desc { font-size: 10.5px; color: var(--sub); line-height: 1.3; }
+    .budget-left { font-size: 12px; color: #cbd5e1; }
+    .budget-left strong { color: #fff; font-size: 13px; }
+    .budget-right { font-size: 16px; font-weight: 900; color: #60a5fa; }
 
-    .outfit-list { list-style: none; border-top: 1px solid var(--border); margin-bottom: 12px; }
+    /* 3번 기능: 내 옷장 등록 & 주간 돌려입기 캘린더 */
+    .wardrobe-card {
+      background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 14px;
+      padding: 13px; margin-bottom: 14px;
+    }
+    .wardrobe-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px; }
+    .wardrobe-title { font-size: 13px; font-weight: 800; color: var(--primary); }
+    .add-wardrobe-btn {
+      font-size: 11px; font-weight: 800; background: var(--primary); color: #fff;
+      border: none; border-radius: 7px; padding: 5px 10px; cursor: pointer;
+    }
+    .wardrobe-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+    .w-chip {
+      display: inline-flex; align-items: center; gap: 5px; background: #fff;
+      border: 1px solid #cbd5e1; border-radius: 999px; padding: 3px 9px;
+      font-size: 11px; font-weight: 700; color: var(--text);
+    }
+    .w-chip-dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.2); }
+    .w-chip-del { border: none; background: none; color: #94a3b8; font-weight: 900; cursor: pointer; font-size: 12px; }
+
+    .week-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    .day-card {
+      background: #fff; border: 1.5px solid #e2e8f0; border-radius: 10px;
+      padding: 8px 7px; cursor: pointer; text-align: left; transition: all 0.14s;
+    }
+    .day-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .day-badge { font-size: 10.5px; font-weight: 900; color: var(--accent); margin-bottom: 3px; }
+    .day-desc { font-size: 10.5px; font-weight: 600; color: var(--text); line-height: 1.35; }
+    .day-sub { font-size: 9.5px; color: var(--green); font-weight: 700; margin-top: 4px; }
+
+    /* 최종 체크리스트 */
+    .checklist-title { font-size: 13px; font-weight: 800; color: var(--primary); margin-bottom: 8px; }
+    .outfit-list { list-style: none; border-top: 1px solid var(--border); margin-bottom: 10px; }
     .outfit-item {
       display: flex; justify-content: space-between; align-items: center;
       padding: 9px 0; border-bottom: 1px solid var(--border); gap: 8px; flex-wrap: wrap;
@@ -223,33 +330,30 @@
     .item-left { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1; }
     .color-dot { width: 15px; height: 15px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.22); flex-shrink: 0; }
     .item-part { font-size: 11.5px; font-weight: 700; color: var(--sub); width: 40px; flex-shrink: 0; }
-    .item-name { font-size: 12.5px; font-weight: 600; color: var(--primary); word-break: keep-all; line-height: 1.35; }
+    .item-name { font-size: 12.5px; font-weight: 600; color: var(--primary); }
+    .owned-badge {
+      font-size: 11px; font-weight: 700; color: #15803d; background: #f0fdf4;
+      border: 1px solid #bbf7d0; padding: 3px 9px; border-radius: 6px;
+    }
 
-    .mall-links { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+    .mall-links { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
     .mall-btn {
       font-size: 11px; font-weight: 700; text-decoration: none;
-      padding: 4px 8px; border-radius: 6px; white-space: nowrap; transition: opacity 0.12s;
+      padding: 4px 8px; border-radius: 6px; white-space: nowrap;
     }
-    .mall-btn:hover { opacity: 0.85; }
+    .mall-aff { color: #ffffff; background: #dc2626; }
     .mall-m1 { color: #ffffff; background: #111827; }
     .mall-m2 { color: #1e3a8a; background: #dbeafe; }
-    .mall-m3 { color: #831843; background: #fce7f3; }
 
-    .tip-box {
-      background: #f8fafc; border-left: 3.5px solid var(--accent); padding: 10px 13px;
-      font-size: 12.5px; line-height: 1.5; color: #334155; border-radius: 0 10px 10px 0;
-    }
-    .notice-line { font-size: 11px; color: var(--sub); margin-top: 8px; line-height: 1.4; }
+    .notice-line { font-size: 11px; color: var(--sub); margin-top: 8px; line-height: 1.45; }
 
-    @media (max-width: 560px) {
+    @media (max-width: 680px) {
       .setup-grid { grid-template-columns: 1fr; }
-      .btn-group.body-group { grid-template-columns: repeat(2, 1fr); }
-      .btn-group.tpo-group { grid-template-columns: repeat(2, 1fr); }
-      .summary-strip { grid-template-columns: repeat(2, 1fr); }
+      .btn-group.quad-group, .btn-group.penta-group, .breakdown-grid { grid-template-columns: repeat(2, 1fr); }
       .studio-grid { grid-template-columns: 1fr; }
       .model-panel { position: static; width: 100%; }
-      .rec-grid { grid-template-columns: 1fr; }
-      .item-select { max-width: 195px; }
+      .week-grid { grid-template-columns: repeat(2, 1fr); }
+      .share-action-bar { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -258,67 +362,127 @@
     <div class="ad-box">광고 영역 (구글 애드센스 상단 배너 위치)</div>
 
     <header>
-      <h1>오늘 뭐 입지? 코디 스튜디오</h1>
-      <p>성별·키/몸무게·체형·기온에 맞춘 리얼 피팅 뷰와 쇼핑몰 추천</p>
+      <span class="brand-pill">TPO 실수 방지 · 타쇼핑몰 견적 믹스매치 · 주간 옷장 캘린더</span>
+      <h1>오늘 뭐 입지? 핏체크 프로</h1>
+      <p>중요한 약속 자리 NG 방지부터 여러 쇼핑몰 합산 견적·내 옷장 주간 돌려입기까지 한 번에 진단합니다</p>
     </header>
 
     <div class="card">
       <div class="setup-grid">
+        <!-- 1. 성별 -->
         <div class="setup-block">
           <div class="section-title">1. 성별</div>
           <div class="btn-group" id="gender-group">
-            <button type="button" class="option-btn active" data-val="male">남성</button>
-            <button type="button" class="option-btn" data-val="female">여성</button>
+            <button type="button" class="option-btn active" data-val="female">여성</button>
+            <button type="button" class="option-btn" data-val="male">남성</button>
           </div>
         </div>
 
+        <!-- 2. 키 · 몸무게 -->
         <div class="setup-block">
           <div class="section-title">
             <span>2. 키 · 몸무게</span>
-            <span class="sub-hint" id="bmi-preview">175cm · 68kg (표준)</span>
+            <span class="sub-hint" id="bmi-preview">165cm · 52kg (표준)</span>
           </div>
           <div class="hw-row">
             <label class="hw-field">
               <span class="hw-label">키</span>
               <span class="hw-input-wrap">
-                <input type="number" id="height-input" class="hw-input" value="175" min="140" max="210" oninput="onHWChange()">
+                <input type="number" id="height-input" class="hw-input" value="165" min="140" max="210" oninput="onHWChange()">
                 <span class="hw-unit">cm</span>
               </span>
             </label>
             <label class="hw-field">
               <span class="hw-label">몸무게</span>
               <span class="hw-input-wrap">
-                <input type="number" id="weight-input" class="hw-input" value="68" min="35" max="150" oninput="onHWChange()">
+                <input type="number" id="weight-input" class="hw-input" value="52" min="35" max="150" oninput="onHWChange()">
                 <span class="hw-unit">kg</span>
               </span>
             </label>
           </div>
           <div class="hw-quick-row">
-            <button type="button" class="quick-chip" onclick="applyHWQuick(162, 50)">162/50</button>
-            <button type="button" class="quick-chip" onclick="applyHWQuick(168, 56)">168/56</button>
+            <button type="button" class="quick-chip" onclick="applyHWQuick(158, 47)">158/47</button>
+            <button type="button" class="quick-chip" onclick="applyHWQuick(165, 52)">165/52</button>
             <button type="button" class="quick-chip" onclick="applyHWQuick(173, 62)">173/62</button>
-            <button type="button" class="quick-chip" onclick="applyHWQuick(178, 74)">178/74</button>
-            <button type="button" class="quick-chip" onclick="applyHWQuick(182, 85)">182/85</button>
+            <button type="button" class="quick-chip" onclick="applyHWQuick(178, 75)">178/75</button>
+            <button type="button" class="quick-chip" onclick="applyHWQuick(182, 86)">182/86</button>
           </div>
         </div>
 
+        <!-- 3. 상황·TPO (2번 차별화 기능: 민폐/실수 방지 기준) -->
         <div class="setup-block full">
           <div class="section-title">
-            <span>3. 체형 실루엣</span>
-            <span class="sub-hint">키·몸무게 입력 시 자동 추천 / 직접 변경 가능</span>
+            <span>3. 오늘의 약속 상황 · 드레스코드 (실수·민폐 방지 기준)</span>
+            <span class="sub-hint">상황에 맞지 않는 옷·색상을 입으면 즉시 경고합니다</span>
           </div>
-          <div class="btn-group body-group" id="body-group">
+          <div class="btn-group penta-group" id="tpo-group">
+            <button type="button" class="option-btn active" data-val="daily">
+              <span>일상·캠퍼스</span>
+              <span class="btn-sub">편안한 데일리</span>
+            </button>
+            <button type="button" class="option-btn" data-val="office">
+              <span>출근·오피스</span>
+              <span class="btn-sub">비즈니스 캐주얼</span>
+            </button>
+            <button type="button" class="option-btn" data-val="date">
+              <span>소개팅·데이트</span>
+              <span class="btn-sub">호감형 깔끔 무드</span>
+            </button>
+            <button type="button" class="option-btn" data-val="wedding">
+              <span>결혼식 하객</span>
+              <span class="btn-sub">민폐 컬러 차단</span>
+            </button>
+            <button type="button" class="option-btn" data-val="parents">
+              <span>상견례·어른인사</span>
+              <span class="btn-sub">단정·신뢰감 1순위</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 4. 오늘 기온 -->
+        <div class="setup-block full">
+          <div class="section-title">
+            <span>4. 오늘 기온 · 날씨</span>
+            <span class="sub-hint">기온 대비 너무 춥거나 더운 착장을 감점 진단합니다</span>
+          </div>
+          <div class="btn-group quad-group" id="temp-group">
+            <button type="button" class="option-btn" data-val="cold">
+              <span>추움 (5°C↓)</span>
+              <span class="btn-sub">한겨울 보온</span>
+            </button>
+            <button type="button" class="option-btn active" data-val="cool">
+              <span>선선 (6~15°C)</span>
+              <span class="btn-sub">자켓·코트 환절기</span>
+            </button>
+            <button type="button" class="option-btn" data-val="mild">
+              <span>적당 (16~22°C)</span>
+              <span class="btn-sub">니트·가디건</span>
+            </button>
+            <button type="button" class="option-btn" data-val="hot">
+              <span>더움 (23°C↑)</span>
+              <span class="btn-sub">아우터 생략</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 5. 체형 실루엣 -->
+        <div class="setup-block full">
+          <div class="section-title">
+            <span>5. 내 체형 실루엣</span>
+            <span class="sub-hint">키·몸무게 기반 자동 추론 / 수동 변경 가능</span>
+          </div>
+          <div class="btn-group quad-group" id="body-group">
             <button type="button" class="option-btn" data-val="slim">
               <span>슬림·마른</span>
-              <span class="btn-sub">레이어드 볼륨</span>
+              <span class="btn-sub">상체 볼륨 보완</span>
             </button>
             <button type="button" class="option-btn active" data-val="standard">
               <span>보통·균형</span>
-              <span class="btn-sub">스탠다드 핏</span>
+              <span class="btn-sub">스탠다드 비율</span>
             </button>
             <button type="button" class="option-btn" data-val="muscular">
               <span>근육·역삼각</span>
-              <span class="btn-sub">어깨·하체 균형</span>
+              <span class="btn-sub">하체 볼륨 밸런스</span>
             </button>
             <button type="button" class="option-btn" data-val="chubby">
               <span>통통·듬직</span>
@@ -327,85 +491,131 @@
           </div>
         </div>
 
-        <div class="setup-block">
-          <div class="section-title">4. 오늘 기온</div>
-          <div class="btn-group" id="temp-group">
-            <button type="button" class="option-btn" data-val="cold">한파 (4°C↓)</button>
-            <button type="button" class="option-btn active" data-val="chilly">쌀쌀 (5~11°C)</button>
-            <button type="button" class="option-btn" data-val="mild">선선 (12~19°C)</button>
-            <button type="button" class="option-btn" data-val="warm">더움 (20°C↑)</button>
+        <!-- 6. 오늘 옷장에서 꺼낸 기준 아이템 1개 -->
+        <div class="setup-block full">
+          <div class="section-title">
+            <span>6. 오늘 입을 '내 옷장 기준 아이템' 1개 선택</span>
+            <span class="sub-hint">선택한 옷을 고정하고 상황·날씨·체형에 맞게 정밀 진단합니다</span>
           </div>
-        </div>
+          <div class="btn-group quad-group" id="anchor-part-group">
+            <button type="button" class="option-btn active" data-val="outer" onclick="onChangeAnchorPart('outer')">아우터 기준</button>
+            <button type="button" class="option-btn" data-val="top" onclick="onChangeAnchorPart('top')">상의 기준</button>
+            <button type="button" class="option-btn" data-val="bottom" onclick="onChangeAnchorPart('bottom')">하의 기준</button>
+            <button type="button" class="option-btn" data-val="shoes" onclick="onChangeAnchorPart('shoes')">신발 기준</button>
+          </div>
 
-        <div class="setup-block">
-          <div class="section-title">5. 상황 (TPO)</div>
-          <div class="btn-group tpo-group" id="tpo-group">
-            <button type="button" class="option-btn active" data-val="daily">데일리</button>
-            <button type="button" class="option-btn" data-val="date">데이트</button>
-            <button type="button" class="option-btn" data-val="wedding">하객룩</button>
-            <button type="button" class="option-btn" data-val="office">출근·면접</button>
-            <button type="button" class="option-btn" data-val="travel">여행</button>
-            <button type="button" class="option-btn" data-val="workout">운동·산책</button>
+          <div class="closet-picker-row">
+            <select id="anchor-item-select" class="closet-select" onchange="onChangeAnchorItem(this.value)"></select>
+            <span id="anchor-color-label" style="font-size:12px; font-weight:800; color:var(--accent); white-space:nowrap;">블랙</span>
           </div>
+          <div class="closet-swatches" id="anchor-swatches"></div>
         </div>
       </div>
 
-      <button type="button" class="submit-btn" onclick="generateOutfit()">체형·실루엣 맞춤 피팅 보기</button>
+      <button type="button" class="submit-btn" onclick="runFullDiagnosis()">TPO 실수 방지 · 체형 비율 · 견적 정밀 진단하기</button>
     </div>
 
+    <!-- 결과 스튜디오 -->
     <div class="card" id="result-area">
-      <div class="result-top">
-        <span class="badge" id="res-badge">리얼 룩북 모델 피팅</span>
-        <span class="rec-sub" id="res-context-label"></span>
+      <div class="score-header">
+        <div class="score-left">
+          <h2 id="res-title">코디 정밀 진단 리포트</h2>
+          <p id="res-subtitle">상황·기온·체형·컬러 4대 기준을 반영한 실제 평가입니다.</p>
+        </div>
+        <div class="score-badge-box" id="score-badge-box">
+          <div class="score-num" id="fit-score-num">88점</div>
+          <div class="score-label" id="fit-score-grade">양호한<br>스타일링</div>
+        </div>
       </div>
-      <div class="result-title" id="res-title">코디 조합 제목</div>
 
-      <!-- 한눈에 보는 4부위 요약 스트립 -->
-      <div class="summary-strip" id="summary-strip"></div>
+      <!-- 4대 항목 세부 점수 카드 (점수 변별력 시각화) -->
+      <div class="breakdown-grid" id="breakdown-grid"></div>
 
-      <div class="body-guide-banner" id="body-guide-banner"></div>
+      <!-- 상황별 NG 경고 및 구체적 코디 총평 리포트 -->
+      <div class="report-box excellent" id="report-box"></div>
 
+      <!-- 공유 액션 바 -->
+      <div class="share-action-bar">
+        <button type="button" class="action-pill-btn btn-save-img" onclick="downloadLookbookCard()">
+          📸 룩북 진단 카드 저장 (PNG)
+        </button>
+        <button type="button" class="action-pill-btn btn-copy-link" id="copy-link-btn" onclick="copyShareableUrl()">
+          🔗 이 코디 & 견적 링크 복사
+        </button>
+      </div>
+
+      <!-- 좌측 모델 시뮬레이터 / 우측 부위별 믹스매치 & 쇼핑몰 견적 설정 -->
       <div class="studio-grid">
         <div class="model-panel">
-          <div class="model-meta-row">
-            <span class="fit-tag" id="model-fit-tag">밸런스 핏</span>
-            <span class="pose-label" id="model-body-label">보통 체형</span>
+          <div class="model-top-bar">
+            <span class="ratio-pill" id="model-ratio-pill">상·하 3.9 : 6.1</span>
+            <label class="upload-custom-btn" title="내 캐릭터/룩북 이미지 넣기">
+              + 내 이미지
+              <input type="file" id="custom-model-input" accept="image/*" style="display:none;" onchange="onUploadCustomImage(event)">
+            </label>
           </div>
+
           <div id="mannequin-preview"></div>
-          <div class="model-spec-footer" id="model-spec-footer">175cm · 68kg · 권장 상의 L / 하의 30</div>
+
+          <div class="ratio-bar-wrap">
+            <div class="ratio-bar-track">
+              <div class="ratio-upper-fill" id="ratio-upper-fill" style="width:39%"></div>
+              <div class="ratio-lower-fill" id="ratio-lower-fill" style="width:61%"></div>
+            </div>
+            <div class="ratio-bar-labels">
+              <span id="ratio-upper-txt">상체 39%</span>
+              <span id="ratio-lower-txt">하체 61%</span>
+            </div>
+          </div>
+
+          <div class="compare-box">
+            <div class="compare-row">
+              <span class="compare-label">기장 비교</span>
+              <div class="compare-toggle">
+                <button type="button" class="cmp-btn" id="cmp-len-crop" onclick="quickCompareOuterLength('crop')">숏/크롭</button>
+                <button type="button" class="cmp-btn" id="cmp-len-long" onclick="quickCompareOuterLength('long')">롱코트</button>
+              </div>
+            </div>
+            <div class="compare-row">
+              <span class="compare-label">하의 핏</span>
+              <div class="compare-toggle">
+                <button type="button" class="cmp-btn" id="cmp-fit-slim" onclick="quickCompareBottomFit('slim')">슬림</button>
+                <button type="button" class="cmp-btn" id="cmp-fit-wide" onclick="quickCompareBottomFit('wide')">와이드</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="model-spec-footer" id="model-spec-footer">165cm · 52kg · 보통 체형</div>
         </div>
 
         <div class="parts-panel" id="parts-editor-list"></div>
       </div>
 
-      <!-- 탭 전환식 추천 카드 -->
-      <div class="rec-tabs-wrap">
-        <div class="rec-tab-bar">
-          <button type="button" class="rec-tab-btn active" id="tab-color-btn" onclick="switchRecTab('color')">🎨 추천 색조합 (4종)</button>
-          <button type="button" class="rec-tab-btn" id="tab-item-btn" onclick="switchRecTab('item')">🧥 추천 옷 조합 (4종)</button>
+      <!-- 1번 기능: 여러 쇼핑몰 합산 총 견적 배너 -->
+      <div class="total-budget-banner">
+        <div class="budget-left">
+          🛒 <strong>타쇼핑몰 믹스매치 합산 견적</strong> (보유중 내 옷 0원 제외)<br>
+          <span id="budget-malls-summary">선택한 쇼핑몰별 구매 예정 아이템 합계</span>
         </div>
-
-        <div id="color-rec-pane">
-          <div class="rec-header">
-            <div class="rec-title" id="color-rec-title">선택한 색과 어울리는 추천 색조합</div>
-            <span class="rec-sub">클릭 시 즉시 적용</span>
-          </div>
-          <div class="rec-grid" id="color-rec-grid"></div>
-        </div>
-
-        <div id="item-rec-pane" style="display:none;">
-          <div class="rec-header">
-            <div class="rec-title" id="item-rec-title">선택한 아이템과 어울리는 추천 옷 조합</div>
-            <span class="rec-sub">클릭 시 즉시 적용</span>
-          </div>
-          <div class="rec-grid" id="item-rec-grid"></div>
-        </div>
+        <div class="budget-right" id="total-budget-amount">총 0원</div>
       </div>
 
+      <!-- 3번 기능: 내 옷장 아이템 등록 & 주간(월~금) 돌려입기 캘린더 -->
+      <div class="wardrobe-card">
+        <div class="wardrobe-header">
+          <div class="wardrobe-title">📅 내 옷장 등록 & 주간(월~금) 돌려입기 캘린더</div>
+          <button type="button" class="add-wardrobe-btn" onclick="addCurrentOutfitToWardrobe()">+ 현재 코디 옷장에 일괄 등록</button>
+        </div>
+        <div class="wardrobe-chips" id="wardrobe-chips"></div>
+        <div class="week-grid" id="week-calendar-grid"></div>
+      </div>
+
+      <!-- 최종 코디 점검 & 쇼핑몰 바로가기 -->
+      <div class="checklist-title">📋 부위별 최종 점검 & 쇼핑몰 바로가기</div>
       <ul class="outfit-list" id="res-list"></ul>
-      <div class="tip-box" id="res-tip">코디 팁</div>
+
       <p class="notice-line">
-        * 남성은 무신사·4910·하이버, 여성은 에이블리·지그재그·W컨셉 검색 결과로 연결되며, 입력한 키·몸무게·체형에 맞춰 권장 사이즈와 핏 키워드가 반영됩니다.
+        * '내 옷장 보유'로 설정된 부위는 비용에서 제외되며, 구매 예정인 타 쇼핑몰 아이템만 합산 견적과 검색/제휴 링크로 연결됩니다.
       </p>
     </div>
 
@@ -413,17 +623,38 @@
   </div>
 
   <script>
+    const AFFILIATE_LINKS = {
+      "blouson_블랙": { label: "추천 특가 4.9만원 👉", url: "https://www.musinsa.com/search/goods?keyword=%EB%82%A8%EC%9E%90+%EB%B8%94%EB%9E%99+%EC%88%8F+%EB%B8%94%EB%A3%A8%EC%A2%85" },
+      "wide_slacks_차콜": { label: "인기 슬랙스 3.5만원 👉", url: "https://www.musinsa.com/search/goods?keyword=%EC%B0%A8%EC%BD%9C+%EC%99%80%EC%9D%B4%EB%93%9C+%EC%8A%AC%EB%9E%99%EC%8A%A4" }
+    };
+
+    const MALL_SOURCES = [
+      { id: "owned", label: "내 옷장 보유 (0원)" },
+      { id: "musinsa", label: "무신사 구매 예정" },
+      { id: "ably", label: "에이블리 구매 예정" },
+      { id: "zigzag", label: "지그재그 구매 예정" },
+      { id: "29cm", label: "29CM/W컨셉 예정" },
+      { id: "coupang", label: "쿠팡/기타 쇼핑몰" }
+    ];
+
+    const DEFAULT_PRICES = {
+      outer: 69000,
+      top: 32000,
+      bottom: 39000,
+      shoes: 65000
+    };
+
     const COLOR_PALETTE = [
-      { name: "블랙", hex: "#1c1917", light: "#3f3f46", dark: "#09090b" },
-      { name: "화이트", hex: "#f8fafc", light: "#ffffff", dark: "#cbd5e1" },
-      { name: "아이보리", hex: "#f5f0dc", light: "#fdfbf0", dark: "#d6ccb0" },
-      { name: "그레이", hex: "#9ca3af", light: "#d1d5db", dark: "#6b7280" },
-      { name: "차콜", hex: "#374151", light: "#6b7280", dark: "#1f2937" },
-      { name: "네이비", hex: "#1e3a8a", light: "#3b82f6", dark: "#172554" },
-      { name: "데님블루", hex: "#3b6ea5", light: "#60a5fa", dark: "#1e3a5f" },
-      { name: "카키", hex: "#4d5d32", light: "#73864d", dark: "#2f3a1d" },
-      { name: "베이지", hex: "#d6c3a5", light: "#eadbc4", dark: "#a89272" },
-      { name: "버건디", hex: "#7f1d1d", light: "#b91c1c", dark: "#450a0a" }
+      { name: "블랙", hex: "#232326", light: "#3f3f46", dark: "#111113", tone: "neutral" },
+      { name: "화이트", hex: "#f8fafc", light: "#ffffff", dark: "#cbd5e1", tone: "neutral" },
+      { name: "아이보리", hex: "#f5f0dc", light: "#fdfbf0", dark: "#d6ccb0", tone: "warm" },
+      { name: "그레이", hex: "#9ca3af", light: "#d1d5db", dark: "#6b7280", tone: "neutral" },
+      { name: "차콜", hex: "#374151", light: "#6b7280", dark: "#1f2937", tone: "neutral" },
+      { name: "네이비", hex: "#1e3a8a", light: "#3b82f6", dark: "#172554", tone: "cool" },
+      { name: "데님블루", hex: "#4a6fa5", light: "#7399cf", dark: "#2a456e", tone: "cool" },
+      { name: "카키", hex: "#556640", light: "#788c5e", dark: "#344026", tone: "warm" },
+      { name: "베이지", hex: "#d6c3a5", light: "#eadbc4", dark: "#a89272", tone: "warm" },
+      { name: "버건디", hex: "#7f1d1d", light: "#b91c1c", dark: "#450a0a", tone: "warm" }
     ];
 
     function getColorObj(name) {
@@ -433,260 +664,46 @@
       return getColorObj(name).hex;
     }
 
-    const BODY_PROFILES = {
-      slim: {
-        label: "슬림·마른 체형",
-        shortLabel: "슬림 체형",
-        banner: "<strong>🧍 슬림·마른 체형:</strong> 세미오버 상의와 와이드 하의, 밝은 톤(아이보리·베이지) 상의로 상체 볼륨감과 입체감을 살려주는 조합입니다.",
-        tip: "얇고 딱 붙는 상의보다 두께감 있는 니트·셔츠자켓과 와이드 팬츠를 매치하면 마른 체형이 자연스럽게 보완됩니다."
-      },
-      standard: {
-        label: "보통·균형 체형",
-        shortLabel: "보통 체형",
-        banner: "<strong>🧍 보통·균형 체형:</strong> 정핏부터 세미와이드까지 폭넓게 소화 가능하므로 상·하의 실루엣 대비와 3색 이내 컬러 밸런스에 집중했습니다.",
-        tip: "상·하의 중 하나는 차분한 톤으로 잡고 상의나 아우터 컬러로 포인트를 주면 깔끔한 비율이 살아납니다."
-      },
-      muscular: {
-        label: "근육·역삼각 체형",
-        shortLabel: "근육 체형",
-        banner: "<strong>💪 근육·역삼각 체형:</strong> 어깨선이 과하게 솟지 않는 자연스러운 상의와 스트레이트·와이드 하의로 상·하체 비율 균형을 맞췄습니다.",
-        tip: "스키니한 하의는 상체가 지나치게 커 보일 수 있으니 세미와이드·와이드 팬츠로 하체 볼륨을 맞춰 안정적인 실루엣을 만들어 보세요."
-      },
-      chubby: {
-        label: "통통·듬직한 체형",
-        shortLabel: "통통 체형",
-        banner: "<strong>🧥 통통·듬직한 체형:</strong> 짙은 톤(차콜·네이비·블랙)과 오픈 아우터로 세로 라인을 길게 만들고, 목선이 답답하지 않은 상의로 슬림한 인상을 줍니다.",
-        tip: "허벅지와 종아리 라인이 도드라지지 않는 세미와이드·테이퍼드 핏 하의를 선택하고, 아우터를 오픈해 세로 시선을 유도해 보세요."
-      }
-    };
-
+    // formality: 1(매우 캐주얼) ~ 5(포멀/격식), warmth: 1(여름) ~ 4(한겨울)
     const CLOTHING_CATALOG = {
       outer: [
-        { id: "none", label: "착용 안 함 (생략)", kw: "", style: "none" },
-        { id: "blouson", label: "블루종 자켓", kw: "블루종", style: "blouson" },
-        { id: "short_padding", label: "숏패딩", kw: "숏패딩", style: "puffer" },
-        { id: "long_padding", label: "롱패딩", kw: "롱패딩", style: "long" },
-        { id: "coat", label: "싱글/발마칸 울 코트", kw: "울 코트", style: "coat" },
-        { id: "blazer", label: "테일러드 블레이저", kw: "블레이저", style: "blazer" },
-        { id: "cardigan", label: "헤비/크롭 가디건", kw: "가디건", style: "cardigan" },
-        { id: "biker", label: "레더 바이커 자켓", kw: "바이커 자켓", style: "biker" },
-        { id: "shirt_jacket", label: "코튼 셔츠자켓", kw: "셔츠자켓", style: "shirt_jk" },
-        { id: "windbreaker", label: "윈드브레이커(바람막이)", kw: "바람막이", style: "wind" }
+        { id: "none", label: "아우터 없음 (단독 착용)", kw: "", style: "none", lengthType: "none", formality: 3, warmth: 1 },
+        { id: "blouson", label: "크롭/숏 블루종 자켓", kw: "숏 블루종", style: "blouson", lengthType: "crop", formality: 3, warmth: 2 },
+        { id: "short_padding", label: "숏패딩", kw: "숏패딩", style: "puffer", lengthType: "crop", formality: 1, warmth: 4 },
+        { id: "long_padding", label: "롱패딩", kw: "롱패딩", style: "long", lengthType: "long", formality: 1, warmth: 4 },
+        { id: "coat", label: "싱글/발마칸 롱코트", kw: "울 코트", style: "coat", lengthType: "long", formality: 5, warmth: 4 },
+        { id: "blazer", label: "테일러드 블레이저", kw: "블레이저", style: "blazer", lengthType: "mid", formality: 5, warmth: 2 },
+        { id: "cardigan", label: "크롭/기본 가디건", kw: "가디건", style: "cardigan", lengthType: "crop", formality: 4, warmth: 2 },
+        { id: "shirt_jacket", label: "코튼 셔츠자켓", kw: "셔츠자켓", style: "shirt_jk", lengthType: "mid", formality: 3, warmth: 2 },
+        { id: "windbreaker", label: "윈드브레이커(바람막이)", kw: "바람막이", style: "wind", lengthType: "crop", formality: 1, warmth: 2 }
       ],
       top: [
-        { id: "crew_knit", label: "크루넥 니트", kw: "크루넥 니트", style: "knit" },
-        { id: "halfzip_knit", label: "하프집업 니트", kw: "하프집업 니트", style: "halfzip" },
-        { id: "turtleneck", label: "터틀넥 니트", kw: "터틀넥 니트", style: "turtleneck" },
-        { id: "shirt", label: "옥스포드/드레스 셔츠", kw: "셔츠", style: "shirt" },
-        { id: "hoodie", label: "헤비 후드티", kw: "후드티", style: "hoodie" },
-        { id: "sweatshirt", label: "스웻셔츠(맨투맨)", kw: "맨투맨", style: "sweat" },
-        { id: "short_tee", label: "오버핏/기본 반팔티", kw: "반팔티", style: "short_tee" },
-        { id: "knit_polo", label: "카라 니트 반팔", kw: "니트 반팔", style: "polo" },
-        { id: "blouse", label: "블라우스/니트 탑", kw: "블라우스", style: "blouse" },
-        { id: "athleisure_top", label: "기능성/애슬레저 탑", kw: "기능성 반팔", style: "short_tee" }
+        { id: "crew_knit", label: "크루넥 니트", kw: "크루넥 니트", style: "knit", formality: 4, warmth: 3 },
+        { id: "turtleneck", label: "터틀넥 니트", kw: "터틀넥 니트", style: "turtleneck", formality: 4, warmth: 4 },
+        { id: "shirt", label: "옥스포드/드레스 셔츠", kw: "셔츠", style: "shirt", formality: 5, warmth: 2 },
+        { id: "hoodie", label: "후드티", kw: "후드티", style: "hoodie", formality: 1, warmth: 3 },
+        { id: "sweatshirt", label: "맨투맨(스웻셔츠)", kw: "맨투맨", style: "sweat", formality: 2, warmth: 3 },
+        { id: "short_tee", label: "기본/오버핏 반팔티", kw: "반팔티", style: "short_tee", formality: 2, warmth: 1 },
+        { id: "blouse", label: "블라우스/니트 탑", kw: "블라우스", style: "blouse", formality: 5, warmth: 2 }
       ],
       bottom: [
-        { id: "wide_slacks", label: "와이드 슬랙스", kw: "와이드 슬랙스", style: "wide_slacks" },
-        { id: "tapered_slacks", label: "테이퍼드/기모 슬랙스", kw: "슬랙스", style: "tapered" },
-        { id: "wide_denim", label: "와이드 데님 팬츠", kw: "와이드 데님", style: "wide_denim" },
-        { id: "straight_denim", label: "스트레이트/생지 데님", kw: "데님 팬츠", style: "straight" },
-        { id: "corduroy", label: "코듀로이 팬츠", kw: "코듀로이 팬츠", style: "corduroy" },
-        { id: "chino", label: "치노 팬츠", kw: "치노 팬츠", style: "tapered" },
-        { id: "cargo", label: "카고/파라슈트 팬츠", kw: "카고 팬츠", style: "cargo" },
-        { id: "jogger", label: "조거/트랙 팬츠", kw: "조거팬츠", style: "jogger" },
-        { id: "shorts_skirt", label: "쇼츠/미디·롱 스커트", kw: "와이드 팬츠", style: "short_bot" }
+        { id: "wide_slacks", label: "와이드 슬랙스", kw: "와이드 슬랙스", style: "wide_slacks", fitType: "wide", formality: 4, warmth: 3 },
+        { id: "tapered_slacks", label: "테이퍼드/슬림 슬랙스", kw: "슬랙스", style: "tapered", fitType: "slim", formality: 5, warmth: 3 },
+        { id: "wide_denim", label: "와이드 데님 팬츠", kw: "와이드 데님", style: "wide_denim", fitType: "wide", formality: 2, warmth: 3 },
+        { id: "straight_denim", label: "스트레이트 일자 데님", kw: "일자 데님", style: "straight", fitType: "straight", formality: 3, warmth: 3 },
+        { id: "chino", label: "치노/면 팬츠", kw: "치노 팬츠", style: "tapered", fitType: "straight", formality: 4, warmth: 2 },
+        { id: "cargo", label: "카고/파라슈트 팬츠", kw: "카고 팬츠", style: "cargo", fitType: "wide", formality: 1, warmth: 2 },
+        { id: "jogger", label: "조거/트랙 팬츠", kw: "조거팬츠", style: "jogger", fitType: "straight", formality: 1, warmth: 2 },
+        { id: "shorts_skirt", label: "미디/플리츠 스커트", kw: "플리츠 스커트", style: "short_bot", fitType: "short", formality: 4, warmth: 2 }
       ],
       shoes: [
-        { id: "german_sneakers", label: "독일군/레더 스니커즈", kw: "레더 스니커즈", style: "sneaker" },
-        { id: "canvas_sneakers", label: "캔버스/데일리 스니커즈", kw: "스니커즈", style: "sneaker" },
-        { id: "running_shoes", label: "러닝/트레일 슈즈", kw: "러닝화", style: "sneaker" },
-        { id: "derby", label: "더비슈즈/구두", kw: "더비슈즈", style: "derby" },
-        { id: "loafer", label: "페니/레더 로퍼", kw: "로퍼", style: "loafer" },
-        { id: "ankle_boots", label: "첼시/앵클부츠", kw: "앵클부츠", style: "ankle_boots" },
-        { id: "long_boots", label: "롱부츠", kw: "롱부츠", style: "long_boots" },
-        { id: "sandal", label: "샌들/슬라이드/힐", kw: "샌들", style: "sandal" }
+        { id: "german_sneakers", label: "독일군/레더 스니커즈", kw: "레더 스니커즈", style: "sneaker", formality: 3, warmth: 3 },
+        { id: "canvas_sneakers", label: "캔버스 스니커즈", kw: "스니커즈", style: "sneaker", formality: 2, warmth: 2 },
+        { id: "running_shoes", label: "러닝/어글리 슈즈", kw: "러닝화", style: "sneaker", formality: 1, warmth: 3 },
+        { id: "derby", label: "더비슈즈/구두", kw: "더비슈즈", style: "derby", formality: 5, warmth: 3 },
+        { id: "loafer", label: "페니/레더 로퍼", kw: "로퍼", style: "loafer", formality: 5, warmth: 3 },
+        { id: "ankle_boots", label: "첼시/앵클부츠", kw: "앵클부츠", style: "ankle_boots", formality: 4, warmth: 4 }
       ]
-    };
-
-    function sanitizeItemForContext(partKey, itemId, temp, tpo, bodyType = "standard", height = 175) {
-      let id = itemId;
-
-      if (temp === "cold") {
-        if (partKey === "outer" && id === "none") id = "short_padding";
-        if (partKey === "top" && (id === "short_tee" || id === "knit_polo")) id = "crew_knit";
-        if (partKey === "bottom" && id === "shorts_skirt" && tpo === "workout") id = "jogger";
-        if (partKey === "shoes" && id === "sandal") id = "ankle_boots";
-      }
-
-      if (temp === "warm") {
-        if (partKey === "outer" && (id === "long_padding" || id === "short_padding" || id === "coat")) {
-          id = (tpo === "wedding" || tpo === "office") ? "blazer" : "none";
-        }
-        if (partKey === "outer" && id !== "none" && (tpo === "daily" || tpo === "workout")) {
-          id = "none";
-        }
-        if (partKey === "top" && (id === "turtleneck" || id === "hoodie" || id === "halfzip_knit")) {
-          id = (tpo === "workout") ? "athleisure_top" : "short_tee";
-        }
-        if (partKey === "bottom" && id === "corduroy") id = "wide_slacks";
-        if (partKey === "shoes" && (id === "long_boots" || id === "ankle_boots")) {
-          id = (tpo === "wedding" || tpo === "office") ? "loafer" : "canvas_sneakers";
-        }
-      }
-
-      if (tpo === "workout") {
-        if (partKey === "outer" && (id === "coat" || id === "blazer" || id === "biker")) id = "windbreaker";
-        if (partKey === "top" && (id === "shirt" || id === "blouse")) id = "athleisure_top";
-        if (partKey === "bottom" && (id === "wide_slacks" || id === "tapered_slacks" || id === "corduroy")) id = "jogger";
-        if (partKey === "shoes" && (id === "derby" || id === "loafer" || id === "ankle_boots" || id === "long_boots")) {
-          id = "running_shoes";
-        }
-      }
-
-      if (tpo === "wedding" || tpo === "office") {
-        if (partKey === "outer" && (id === "windbreaker" || id === "long_padding")) id = "coat";
-        if (partKey === "top" && id === "hoodie") id = "shirt";
-        if (partKey === "bottom" && id === "jogger") id = "tapered_slacks";
-        if (partKey === "shoes" && (id === "running_shoes" || id === "sandal")) id = "loafer";
-      }
-
-      // 키 & 체형 기반 아이템 보정
-      if (height < 168 && partKey === "outer" && id === "long_padding") {
-        id = "short_padding";
-      }
-      if (bodyType === "chubby") {
-        if (partKey === "top" && id === "turtleneck") id = "shirt";
-        if (partKey === "outer" && id === "short_padding") id = "coat";
-      }
-      if (bodyType === "muscular") {
-        if (partKey === "bottom" && id === "tapered_slacks" && tpo !== "wedding") id = "wide_slacks";
-      }
-      if (bodyType === "slim") {
-        if (partKey === "bottom" && id === "tapered_slacks" && tpo === "daily") id = "wide_denim";
-      }
-
-      return id;
-    }
-
-    function sanitizeColorForContext(colorName, temp) {
-      if (temp === "cold" && colorName === "화이트") return "아이보리";
-      return colorName;
-    }
-
-    const COLOR_HARMONY_MAP = {
-      "블랙": [
-        { title: "모던 클래식", colors: ["블랙", "아이보리", "차콜", "블랙"] },
-        { title: "카키 포인트 스트릿", colors: ["블랙", "카키", "블랙", "화이트"] },
-        { title: "그레이 데님 밸런스", colors: ["블랙", "그레이", "데님블루", "화이트"] },
-        { title: "딥 버건디 무드", colors: ["블랙", "버건디", "차콜", "블랙"] }
-      ],
-      "화이트": [
-        { title: "네이비 정석 매치", colors: ["네이비", "화이트", "차콜", "블랙"] },
-        { title: "소프트 톤온톤", colors: ["베이지", "화이트", "아이보리", "베이지"] },
-        { title: "데님 캐주얼", colors: ["그레이", "화이트", "데님블루", "화이트"] },
-        { title: "블랙 대비 포멀", colors: ["블랙", "화이트", "블랙", "블랙"] }
-      ],
-      "아이보리": [
-        { title: "네이비·베이지 호감룩", colors: ["네이비", "아이보리", "베이지", "블랙"] },
-        { title: "베이지·버건디 따뜻함", colors: ["베이지", "아이보리", "버건디", "블랙"] },
-        { title: "차콜 모던 대비", colors: ["차콜", "아이보리", "차콜", "블랙"] },
-        { title: "카키 내추럴 무드", colors: ["카키", "아이보리", "데님블루", "베이지"] }
-      ],
-      "그레이": [
-        { title: "차콜 시크 모노톤", colors: ["차콜", "그레이", "블랙", "블랙"] },
-        { title: "네이비 산뜻 캐주얼", colors: ["네이비", "그레이", "데님블루", "화이트"] },
-        { title: "아이보리 부드러움", colors: ["그레이", "아이보리", "차콜", "화이트"] },
-        { title: "베이지 크리미 믹스", colors: ["베이지", "그레이", "아이보리", "블랙"] }
-      ],
-      "차콜": [
-        { title: "아이보리 깔끔 대비", colors: ["차콜", "아이보리", "차콜", "블랙"] },
-        { title: "버건디 포인트 룩", colors: ["차콜", "버건디", "블랙", "블랙"] },
-        { title: "데님블루 데일리", colors: ["차콜", "화이트", "데님블루", "화이트"] },
-        { title: "베이지 온화한 믹스", colors: ["차콜", "베이지", "차콜", "블랙"] }
-      ],
-      "네이비": [
-        { title: "화이트·그레이 정석", colors: ["네이비", "화이트", "그레이", "블랙"] },
-        { title: "베이지 치노 조화", colors: ["네이비", "아이보리", "베이지", "블랙"] },
-        { title: "데님 톤온톤 캐주얼", colors: ["네이비", "화이트", "데님블루", "화이트"] },
-        { title: "버건디 클래식 액센트", colors: ["네이비", "버건디", "차콜", "블랙"] }
-      ],
-      "데님블루": [
-        { title: "블랙·화이트 기본기", colors: ["블랙", "화이트", "데님블루", "화이트"] },
-        { title: "베이지 가디건 감성", colors: ["베이지", "아이보리", "데님블루", "베이지"] },
-        { title: "네이비 클린 룩", colors: ["네이비", "화이트", "데님블루", "블랙"] },
-        { title: "카키 워크웨어 무드", colors: ["카키", "아이보리", "데님블루", "블랙"] }
-      ],
-      "카키": [
-        { title: "블랙·화이트 밀리터리", colors: ["카키", "화이트", "블랙", "화이트"] },
-        { title: "아이보리 내추럴 룩", colors: ["카키", "아이보리", "베이지", "베이지"] },
-        { title: "차콜 묵직한 밸런스", colors: ["카키", "차콜", "차콜", "블랙"] },
-        { title: "데님블루 야외 캐주얼", colors: ["카키", "화이트", "데님블루", "화이트"] }
-      ],
-      "베이지": [
-        { title: "네이비·아이보리 정석", colors: ["베이지", "네이비", "아이보리", "블랙"] },
-        { title: "블랙 중심 밸런스", colors: ["베이지", "아이보리", "블랙", "블랙"] },
-        { title: "데님블루 산뜻한 조화", colors: ["베이지", "화이트", "데님블루", "화이트"] },
-        { title: "버건디 시즌 무드", colors: ["베이지", "버건디", "차콜", "블랙"] }
-      ],
-      "버건디": [
-        { title: "블랙·차콜 세련된 대비", colors: ["블랙", "버건디", "차콜", "블랙"] },
-        { title: "베이지·아이보리 부드러움", colors: ["베이지", "버건디", "아이보리", "블랙"] },
-        { title: "네이비 클래식 조합", colors: ["네이비", "버건디", "그레이", "블랙"] },
-        { title: "데님블루 캐주얼 포인트", colors: ["차콜", "버건디", "데님블루", "화이트"] }
-      ]
-    };
-
-    function getItemCombinationsFor(partKey, itemId, temp, tpo, bodyType, height) {
-      const rawCombos = {
-        outer: [
-          { name: "미니멀 슬랙스 세트", ids: [itemId, "crew_knit", "wide_slacks", "loafer"] },
-          { name: "데일리 데님 캐주얼", ids: [itemId, "sweatshirt", "wide_denim", "german_sneakers"] },
-          { name: "단정 셔츠 레이어드", ids: [itemId, "shirt", "tapered_slacks", "derby"] },
-          { name: "활동성 트레이닝", ids: [itemId, "athleisure_top", "jogger", "running_shoes"] }
-        ],
-        top: [
-          { name: "클래식 자켓·슬랙스", ids: ["blazer", itemId, "wide_slacks", "loafer"] },
-          { name: "부드러운 가디건·데님", ids: ["cardigan", itemId, "wide_denim", "german_sneakers"] },
-          { name: "블루종·치노 캐주얼", ids: ["blouson", itemId, "chino", "canvas_sneakers"] },
-          { name: "코트·테이퍼드 정석", ids: ["coat", itemId, "tapered_slacks", "derby"] }
-        ],
-        bottom: [
-          { name: "블루종·니트 매치", ids: ["blouson", "crew_knit", itemId, "german_sneakers"] },
-          { name: "가디건·셔츠 레이어드", ids: ["cardigan", "shirt", itemId, "loafer"] },
-          { name: "코트·터틀넥 무드", ids: ["coat", "turtleneck", itemId, "ankle_boots"] },
-          { name: "바람막이·반팔/긴팔", ids: ["windbreaker", "short_tee", itemId, "running_shoes"] }
-        ],
-        shoes: [
-          { name: "코트·니트·슬랙스", ids: ["coat", "crew_knit", "wide_slacks", itemId] },
-          { name: "블루종·티셔츠·데님", ids: ["blouson", "sweatshirt", "straight_denim", itemId] },
-          { name: "블레이저·셔츠·슬랙스", ids: ["blazer", "shirt", "tapered_slacks", itemId] },
-          { name: "가디건·이너·데님", ids: ["cardigan", "crew_knit", "wide_denim", itemId] }
-        ]
-      }[partKey];
-
-      const partKeys = ["outer", "top", "bottom", "shoes"];
-      return rawCombos.map(c => {
-        const cleanIds = c.ids.map((id, idx) => sanitizeItemForContext(partKeys[idx], id, temp, tpo, bodyType, height));
-        const cleanDesc = partKeys
-          .filter((_, idx) => !(idx === 0 && cleanIds[0] === "none"))
-          .map((pk, idx) => getItemObj(pk, cleanIds[idx]).kw || getItemObj(pk, cleanIds[idx]).label)
-          .slice(1, 4)
-          .join(" + ");
-        return {
-          name: c.name,
-          ids: cleanIds,
-          desc: cleanDesc
-        };
-      });
-    }
-
-    const TPO_DEFAULT_PARTS = {
-      daily: { outer: "blouson", top: "crew_knit", bottom: "wide_denim", shoes: "german_sneakers", colors: ["블랙", "카키", "데님블루", "화이트"], title: "데일리·캠퍼스 깔끔 캐주얼", tip: "상·하의 중 하나는 차분한 톤으로 잡고 상의나 아우터 컬러로 포인트를 주면 무난합니다." },
-      date: { outer: "cardigan", top: "turtleneck", bottom: "wide_slacks", shoes: "loafer", colors: ["네이비", "아이보리", "베이지", "블랙"], title: "소개팅·데이트 호감형 룩", tip: "과한 색 대비보다 3가지 안팎의 조화로운 컬러와 깔끔한 핏이 데이트에서 가장 안정적입니다." },
-      wedding: { outer: "blazer", top: "shirt", bottom: "tapered_slacks", shoes: "loafer", colors: ["네이비", "화이트", "차콜", "블랙"], title: "결혼식 하객룩 정석 조합", tip: "예식장에서는 과한 패턴이나 노출을 피하고 네이비·차콜·화이트·블랙 계열로 정돈하는 것이 좋습니다." },
-      office: { outer: "coat", top: "shirt", bottom: "tapered_slacks", shoes: "derby", colors: ["차콜", "화이트", "블랙", "블랙"], title: "출근·면접 신뢰감 포멀룩", tip: "겉옷을 벗었을 때의 셔츠·니트 정돈 상태와 깔끔한 구두·로퍼 매치가 인상을 좌우합니다." },
-      travel: { outer: "shirt_jacket", top: "sweatshirt", bottom: "cargo", shoes: "running_shoes", colors: ["베이지", "아이보리", "카키", "화이트"], title: "여행·나들이 활동성 코디", tip: "오래 걸어도 편한 신발과 체온 조절이 쉬운 아우터·이너 구성으로 동선 피로를 줄여보세요." },
-      workout: { outer: "windbreaker", top: "athleisure_top", bottom: "jogger", shoes: "running_shoes", colors: ["블랙", "그레이", "블랙", "화이트"], title: "운동·헬스·산책 애슬레저", tip: "땀 배출과 움직임이 편한 기능성·트레이닝 소재 위주로 구성하면 실외와 헬스장 모두 쾌적합니다." }
     };
 
     const PART_META = [
@@ -696,67 +713,74 @@
       { key: "shoes", label: "신발" }
     ];
 
-    let state = {
-      gender: "male",
-      height: 175,
-      weight: 68,
-      bodyType: "standard",
-      temp: "chilly",
-      tpo: "daily",
-      focusPart: "top",
-      activeRecTab: "color",
-      activeColorRecIdx: -1,
-      activeItemRecIdx: -1,
-      title: "",
-      tip: "",
-      parts: {
-        outer: { itemId: "blouson", colorName: "블랙" },
-        top: { itemId: "crew_knit", colorName: "카키" },
-        bottom: { itemId: "wide_denim", colorName: "데님블루" },
-        shoes: { itemId: "german_sneakers", colorName: "화이트" }
-      }
+    const TPO_META = {
+      daily: { label: "일상·캠퍼스", minFormality: 1 },
+      office: { label: "출근·오피스", minFormality: 3 },
+      date: { label: "소개팅·데이트", minFormality: 3 },
+      wedding: { label: "결혼식 하객", minFormality: 4 },
+      parents: { label: "상견례·부모님 인사", minFormality: 4 }
     };
 
-    function getSizeRecommendation(gender, height, weight, bodyType) {
-      const bmi = weight / Math.pow(height / 100, 2);
-      if (gender === "female") {
-        if (bmi < 19.5 && height < 163) return "권장 상의 S / 하의 25~26";
-        if (bmi < 21.5) return "권장 상의 M / 하의 27~28";
-        if (bmi < 24.5) return "권장 상의 L / 하의 29~30";
-        return "권장 상의 XL / 하의 31~32";
-      }
-      if (bodyType === "muscular" && weight >= 75) {
-        return height >= 180 ? "권장 상의 XL / 하의 32~33" : "권장 상의 L~XL / 하의 31~32";
-      }
-      if (bmi < 20.0) return height >= 178 ? "권장 상의 L / 하의 29" : "권장 상의 M / 하의 28";
-      if (bmi < 23.5) return height >= 180 ? "권장 상의 XL / 하의 31" : "권장 상의 L / 하의 30";
-      if (bmi < 26.5) return "권장 상의 XL / 하의 32~33";
-      return "권장 상의 2XL / 하의 34+";
+    const TEMP_META = {
+      cold: { label: "추움(5°C↓)", targetWarmth: 4 },
+      cool: { label: "선선(6~15°C)", targetWarmth: 3 },
+      mild: { label: "적당(16~22°C)", targetWarmth: 2 },
+      hot: { label: "더움(23°C↑)", targetWarmth: 1 }
+    };
+
+    let state = {
+      gender: "female",
+      height: 165,
+      weight: 52,
+      tpo: "daily",
+      temp: "cool",
+      bodyType: "standard",
+      anchorPart: "outer",
+      customImageUrl: null,
+      parts: {
+        outer: { itemId: "blouson", colorName: "블랙", mall: "owned", price: 0 },
+        top: { itemId: "crew_knit", colorName: "아이보리", mall: "ably", price: 32000 },
+        bottom: { itemId: "wide_slacks", colorName: "차콜", mall: "zigzag", price: 39000 },
+        shoes: { itemId: "derby", colorName: "블랙", mall: "owned", price: 0 }
+      },
+      // 기본 샘플 내 옷장 아이템 (주간 캘린더 즉시 체험용)
+      wardrobe: [
+        { part: "outer", itemId: "blouson", colorName: "블랙" },
+        { part: "outer", itemId: "coat", colorName: "네이비" },
+        { part: "top", itemId: "crew_knit", colorName: "아이보리" },
+        { part: "top", itemId: "shirt", colorName: "화이트" },
+        { part: "top", itemId: "sweatshirt", colorName: "그레이" },
+        { part: "bottom", itemId: "wide_slacks", colorName: "차콜" },
+        { part: "bottom", itemId: "straight_denim", colorName: "데님블루" },
+        { part: "shoes", itemId: "derby", colorName: "블랙" },
+        { part: "shoes", itemId: "german_sneakers", colorName: "화이트" }
+      ],
+      weeklyPlans: []
+    };
+
+    function getItemObj(partKey, itemId) {
+      return CLOTHING_CATALOG[partKey].find(x => x.id === itemId) || CLOTHING_CATALOG[partKey][0];
+    }
+
+    function getBodyLabel(bodyType) {
+      return { slim: "슬림·마른 체형", standard: "보통·균형 체형", muscular: "근육·역삼각 체형", chubby: "통통·듬직한 체형" }[bodyType] || "보통 체형";
     }
 
     function onHWChange(autoSelectBody = true) {
-      const h = Math.min(210, Math.max(140, Number(document.getElementById("height-input").value) || 175));
-      const w = Math.min(150, Math.max(35, Number(document.getElementById("weight-input").value) || 68));
+      const h = Math.min(210, Math.max(140, Number(document.getElementById("height-input").value) || 165));
+      const w = Math.min(150, Math.max(35, Number(document.getElementById("weight-input").value) || 52));
       const bmi = w / Math.pow(h / 100, 2);
 
       let inferred = "standard";
       let statusTxt = "표준";
-      if (bmi < 19.8) {
-        inferred = "slim";
-        statusTxt = "슬림";
-      } else if (bmi >= 25.2) {
-        inferred = "chubby";
-        statusTxt = "듬직·통통";
-      } else if (bmi >= 23.3 && h >= 173) {
-        inferred = "muscular";
-        statusTxt = "탄탄·균형";
-      }
+      if (bmi < 19.6) { inferred = "slim"; statusTxt = "슬림"; }
+      else if (bmi >= 25.0) { inferred = "chubby"; statusTxt = "듬직·통통"; }
+      else if (bmi >= 23.2 && h >= 173) { inferred = "muscular"; statusTxt = "탄탄·근육"; }
 
       document.getElementById("bmi-preview").innerText = `${h}cm · ${w}kg (${statusTxt})`;
 
       if (autoSelectBody) {
-        const bodyGroup = document.getElementById("body-group");
-        bodyGroup.querySelectorAll(".option-btn").forEach(btn => {
+        document.querySelectorAll("#body-group .option-btn").forEach(btn => {
           btn.classList.toggle("active", btn.dataset.val === inferred);
         });
       }
@@ -768,49 +792,300 @@
       onHWChange(true);
     }
 
-    function getItemObj(partKey, itemId) {
-      return CLOTHING_CATALOG[partKey].find(x => x.id === itemId) || CLOTHING_CATALOG[partKey][0];
-    }
+    function renderAnchorSetupUI() {
+      const partKey = state.anchorPart;
+      const selectEl = document.getElementById("anchor-item-select");
+      const catalog = CLOTHING_CATALOG[partKey].filter(x => x.id !== "none");
 
-    function buildMallLinks(gender, bodyType, height, partKey, colorName, itemObj) {
-      if (!itemObj || !itemObj.kw) return null;
-      const prefix = gender === "male" ? "남자 " : "여자 ";
-      let fitHint = "";
-      if (partKey === "top" || partKey === "outer") {
-        if (bodyType === "slim") fitHint = "오버핏 ";
-        else if (bodyType === "muscular") fitHint = "세미오버 ";
-      } else if (partKey === "bottom") {
-        if (height < 168 && itemObj.style.includes("wide")) fitHint = "숏기장 ";
-        else if (bodyType === "chubby" || bodyType === "muscular") fitHint = "세미와이드 ";
-      }
-      const q = `${prefix}${colorName} ${fitHint}${itemObj.kw}`.replace(/\s+/g, " ").trim();
-      const enc = encodeURIComponent(q);
-
-      if (gender === "male") {
-        return [
-          { label: "무신사", cls: "mall-m1", url: `https://www.musinsa.com/search/goods?keyword=${enc}` },
-          { label: "4910", cls: "mall-m2", url: `https://4910.kr/search?keyword=${enc}` },
-          { label: "하이버", cls: "mall-m3", url: `https://www.hiver.co.kr/search?keyword=${enc}` }
-        ];
+      if (!catalog.some(x => x.id === state.parts[partKey].itemId)) {
+        state.parts[partKey].itemId = catalog[0].id;
       }
 
-      return [
-        { label: "에이블리", cls: "mall-m1", url: `https://a-bly.com/search?query=${enc}` },
-        { label: "지그재그", cls: "mall-m2", url: `https://zigzag.kr/search?keyword=${enc}` },
-        { label: "W컨셉", cls: "mall-m3", url: `https://www.wconcept.co.kr/Search?query=${enc}` }
-      ];
+      selectEl.innerHTML = catalog.map(item =>
+        `<option value="${item.id}" ${state.parts[partKey].itemId === item.id ? "selected" : ""}>${item.label}</option>`
+      ).join("");
+
+      const curColor = state.parts[partKey].colorName;
+      document.getElementById("anchor-color-label").innerText = `선택 색상: ${curColor}`;
+
+      const swatchWrap = document.getElementById("anchor-swatches");
+      swatchWrap.innerHTML = COLOR_PALETTE.map(c => `
+        <button type="button"
+                class="c-swatch ${curColor === c.name ? "active" : ""}"
+                style="background:${c.hex}"
+                title="${c.name}"
+                onclick="onChangeAnchorColor('${c.name}')"></button>
+      `).join("");
     }
 
-    document.querySelectorAll(".btn-group").forEach(group => {
+    function onChangeAnchorPart(partKey) {
+      state.anchorPart = partKey;
+      document.querySelectorAll("#anchor-part-group .option-btn").forEach(b => {
+        b.classList.toggle("active", b.dataset.val === partKey);
+      });
+      renderAnchorSetupUI();
+    }
+
+    function onChangeAnchorItem(itemId) {
+      state.parts[state.anchorPart].itemId = itemId;
+    }
+
+    function onChangeAnchorColor(colorName) {
+      state.parts[state.anchorPart].colorName = colorName;
+      renderAnchorSetupUI();
+    }
+
+    document.querySelectorAll("#gender-group, #tpo-group, #temp-group, #body-group").forEach(group => {
       group.addEventListener("click", e => {
         const btn = e.target.closest(".option-btn");
         if (!btn) return;
         group.querySelectorAll(".option-btn").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
+
+        if (group.id === "temp-group" && btn.dataset.val === "hot" && state.anchorPart === "outer") {
+          onChangeAnchorPart("top");
+        }
       });
     });
 
-    // 리얼 인간 비율 & 입체 쉐이딩 룩북 모델 SVG
+    function quickCompareOuterLength(type) {
+      if (type === "crop") {
+        state.parts.outer.itemId = state.temp === "cold" ? "short_padding" : "blouson";
+      } else {
+        state.parts.outer.itemId = state.temp === "cold" ? "long_padding" : "coat";
+      }
+      if (state.anchorPart === "outer") renderAnchorSetupUI();
+      renderAllResultViews();
+    }
+
+    function quickCompareBottomFit(type) {
+      state.parts.bottom.itemId = type === "slim" ? "tapered_slacks" : "wide_slacks";
+      if (state.anchorPart === "bottom") renderAnchorSetupUI();
+      renderAllResultViews();
+    }
+
+    // =========================================================================
+    // [핵심 개선] 다차원 정밀 평가 엔진 (42점 ~ 99점 넓은 변별력 + 구체적 처방전)
+    // =========================================================================
+    function evaluateComprehensiveCoordi() {
+      const outerObj = getItemObj("outer", state.parts.outer.itemId);
+      const topObj = getItemObj("top", state.parts.top.itemId);
+      const bottomObj = getItemObj("bottom", state.parts.bottom.itemId);
+      const shoesObj = getItemObj("shoes", state.parts.shoes.itemId);
+
+      const outerCol = state.parts.outer.colorName;
+      const topCol = state.parts.top.colorName;
+      const bottomCol = state.parts.bottom.colorName;
+      const shoesCol = state.parts.shoes.colorName;
+
+      const ngParts = new Set();
+      const comments = [];
+
+      // 1. TPO 격식 & 민폐/실수 평가 (만점 35점)
+      let tpoScore = 35;
+      const tpo = state.tpo;
+
+      if (tpo === "wedding") {
+        // 신부 색상(화이트·아이보리 상의/아우터) 차단
+        if ((outerObj.style === "none" && (topCol === "화이트" || topCol === "아이보리")) ||
+            (outerObj.style !== "none" && (outerCol === "화이트" || outerCol === "아이보리"))) {
+          tpoScore -= 18;
+          ngParts.add(outerObj.style === "none" ? "top" : "outer");
+          comments.push(`<strong>🚨 [하객룩 민폐 경고]</strong> 상체 메인 컬러가 <strong>${outerObj.style === "none" ? topCol : outerCol}</strong>입니다. 신부 드레스와 겹치는 밝은 흰색 계열은 피하고 <strong>네이비·차콜·베이지</strong>로 변경하세요.`);
+        }
+        if (topObj.style === "hoodie" || topObj.style === "sweat" || bottomObj.style === "cargo" || bottomObj.style === "jogger" || outerObj.style === "wind" || outerObj.style === "puffer") {
+          tpoScore -= 15;
+          if (topObj.formality <= 2) ngParts.add("top");
+          if (bottomObj.formality <= 2) ngParts.add("bottom");
+          if (outerObj.formality <= 2 && outerObj.style !== "none") ngParts.add("outer");
+          comments.push(`<strong>🚨 [하객 격식 NG]</strong> 후드·조거·카고·패딩 등 스트릿 캐주얼 아이템은 예식장 분위기와 어긋납니다. <strong>블레이저/코트 + 슬랙스 + 로퍼/구두</strong> 조합이 필수입니다.`);
+        }
+        if (shoesObj.style === "sneaker" && shoesObj.id === "running_shoes") {
+          tpoScore -= 7;
+          ngParts.add("shoes");
+          comments.push(`<strong>⚠️ [신발 NG]</strong> 결혼식 하객룩에 러닝화는 격식이 떨어집니다. <strong>더비슈즈나 로퍼</strong>로 교체하면 격식 점수가 즉시 올라갑니다.`);
+        }
+      } else if (tpo === "parents") {
+        if (bottomObj.style === "wide_denim" || bottomObj.style === "cargo" || bottomObj.style === "jogger" || bottomObj.style === "short_bot") {
+          tpoScore -= 16;
+          ngParts.add("bottom");
+          comments.push(`<strong>🚨 [어른 인사 하의 NG]</strong> 부모님 인사·상견례 자리에 데님·카고·짧은 하의는 가벼워 보입니다. <strong>차콜·네이비·베이지 슬랙스</strong>로 단정함을 주세요.`);
+        }
+        if (topObj.style === "hoodie" || topObj.style === "sweat" || outerObj.style === "wind") {
+          tpoScore -= 14;
+          ngParts.add("top");
+          comments.push(`<strong>🚨 [상의 격식 주의]</strong> 어른을 뵙는 자리에는 후드·맨투맨보다 <strong>옥스포드 셔츠나 단정한 크루넥 니트</strong>가 훨씬 신뢰감을 줍니다.`);
+        }
+      } else if (tpo === "office") {
+        if (bottomObj.style === "jogger" || bottomObj.style === "cargo" || topObj.style === "hoodie" || outerObj.style === "wind") {
+          tpoScore -= 14;
+          if (bottomObj.formality <= 1) ngParts.add("bottom");
+          if (topObj.formality <= 1) ngParts.add("top");
+          comments.push(`<strong>⚠️ [오피스 복장 주의]</strong> 조거팬츠·카고팬츠·후드티는 비즈니스 환경에서 너무 자유분방해 보입니다. <strong>치노팬츠나 슬랙스</strong>로 정돈해 보세요.`);
+        }
+      } else if (tpo === "date") {
+        if (shoesObj.id === "running_shoes" || bottomObj.style === "jogger") {
+          tpoScore -= 12;
+          ngParts.add("shoes");
+          comments.push(`<strong>💡 [소개팅 감점 요인]</strong> 첫만남에 운동복 느낌의 조거팬츠나 러닝화는 성의 없어 보일 수 있습니다. <strong>레더 스니커즈나 로퍼</strong>만 신어도 호감도가 크게 상승합니다.`);
+        }
+        if (outerCol === "블랙" && topCol === "블랙" && bottomCol === "블랙" && shoesCol === "블랙") {
+          tpoScore -= 7;
+          comments.push(`<strong>💡 [소개팅 컬러 팁]</strong> 머리부터 발끝까지 올블랙은 첫만남에서 다소 차갑고 무거워 보일 수 있습니다. 이너를 <strong>아이보리나 화이트</strong>로 밝히면 인상이 부드러워집니다.`);
+        }
+      }
+
+      if (tpoScore >= 33) {
+        comments.push(`<strong>✅ [TPO 합격]</strong> <strong>${TPO_META[tpo].label}</strong> 자리에 딱 맞는 격식과 매너를 갖춘 착장입니다.`);
+      }
+      tpoScore = Math.max(5, tpoScore);
+
+      // 2. 체형 & 기장 비율 평가 (만점 25점)
+      let bodyScore = 25;
+      let upperPct = 39;
+      let ratioText = "상·하 3.9 : 6.1";
+
+      if (state.height < 166 && outerObj.lengthType === "long") {
+        bodyScore -= 10;
+        upperPct = 52;
+        ratioText = "상·하 5.2 : 4.8 (기장 주의)";
+        comments.push(`<strong>⚠️ [체형·기장 감점]</strong> ${state.height}cm 키에 롱 기장(${outerObj.label})은 무게중심이 아래로 쏠려 다리가 짧아 보입니다. <strong>숏 블루종이나 크롭 가디건</strong>으로 바꾸면 비율이 극적으로 좋아집니다.`);
+      } else if (outerObj.lengthType === "crop") {
+        upperPct = 35;
+        ratioText = "상·하 3.5 : 6.5 (황금 비율)";
+        comments.push(`<strong>✅ [황금 비율 달성]</strong> 크롭/숏 기장 아우터가 허리선을 높여주어 ${state.height}cm 체형에서 다리가 가장 길어 보이는 비율입니다.`);
+      } else if (outerObj.lengthType === "long") {
+        upperPct = 45;
+        ratioText = "상·하 4.5 : 5.5 (롱 실루엣)";
+      }
+
+      if (state.bodyType === "muscular" && bottomObj.fitType === "slim") {
+        bodyScore -= 8;
+        comments.push(`<strong>⚠️ [역삼각 체형 감점]</strong> 상체 근육 대비 슬림한 하의(${bottomObj.label})는 상체만 과도하게 부각됩니다. <strong>와이드 슬랙스/와이드 데님</strong>으로 하체 볼륨 균형을 맞추세요.`);
+      } else if (state.bodyType === "slim" && bottomObj.fitType === "slim" && outerObj.style === "none") {
+        bodyScore -= 7;
+        comments.push(`<strong>💡 [슬림 체형 보완]</strong> 아우터 없이 상·하의 모두 슬림하면 왜소해 보일 수 있습니다. <strong>와이드 팬츠</strong>로 실루엣에 여유를 주는 것을 추천합니다.`);
+      } else if (state.bodyType === "chubby" && outerObj.style === "puffer") {
+        bodyScore -= 8;
+        comments.push(`<strong>💡 [통통 체형 부피 주의]</strong> 숏/롱패딩은 상체 부피를 키웁니다. <strong>오픈 발마칸 코트나 블레이저</strong>로 세로 절개 라인을 만들어 주세요.`);
+      }
+      bodyScore = Math.max(5, bodyScore);
+
+      // 3. 기온·계절 적합도 평가 (만점 20점)
+      let tempScore = 20;
+      const targetW = TEMP_META[state.temp].targetWarmth;
+      const actualW = outerObj.style === "none" ? topObj.warmth : Math.max(outerObj.warmth, topObj.warmth);
+
+      if (state.temp === "hot" && outerObj.style !== "none") {
+        tempScore -= 14;
+        ngParts.add("outer");
+        comments.push(`<strong>🥵 [기온 NG]</strong> 23°C 이상 더운 날씨에 아우터(${outerObj.label})를 착용하면 땀이 차고 답답해 보입니다. 아우터를 <strong>착용 안 함</strong>으로 바꾸세요.`);
+      } else if (state.temp === "cold" && actualW <= 2) {
+        tempScore -= 13;
+        comments.push(`<strong>🥶 [보온성 부족]</strong> 5°C 이하 추운 날씨에 보온성이 약한 옷차림입니다. <strong>코트·패딩 아우터와 터틀넥 니트</strong>를 레이어드하세요.`);
+      } else if (Math.abs(targetW - actualW) >= 2) {
+        tempScore -= 7;
+        comments.push(`<strong>🌡️ [계절감 차이]</strong> 현재 기온(${TEMP_META[state.temp].label}) 대비 옷 두께감이 다소 어긋납니다.`);
+      }
+      tempScore = Math.max(4, tempScore);
+
+      // 4. 컬러 매칭 조화도 평가 (만점 20점)
+      let colorScore = 20;
+      const activeColors = PART_META
+        .filter(m => !(m.key === "outer" && outerObj.style === "none"))
+        .map(m => state.parts[m.key].colorName);
+      const uniqueColors = new Set(activeColors);
+
+      if (uniqueColors.size >= 4) {
+        colorScore -= 8;
+        comments.push(`<strong>🎨 [컬러 분산 감점]</strong> 한 코디에 ${uniqueColors.size}가지 색상이 섞여 시선이 산만합니다. 신발이나 하의 색을 상의와 통일해 <strong>3색 이내</strong>로 줄이세요.`);
+      }
+      if ((topCol === "카키" && bottomCol === "버건디") || (outerCol === "버건디" && bottomCol === "카키")) {
+        colorScore -= 9;
+        comments.push(`<strong>🎨 [보색 충돌 주의]</strong> 카키와 버건디의 강한 대비는 촌스러워 보일 위험이 큽니다. 한쪽을 <strong>블랙·차콜·아이보리</strong> 무채색으로 눌러주세요.`);
+      }
+      if (uniqueColors.size <= 3 && colorScore === 20) {
+        comments.push(`<strong>🎨 [컬러 밸런스 우수]</strong> ${Array.from(uniqueColors).join(" · ")} 조합이 3색 이내로 깔끔하게 정돈되어 세련된 인상을 줍니다.`);
+      }
+      colorScore = Math.max(4, colorScore);
+
+      const totalScore = Math.min(99, Math.max(38, tpoScore + bodyScore + tempScore + colorScore));
+
+      let gradeClass = "excellent";
+      let gradeText = "완벽에 가까운<br>베스트 코디";
+      let reportTitle = "✅ 상황·체형·컬러를 모두 잡은 완성형 코디입니다";
+
+      if (totalScore < 68) {
+        gradeClass = "danger";
+        gradeText = "실수 위험!<br>수정 필수";
+        reportTitle = "🚨 이대로 나가면 실수할 확률이 높습니다! 아래 항목을 수정하세요";
+      } else if (totalScore < 85) {
+        gradeClass = "warn";
+        gradeText = "무난하지만<br>보완 권장";
+        reportTitle = "💡 괜찮은 조합이지만, 한두 가지만 고치면 훨씬 세련돼집니다";
+      }
+
+      return {
+        totalScore,
+        tpoScore,
+        bodyScore,
+        tempScore,
+        colorScore,
+        gradeClass,
+        gradeText,
+        reportTitle,
+        comments,
+        ngParts,
+        upperPct,
+        lowerPct: 100 - upperPct,
+        ratioText
+      };
+    }
+
+    function buildMallLinks(partKey, colorName, itemObj, selectedMall) {
+      if (!itemObj || !itemObj.kw || selectedMall === "owned") return null;
+
+      const links = [];
+      const exactAffKey = `${itemObj.id}_${colorName}`;
+      const affEntry = AFFILIATE_LINKS[exactAffKey] || AFFILIATE_LINKS[itemObj.id];
+      if (affEntry) {
+        links.push({ label: affEntry.label, cls: "mall-aff", url: affEntry.url });
+      }
+
+      const prefix = state.gender === "male" ? "남자 " : "여자 ";
+      const q = `${prefix}${colorName} ${itemObj.kw}`.trim();
+      const enc = encodeURIComponent(q);
+
+      const mallMap = {
+        musinsa: { label: "무신사 바로검색", url: `https://www.musinsa.com/search/goods?keyword=${enc}` },
+        ably: { label: "에이블리 바로검색", url: `https://a-bly.com/search?query=${enc}` },
+        zigzag: { label: "지그재그 바로검색", url: `https://zigzag.kr/search?keyword=${enc}` },
+        "29cm": { label: "29CM 바로검색", url: `https://search.29cm.co.kr/?keyword=${enc}` },
+        coupang: { label: "쿠팡 최저가 검색", url: `https://www.coupang.com/np/search?q=${enc}` }
+      };
+
+      const target = mallMap[selectedMall] || (state.gender === "male" ? mallMap.musinsa : mallMap.ably);
+      links.push({ label: target.label, cls: "mall-m1", url: target.url });
+      return links;
+    }
+
+    function onUploadCustomImage(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        state.customImageUrl = e.target.result;
+        renderModelArea();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function resetCustomImage() {
+      state.customImageUrl = null;
+      document.getElementById("custom-model-input").value = "";
+      renderModelArea();
+    }
+
     function renderModelPoseSVG() {
       const outerObj = getItemObj("outer", state.parts.outer.itemId);
       const topObj = getItemObj("top", state.parts.top.itemId);
@@ -827,341 +1102,132 @@
       const bodyType = state.bodyType;
       const height = state.height;
 
-      const line = "#1e293b";
+      const lineHair = "#231a18";
+      const lineSkin = "#c89d8c";
+      const lineCloth = "#18181b";
 
-      // 체형·키 비율 계산
-      let shoulderDelta = 0;
-      let waistDelta = 0;
-      let hipDelta = 0;
-      let armDelta = 0;
-      let legScale = 1.0;
+      let shoulderDelta = 0, waistDelta = 0, hipDelta = 0, legScale = 1.0;
+      if (height >= 180) legScale = 1.03;
+      else if (height <= 165) legScale = 0.96;
 
-      if (height >= 180) legScale = 1.04;
-      else if (height <= 165) legScale = 0.95;
+      if (bodyType === "slim") { shoulderDelta = -2.5; waistDelta = -2.8; hipDelta = -2.2; }
+      else if (bodyType === "muscular") { shoulderDelta = 6.0; waistDelta = -0.5; hipDelta = 1.8; }
+      else if (bodyType === "chubby") { shoulderDelta = 4.0; waistDelta = 6.2; hipDelta = 5.2; }
 
-      if (bodyType === "slim") {
-        shoulderDelta = -3.8;
-        waistDelta = -3.8;
-        hipDelta = -3.2;
-        armDelta = -1.6;
-      } else if (bodyType === "muscular") {
-        shoulderDelta = 6.2;
-        waistDelta = -0.5;
-        hipDelta = 2.0;
-        armDelta = 2.6;
-      } else if (bodyType === "chubby") {
-        shoulderDelta = 4.2;
-        waistDelta = 7.2;
-        hipDelta = 6.0;
-        armDelta = 2.8;
-      }
+      if (isFemale) { shoulderDelta -= 2.2; waistDelta -= 2.2; hipDelta += 1.0; }
 
-      if (isFemale) {
-        shoulderDelta -= 2.2;
-        waistDelta -= 1.8;
-        hipDelta += 1.2;
-      }
+      const cx = 112, neckY = 48, shoulderY = 58, waistY = 136, hipY = 152;
+      const kneeY = Math.round(218 * legScale);
+      const ankleY = Math.round(298 * legScale);
+      const soleY = ankleY + 14;
 
-      const cx = 90;
-      const neckY = 48;
-      const shoulderY = 58;
-      const waistY = 132;
-      const hipY = 148;
-      const ankleY = Math.round(256 * legScale);
-      const soleY = ankleY + 13;
+      const sL = cx - 22 - shoulderDelta, sR = cx + 22 + shoulderDelta;
+      const wL = cx - 16 - waistDelta, wR = cx + 16 + waistDelta;
+      const hL = cx - 19 - hipDelta, hR = cx + 19 + hipDelta;
 
-      const sL = cx - 22 - shoulderDelta;
-      const sR = cx + 22 + shoulderDelta;
-      const wL = cx - 18 - waistDelta;
-      const wR = cx + 18 + waistDelta;
-      const hL = cx - 21 - hipDelta;
-      const hR = cx + 21 + hipDelta;
+      const defsSvg = `
+        <defs>
+          <linearGradient id="skinGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#f9dfd3"/>
+            <stop offset="65%" stop-color="#fdece4"/>
+            <stop offset="100%" stop-color="#f2cfc0"/>
+          </linearGradient>
+          <linearGradient id="hairGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#382926"/>
+            <stop offset="50%" stop-color="#261b19"/>
+            <stop offset="100%" stop-color="#1a1211"/>
+          </linearGradient>
+          <linearGradient id="outerGrad" x1="0" y1="0" x2="1" y2="0.3">
+            <stop offset="0%" stop-color="${outerCol.light}" stop-opacity="0.3"/>
+            <stop offset="35%" stop-color="${outerCol.hex}"/>
+            <stop offset="100%" stop-color="${outerCol.dark}"/>
+          </linearGradient>
+          <linearGradient id="topGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="${topCol.hex}"/>
+            <stop offset="100%" stop-color="${topCol.dark}"/>
+          </linearGradient>
+          <linearGradient id="botGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="${bottomCol.hex}"/>
+            <stop offset="85%" stop-color="${bottomCol.dark}"/>
+          </linearGradient>
+        </defs>
+      `;
 
-      // 머리 & 얼굴 & 헤어 (인체 비례 7.5등신)
       const headSvg = `
         <g>
           ${isFemale ? `
-            <!-- 긴 웨이브 헤어 뒷머리 -->
-            <path d="M${cx - 17} 26 C${cx - 21} 44, ${cx - 23} 64, ${cx - 16} 76 L${cx + 16} 76 C${cx + 23} 64, ${cx + 21} 44, ${cx + 17} 26 Z"
-                  fill="url(#hairGrad)" stroke="${line}" stroke-width="1.2"/>
-          ` : ""}
-          <!-- 목 & 쇄골 음영 -->
-          <path d="M${cx - 6.5} 40 L${cx - 7.5} 56 Q${cx} 61 ${cx + 7.5} 56 L${cx + 6.5} 40 Z"
-                fill="url(#skinGrad)" stroke="${line}" stroke-width="1.2"/>
-          <path d="M${cx - 6} 41 Q${cx} 45 ${cx + 6} 41" fill="none" stroke="#c08b68" stroke-width="1.3" opacity="0.55"/>
-
-          <!-- 귀 -->
-          <ellipse cx="${cx - 12.5}" cy="29" rx="2.1" ry="4" fill="#eab896" stroke="${line}" stroke-width="1"/>
-          <ellipse cx="${cx + 12.5}" cy="29" rx="2.1" ry="4" fill="#eab896" stroke="${line}" stroke-width="1"/>
-
-          <!-- 턱선 있는 얼굴형 -->
-          <path d="M${cx - 12} 22 C${cx - 12} 10, ${cx + 12} 10, ${cx + 12} 22
-                   C${cx + 12} 31, ${cx + 8} 38.5, ${cx} 40.5
-                   C${cx - 8} 38.5, ${cx - 12} 31, ${cx - 12} 22 Z"
-                fill="url(#skinGrad)" stroke="${line}" stroke-width="1.3"/>
-
-          <!-- 눈썹 · 눈 · 코 · 입 디테일 -->
-          <path d="M${cx - 8.2} 23.2 Q${cx - 5.2} 21.8 ${cx - 2.3} 23.0" fill="none" stroke="#1e293b" stroke-width="1.25" stroke-linecap="round"/>
-          <path d="M${cx + 2.3} 23.0 Q${cx + 5.2} 21.8 ${cx + 8.2} 23.2" fill="none" stroke="#1e293b" stroke-width="1.25" stroke-linecap="round"/>
-
-          <ellipse cx="${cx - 5.2}" cy="25.8" rx="1.7" ry="1.15" fill="#1e293b"/>
-          <ellipse cx="${cx + 5.2}" cy="25.8" rx="1.7" ry="1.15" fill="#1e293b"/>
-          <circle cx="${cx - 5.6}" cy="25.4" r="0.45" fill="#ffffff"/>
-          <circle cx="${cx + 4.8}" cy="25.4" r="0.45" fill="#ffffff"/>
-
-          <!-- 콧대 & 코끝 음영 -->
-          <path d="M${cx} 25.5 L${cx - 0.7} 31.2 Q${cx} 32.0 ${cx + 1.1} 31.3" fill="none" stroke="#b9805b" stroke-width="1.1" stroke-linecap="round"/>
-
-          <!-- 입술 -->
-          <path d="M${cx - 3.4} 34.8 Q${cx} 36.2 ${cx + 3.4} 34.8" fill="none" stroke="#9f5848" stroke-width="1.35" stroke-linecap="round"/>
-
-          <!-- 헤어 앞머리 스타일링 -->
-          ${isFemale ? `
-            <path d="M${cx - 13.5} 24 C${cx - 14.5} 10, ${cx + 14.5} 10, ${cx + 13.5} 24
-                     C${cx + 11} 17, ${cx + 4} 16, ${cx - 1} 20
-                     C${cx - 5} 16, ${cx - 11} 18, ${cx - 13.5} 24 Z"
-                  fill="url(#hairGrad)" stroke="${line}" stroke-width="1.2"/>
+            <path d="M${cx - 16} 18 C${cx - 28} 44, ${cx - 32} 84, ${cx - 22} 118 C${cx - 17} 105, ${cx - 16} 88, ${cx - 13} 72 L${cx + 13} 72 C${cx + 15} 90, ${cx + 16} 106, ${cx + 21} 116 C${cx + 29} 84, ${cx + 26} 44, ${cx + 16} 18 Z" fill="url(#hairGrad)" stroke="${lineHair}" stroke-width="0.9"/>
           ` : `
-            <path d="M${cx - 13} 23 C${cx - 14} 9.5, ${cx + 14} 9.5, ${cx + 13} 23
-                     C${cx + 11} 17.5, ${cx + 5} 15.5, ${cx + 1} 19.5
-                     C${cx - 3} 15.5, ${cx - 10} 17, ${cx - 13} 23 Z"
-                  fill="url(#hairGrad)" stroke="${line}" stroke-width="1.2"/>
+            <path d="M${cx - 14} 17 C${cx - 18} 29, ${cx - 16} 43, ${cx - 10} 49 L${cx + 10} 49 C${cx + 16} 43, ${cx + 18} 29, ${cx + 14} 17 Z" fill="url(#hairGrad)" stroke="${lineHair}" stroke-width="0.9"/>
+          `}
+          <path d="M${cx - 4.5} 37 L${cx - 5.5} 55 Q${cx} 58 ${cx + 5.5} 55 L${cx + 4.5} 37 Z" fill="url(#skinGrad)" stroke="${lineSkin}" stroke-width="0.75"/>
+          <path d="M${cx - 11.2} 21 C${cx - 11.5} 9, ${cx + 11.5} 9, ${cx + 11.2} 21 C${cx + 11.2} 30, ${cx + 7} 37.5, ${cx} 39.2 C${cx - 7} 37.5, ${cx - 11.2} 30, ${cx - 11.2} 21 Z" fill="url(#skinGrad)" stroke="${lineSkin}" stroke-width="0.8"/>
+          <ellipse cx="${cx - 5.2}" cy="25.2" rx="2.3" ry="2.5" fill="#2c1e1b"/>
+          <circle cx="${cx - 5.9}" cy="24.2" r="0.85" fill="#ffffff"/>
+          <ellipse cx="${cx + 5.2}" cy="25.2" rx="2.3" ry="2.5" fill="#2c1e1b"/>
+          <circle cx="${cx + 4.5}" cy="24.2" r="0.85" fill="#ffffff"/>
+          <path d="M${cx - 2.2} 33.8 Q${cx} 33.1 ${cx + 2.2} 33.8 Q${cx} 35.1 ${cx - 2.2} 33.8 Z" fill="#e58a8a"/>
+          ${isFemale ? `
+            <path d="M${cx - 13.5} 24 C${cx - 15} 7, ${cx + 15} 7, ${cx + 13.5} 24 C${cx + 12} 16, ${cx + 6} 14, ${cx + 1.5} 20 C${cx - 2} 14, ${cx - 9} 16, ${cx - 13.5} 24 Z" fill="url(#hairGrad)" stroke="${lineHair}" stroke-width="0.85"/>
+          ` : `
+            <path d="M${cx - 13} 23 C${cx - 14} 7, ${cx + 14} 7, ${cx + 13} 23 C${cx + 10} 15, ${cx + 4} 14, ${cx + 1} 21 C${cx - 3} 14, ${cx - 9} 15, ${cx - 13} 23 Z" fill="url(#hairGrad)" stroke="${lineHair}" stroke-width="0.85"/>
           `}
         </g>
       `;
 
-      // 하의 (무릎 주름·센터 크리즈·입체 그라데이션)
       let bottomSvg = "";
       if (bottomObj.style === "short_bot") {
-        const kneeY = Math.round(196 * legScale);
-        if (isFemale) {
-          bottomSvg = `
-            <path d="M${hL} ${waistY + 4} L${hR} ${waistY + 4} L${hR + 10} ${kneeY - 6} L${hL - 10} ${kneeY - 6} Z"
-                  fill="url(#bottomGrad)" stroke="${line}" stroke-width="1.4" stroke-linejoin="round"/>
-            <path d="M${cx - 15 - hipDelta * 0.3} ${kneeY - 6} L${cx - 16 - hipDelta * 0.2} ${ankleY} L${cx - 5} ${ankleY} L${cx - 4} ${kneeY - 6} Z"
-                  fill="url(#skinGrad)" stroke="${line}" stroke-width="1.2"/>
-            <path d="M${cx + 4} ${kneeY - 6} L${cx + 5} ${ankleY} L${cx + 16 + hipDelta * 0.2} ${ankleY} L${cx + 15 + hipDelta * 0.3} ${kneeY - 6} Z"
-                  fill="url(#skinGrad)" stroke="${line}" stroke-width="1.2"/>
-          `;
-        } else {
-          bottomSvg = `
-            <path d="M${hL - 1} ${waistY + 4} L${hR + 1} ${waistY + 4} L${hR + 4} ${kneeY - 8} L${cx + 2} ${kneeY - 8} L${cx} ${hipY + 8} L${cx - 2} ${kneeY - 8} L${hL - 4} ${kneeY - 8} Z"
-                  fill="url(#bottomGrad)" stroke="${line}" stroke-width="1.4" stroke-linejoin="round"/>
-            <path d="M${cx - 18 - hipDelta * 0.35} ${kneeY - 8} L${cx - 19 - hipDelta * 0.2} ${ankleY} L${cx - 5} ${ankleY} L${cx - 4} ${kneeY - 8} Z"
-                  fill="url(#skinGrad)" stroke="${line}" stroke-width="1.2"/>
-            <path d="M${cx + 4} ${kneeY - 8} L${cx + 5} ${ankleY} L${cx + 19 + hipDelta * 0.2} ${ankleY} L${cx + 18 + hipDelta * 0.35} ${kneeY - 8} Z"
-                  fill="url(#skinGrad)" stroke="${line}" stroke-width="1.2"/>
-          `;
-        }
-      } else if (bottomObj.style === "wide_slacks" || bottomObj.style === "wide_denim" || bottomObj.style === "corduroy" || bottomObj.style === "cargo") {
-        const hemW = 28 + hipDelta * 0.65;
         bottomSvg = `
-          <path d="M${hL - 1} ${waistY + 4} L${hR + 1} ${waistY + 4}
-                   L${cx + hemW} ${ankleY} L${cx + 4} ${ankleY}
-                   L${cx} ${hipY + 14}
-                   L${cx - 4} ${ankleY} L${cx - hemW} ${ankleY} Z"
-                fill="url(#bottomGrad)" stroke="${line}" stroke-width="1.45" stroke-linejoin="round"/>
-          <!-- 센터 크리즈 & 드레이프 주름 -->
-          <line x1="${cx - 12}" y1="${waistY + 10}" x2="${cx - 15}" y2="${ankleY - 6}" stroke="#ffffff" stroke-width="0.9" opacity="0.24"/>
-          <line x1="${cx + 12}" y1="${waistY + 10}" x2="${cx + 15}" y2="${ankleY - 6}" stroke="#ffffff" stroke-width="0.9" opacity="0.24"/>
-          <path d="M${cx - 6} ${hipY + 12} Q${cx} ${hipY + 17} ${cx + 6} ${hipY + 12}" fill="none" stroke="${line}" stroke-width="1" opacity="0.35"/>
-          ${bottomObj.style === "cargo" ? `
-            <rect x="${cx - hemW + 1}" y="${hipY + 28}" width="8.5" height="19" rx="2" fill="url(#bottomGrad)" stroke="${line}" stroke-width="1.15"/>
-            <rect x="${cx + hemW - 9.5}" y="${hipY + 28}" width="8.5" height="19" rx="2" fill="url(#bottomGrad)" stroke="${line}" stroke-width="1.15"/>
-          ` : ""}
+          <path d="M${cx - 14} ${kneeY - 12} L${cx - 12} ${ankleY} L${cx - 4} ${ankleY} L${cx - 3} ${kneeY - 12} Z" fill="url(#skinGrad)"/>
+          <path d="M${cx + 3} ${kneeY - 12} L${cx + 4} ${ankleY} L${cx + 12} ${ankleY} L${cx + 14} ${kneeY - 12} Z" fill="url(#skinGrad)"/>
+          <path d="M${hL} ${waistY} L${hR} ${waistY} L${hR + 13} ${kneeY - 10} Q${cx} ${kneeY - 5} ${hL - 13} ${kneeY - 10} Z" fill="url(#botGrad)" stroke="${lineCloth}" stroke-width="0.95"/>
         `;
       } else {
-        const hemW = 20 + hipDelta * 0.45;
+        const isWide = bottomObj.fitType === "wide";
+        const hemW = (isWide ? 26 : 16.5) + hipDelta * 0.6;
         bottomSvg = `
-          <path d="M${hL} ${waistY + 4} L${hR} ${waistY + 4}
-                   L${cx + hemW} ${ankleY} L${cx + 4} ${ankleY}
-                   L${cx} ${hipY + 13}
-                   L${cx - 4} ${ankleY} L${cx - hemW} ${ankleY} Z"
-                fill="url(#bottomGrad)" stroke="${line}" stroke-width="1.45" stroke-linejoin="round"/>
-          <line x1="${cx - 11}" y1="${waistY + 10}" x2="${cx - 12}" y2="${ankleY - 6}" stroke="#ffffff" stroke-width="0.85" opacity="0.22"/>
-          <line x1="${cx + 11}" y1="${waistY + 10}" x2="${cx + 12}" y2="${ankleY - 6}" stroke="#ffffff" stroke-width="0.85" opacity="0.22"/>
-          ${bottomObj.style === "jogger" ? `
-            <rect x="${cx - hemW}" y="${ankleY - 6}" width="${hemW - 4}" height="6" rx="1.5" fill="url(#bottomGrad)" stroke="${line}" stroke-width="1.2"/>
-            <rect x="${cx + 4}" y="${ankleY - 6}" width="${hemW - 4}" height="6" rx="1.5" fill="url(#bottomGrad)" stroke="${line}" stroke-width="1.2"/>
-          ` : ""}
+          <path d="M${hL - 1} ${waistY} L${hR + 1} ${waistY} C${hR + 5} ${kneeY}, ${cx + hemW + 1} ${ankleY - 24}, ${cx + hemW} ${ankleY} L${cx + 3} ${ankleY} L${cx} ${hipY + 16} L${cx - 3} ${ankleY} L${cx - hemW} ${ankleY} C${cx - hemW - 1} ${ankleY - 24}, ${hL - 5} ${kneeY}, ${hL - 1} ${waistY} Z" fill="url(#botGrad)" stroke="${lineCloth}" stroke-width="0.95"/>
         `;
       }
 
-      // 신발 (입체 라스트 · 아웃솔 디테일)
-      let shoesSvg = "";
-      if (shoesObj.style === "long_boots") {
-        shoesSvg = `
-          <path d="M${cx - 20} ${ankleY - 46} L${cx - 4} ${ankleY - 46} L${cx - 3} ${soleY} L${cx - 28} ${soleY} C${cx - 28} ${soleY - 7}, ${cx - 24} ${ankleY - 2}, ${cx - 20} ${ankleY - 4} Z"
-                fill="url(#shoesGrad)" stroke="${line}" stroke-width="1.4" stroke-linejoin="round"/>
-          <path d="M${cx + 4} ${ankleY - 46} L${cx + 20} ${ankleY - 46} L${cx + 20} ${ankleY - 4} C${cx + 24} ${ankleY - 2}, ${cx + 28} ${soleY - 7}, ${cx + 28} ${soleY} L${cx + 3} ${soleY} Z"
-                fill="url(#shoesGrad)" stroke="${line}" stroke-width="1.4" stroke-linejoin="round"/>
-        `;
-      } else if (shoesObj.style === "ankle_boots") {
-        shoesSvg = `
-          <path d="M${cx - 20} ${ankleY - 22} L${cx - 4} ${ankleY - 22} L${cx - 3} ${soleY} L${cx - 28} ${soleY} C${cx - 28} ${soleY - 7}, ${cx - 24} ${ankleY - 2}, ${cx - 20} ${ankleY - 4} Z"
-                fill="url(#shoesGrad)" stroke="${line}" stroke-width="1.4" stroke-linejoin="round"/>
-          <path d="M${cx + 4} ${ankleY - 22} L${cx + 20} ${ankleY - 22} L${cx + 20} ${ankleY - 4} C${cx + 24} ${ankleY - 2}, ${cx + 28} ${soleY - 7}, ${cx + 28} ${soleY} L${cx + 3} ${soleY} Z"
-                fill="url(#shoesGrad)" stroke="${line}" stroke-width="1.4" stroke-linejoin="round"/>
-        `;
-      } else if (shoesObj.style === "sandal") {
-        shoesSvg = `
-          <rect x="${cx - 26}" y="${soleY - 7}" width="23" height="7" rx="3" fill="url(#shoesGrad)" stroke="${line}" stroke-width="1.3"/>
-          <rect x="${cx + 3}" y="${soleY - 7}" width="23" height="7" rx="3" fill="url(#shoesGrad)" stroke="${line}" stroke-width="1.3"/>
-        `;
-      } else {
-        shoesSvg = `
-          <path d="M${cx - 21} ${ankleY - 1} L${cx - 4} ${ankleY - 1} L${cx - 3} ${soleY} L${cx - 29} ${soleY} C${cx - 29} ${soleY - 8}, ${cx - 25} ${ankleY}, ${cx - 21} ${ankleY - 1} Z"
-                fill="url(#shoesGrad)" stroke="${line}" stroke-width="1.4" stroke-linejoin="round"/>
-          <path d="M${cx + 4} ${ankleY - 1} L${cx + 21} ${ankleY - 1} C${cx + 25} ${ankleY}, ${cx + 29} ${soleY - 8}, ${cx + 29} ${soleY} L${cx + 3} ${soleY} Z"
-                fill="url(#shoesGrad)" stroke="${line}" stroke-width="1.4" stroke-linejoin="round"/>
-          <rect x="${cx - 29}" y="${soleY - 3.5}" width="26" height="3.5" rx="1.2" fill="#f8fafc" stroke="${line}" stroke-width="0.9"/>
-          <rect x="${cx + 3}" y="${soleY - 3.5}" width="26" height="3.5" rx="1.2" fill="#f8fafc" stroke="${line}" stroke-width="0.9"/>
-        `;
-      }
-
-      // 상의 & 팔 (어깨 곡선 · 겨드랑이 주름 · 손 포즈)
-      const isShortTop = topObj.style === "short_tee" || topObj.style === "polo" || topObj.style === "blouse";
-      const lHandX = cx - 34 - shoulderDelta;
-      const lHandY = 136;
-      const rHandX = cx + 38 + shoulderDelta;
-      const rHandY = 122;
-
-      const topSvg = `
-        <path d="M${sL} ${shoulderY} Q${cx - 10} ${neckY + 3} ${cx - 7} ${neckY + 4}
-                 Q${cx} ${neckY + 12} ${cx + 7} ${neckY + 4}
-                 Q${cx + 10} ${neckY + 3} ${sR} ${shoulderY}
-                 L${wR} ${waistY + 6} L${wL} ${waistY + 6} Z"
-              fill="url(#topGrad)" stroke="${line}" stroke-width="1.45" stroke-linejoin="round"/>
-        <!-- 허리 밑단 & 흉부 입체 음영 -->
-        <line x1="${wL + 1}" y1="${waistY + 1}" x2="${wR - 1}" y2="${waistY + 1}" stroke="${line}" stroke-width="1" opacity="0.4"/>
-        <path d="M${sL + 4} ${shoulderY + 16} Q${cx - 10} ${shoulderY + 26} ${cx - 5} ${shoulderY + 25}" fill="none" stroke="${line}" stroke-width="0.9" opacity="0.22"/>
-        <path d="M${sR - 4} ${shoulderY + 16} Q${cx + 10} ${shoulderY + 26} ${cx + 5} ${shoulderY + 25}" fill="none" stroke="${line}" stroke-width="0.9" opacity="0.22"/>
-
-        ${topObj.style === "turtleneck" ? `
-          <rect x="${cx - 7.5}" y="${neckY - 7}" width="15" height="14" rx="3" fill="url(#topGrad)" stroke="${line}" stroke-width="1.35"/>
-          <line x1="${cx - 7}" y1="${neckY - 1}" x2="${cx + 7}" y2="${neckY - 1}" stroke="${line}" stroke-width="0.8" opacity="0.35"/>
-        ` : ""}
-        ${topObj.style === "shirt" || topObj.style === "polo" ? `
-          <path d="M${cx - 8} ${neckY + 4} L${cx} ${neckY + 17} L${cx + 8} ${neckY + 4}" fill="none" stroke="${line}" stroke-width="1.35"/>
-          <line x1="${cx}" y1="${neckY + 17}" x2="${cx}" y2="${waistY - 10}" stroke="${line}" stroke-width="0.95" stroke-dasharray="2.2,2.2" opacity="0.5"/>
-        ` : ""}
-        ${topObj.style === "hoodie" ? `
-          <line x1="${cx - 4.5}" y1="${neckY + 13}" x2="${cx - 4.5}" y2="${neckY + 34}" stroke="${line}" stroke-width="1.2" opacity="0.55"/>
-          <line x1="${cx + 4.5}" y1="${neckY + 13}" x2="${cx + 4.5}" y2="${neckY + 34}" stroke="${line}" stroke-width="1.2" opacity="0.55"/>
-        ` : ""}
-
-        ${!hasOuter ? (
-          isShortTop ? `
-            <!-- 반팔 소매 + 자연스러운 팔 + 손 -->
-            <path d="M${sL} ${shoulderY} L${lHandX - 4} 88 L${lHandX + 7 + armDelta} 93 L${sL + 1} 78 Z"
-                  fill="url(#topGrad)" stroke="${line}" stroke-width="1.4" stroke-linejoin="round"/>
-            <path d="M${sR} ${shoulderY} L${rHandX + 3} 86 L${rHandX - 8 - armDelta} 91 L${sR - 1} 78 Z"
-                  fill="url(#topGrad)" stroke="${line}" stroke-width="1.4" stroke-linejoin="round"/>
-            <path d="M${lHandX - 2} 89 L${lHandX - 3} ${lHandY - 4} L${lHandX + 6 + armDelta * 0.7} ${lHandY - 3} L${lHandX + 6 + armDelta * 0.7} 92 Z"
-                  fill="url(#skinGrad)" stroke="${line}" stroke-width="1.2"/>
-            <path d="M${rHandX + 1} 87 L${rHandX + 2} ${rHandY - 4} L${rHandX - 7 - armDelta * 0.7} ${rHandY - 3} L${rHandX - 7 - armDelta * 0.7} 90 Z"
-                  fill="url(#skinGrad)" stroke="${line}" stroke-width="1.2"/>
-            <ellipse cx="${lHandX + 1.5}" cy="${lHandY + 1}" rx="4.2" ry="5.5" fill="url(#skinGrad)" stroke="${line}" stroke-width="1.15"/>
-            <ellipse cx="${rHandX - 2}" cy="${rHandY + 1}" rx="4.2" ry="5.5" fill="url(#skinGrad)" stroke="${line}" stroke-width="1.15"/>
-          ` : `
-            <!-- 긴팔 소매 + 손 -->
-            <path d="M${sL} ${shoulderY} L${lHandX - 4} ${lHandY - 6} L${lHandX + 7 + armDelta} ${lHandY - 3} L${sL + 1} 79 Z"
-                  fill="url(#topGrad)" stroke="${line}" stroke-width="1.4" stroke-linejoin="round"/>
-            <path d="M${sR} ${shoulderY} L${rHandX + 3} ${rHandY - 6} L${rHandX - 8 - armDelta} ${rHandY - 2} L${sR - 1} 79 Z"
-                  fill="url(#topGrad)" stroke="${line}" stroke-width="1.4" stroke-linejoin="round"/>
-            <ellipse cx="${lHandX + 1.5}" cy="${lHandY}" rx="4.2" ry="5.5" fill="url(#skinGrad)" stroke="${line}" stroke-width="1.15"/>
-            <ellipse cx="${rHandX - 2}" cy="${rHandY}" rx="4.2" ry="5.5" fill="url(#skinGrad)" stroke="${line}" stroke-width="1.15"/>
-          `
-        ) : ""}
+      const shoesSvg = `
+        <path d="M${cx - 14} ${ankleY - 1} L${cx - 3} ${ankleY - 1} L${cx - 2} ${soleY} L${cx - 24} ${soleY} C${cx - 24} ${soleY - 7}, ${cx - 18} ${ankleY}, ${cx - 14} ${ankleY - 1} Z" fill="${shoesCol.hex}" stroke="${lineCloth}" stroke-width="0.9"/>
+        <path d="M${cx + 3} ${ankleY - 1} L${cx + 14} ${ankleY - 1} C${cx + 18} ${ankleY}, ${cx + 24} ${soleY - 7}, ${cx + 24} ${soleY} L${cx + 2} ${soleY} Z" fill="${shoesCol.hex}" stroke="${lineCloth}" stroke-width="0.9"/>
       `;
 
-      // 아우터 (라펠 · 주머니 · 소매 입체감)
+      const lElbowX = cx - 33 - shoulderDelta, lElbowY = 98;
+      const lPocketX = cx - 19 - waistDelta, lPocketY = 124;
+      const rHandX = cx + 31 + shoulderDelta, rHandY = 148;
+
+      const topSvg = `
+        <path d="M${sL} ${shoulderY} Q${cx - 9} ${neckY + 2} ${cx - 6} ${neckY + 3} Q${cx} ${neckY + 11} ${cx + 6} ${neckY + 3} Q${cx + 9} ${neckY + 2} ${sR} ${shoulderY} L${wR} ${waistY + 2} L${wL} ${waistY + 2} Z" fill="url(#topGrad)" stroke="${lineCloth}" stroke-width="0.9"/>
+        ${topObj.style === "turtleneck" ? `<rect x="${cx - 6.5}" y="${neckY - 7}" width="13" height="14" rx="3" fill="${topCol.hex}" stroke="${lineCloth}" stroke-width="0.9"/>` : ""}
+        ${!hasOuter ? `
+          <path d="M${sL} ${shoulderY} C${lElbowX - 4} ${lElbowY - 4}, ${lElbowX - 3} ${lElbowY + 6}, ${lPocketX} ${lPocketY + 3} L${lPocketX + 4} ${lPocketY - 5} L${sL + 2} 82 Z" fill="url(#topGrad)" stroke="${lineCloth}" stroke-width="0.9"/>
+          <path d="M${sR} ${shoulderY} Q${rHandX + 3} 105 ${rHandX + 1} ${rHandY - 6} L${rHandX - 6} ${rHandY - 4} L${sR - 2} 82 Z" fill="url(#topGrad)" stroke="${lineCloth}" stroke-width="0.9"/>
+          <ellipse cx="${rHandX - 2.5}" cy="${rHandY}" rx="2.5" ry="4.5" fill="url(#skinGrad)" stroke="${lineSkin}" stroke-width="0.7"/>
+        ` : ""}
+      `;
+
       let outerSvg = "";
       if (hasOuter) {
-        const isLong = outerObj.style === "coat" || outerObj.style === "long";
-        const isPuffer = outerObj.style === "puffer";
-        const isBlazer = outerObj.style === "blazer";
-        const hemY = isLong ? Math.round(196 * legScale) : waistY + 8;
-        const wEx = isPuffer ? 4 : 0;
-
-        const oSL = sL - 2.5 - wEx;
-        const oSR = sR + 2.5 + wEx;
-        const oWL = wL - 4.5 - wEx;
-        const oWR = wR + 4.5 + wEx;
-
+        const isLong = outerObj.lengthType === "long";
+        const hemY = isLong ? kneeY - 12 : waistY + 4;
+        const oSL = sL - 4.5, oSR = sR + 4.5, oWL = wL - 8, oWR = wR + 8;
         outerSvg = `
-          <path d="M${oSL} ${shoulderY - 1} L${cx - 8} ${neckY + 3} L${cx - 12} ${hemY} L${oWL} ${hemY} Z"
-                fill="url(#outerGrad)" stroke="${line}" stroke-width="1.45" stroke-linejoin="round"/>
-          <path d="M${oSR} ${shoulderY - 1} L${cx + 8} ${neckY + 3} L${cx + 12} ${hemY} L${oWR} ${hemY} Z"
-                fill="url(#outerGrad)" stroke="${line}" stroke-width="1.45" stroke-linejoin="round"/>
-
-          <!-- 왼팔/오른팔 아우터 소매 + 손 -->
-          <path d="M${oSL} ${shoulderY - 1} L${lHandX - 5} ${lHandY - 6} L${lHandX + 8 + armDelta} ${lHandY - 3} L${sL} 80 Z"
-                fill="url(#outerGrad)" stroke="${line}" stroke-width="1.45" stroke-linejoin="round"/>
-          <ellipse cx="${lHandX + 1.5}" cy="${lHandY + 1}" rx="4.2" ry="5.5" fill="url(#skinGrad)" stroke="${line}" stroke-width="1.15"/>
-
-          <path d="M${oSR} ${shoulderY - 1} L${rHandX + 4} ${rHandY - 6} L${rHandX - 9 - armDelta} ${rHandY - 2} L${sR} 80 Z"
-                fill="url(#outerGrad)" stroke="${line}" stroke-width="1.45" stroke-linejoin="round"/>
-          <ellipse cx="${rHandX - 2}" cy="${rHandY + 1}" rx="4.2" ry="5.5" fill="url(#skinGrad)" stroke="${line}" stroke-width="1.15"/>
-
-          ${isBlazer ? `
-            <polygon points="${cx - 8},${neckY + 3} ${cx - 4},${neckY + 36} ${cx - 14},${neckY + 22}" fill="url(#outerGrad)" stroke="${line}" stroke-width="1.2"/>
-            <polygon points="${cx + 8},${neckY + 3} ${cx + 4},${neckY + 36} ${cx + 14},${neckY + 22}" fill="url(#outerGrad)" stroke="${line}" stroke-width="1.2"/>
-          ` : `
-            <path d="M${cx - 8} ${neckY + 3} L${cx - 5} ${neckY + 32} M${cx + 8} ${neckY + 3} L${cx + 5} ${neckY + 32}" stroke="${line}" stroke-width="1.2" opacity="0.55"/>
-          `}
-          ${isPuffer ? `
-            <line x1="${oWL + 2}" y1="86" x2="${cx - 10}" y2="86" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
-            <line x1="${oWL + 1}" y1="112" x2="${cx - 11}" y2="112" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
-            <line x1="${cx + 10}" y1="86" x2="${oWR - 2}" y2="86" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
-            <line x1="${cx + 11}" y1="112" x2="${oWR - 1}" y2="112" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
-          ` : `
-            <!-- 사이드 포켓 디테일 -->
-            <line x1="${oWL + 4}" y1="${waistY - 12}" x2="${oWL + 9}" y2="${waistY - 2}" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
-            <line x1="${oWR - 4}" y1="${waistY - 12}" x2="${oWR - 9}" y2="${waistY - 2}" stroke="${line}" stroke-width="1.1" opacity="0.45"/>
-          `}
+          <path d="M${oSL} ${shoulderY} L${cx - 7} ${neckY + 2} L${cx - 9} ${hemY} L${oWL} ${hemY} Z" fill="url(#outerGrad)" stroke="${lineCloth}" stroke-width="0.95"/>
+          <path d="M${oSR} ${shoulderY} L${cx + 7} ${neckY + 2} L${cx + 9} ${hemY} L${oWR} ${hemY} Z" fill="url(#outerGrad)" stroke="${lineCloth}" stroke-width="0.95"/>
+          <path d="M${oSL} ${shoulderY} C${oSL - 14} ${lElbowY - 4}, ${oSL - 12} ${lElbowY + 12}, ${lPocketX - 1} ${lPocketY + 3} L${lPocketX + 3} ${lPocketY - 6} L${sL + 1} 84 Z" fill="url(#outerGrad)" stroke="${lineCloth}" stroke-width="0.95"/>
+          <path d="M${oSR} ${shoulderY} C${oSR + 12} 102, ${rHandX + 4} ${rHandY - 18}, ${rHandX + 2} ${rHandY - 8} L${rHandX - 6} ${rHandY - 6} L${sR - 1} 84 Z" fill="url(#outerGrad)" stroke="${lineCloth}" stroke-width="0.95"/>
+          <ellipse cx="${rHandX - 2}" cy="${rHandY - 1}" rx="2.5" ry="4.5" fill="url(#skinGrad)" stroke="${lineSkin}" stroke-width="0.7"/>
         `;
       }
 
       return `
-        <svg viewBox="0 0 180 284" width="184" height="276" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="skinGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#f7d5ba"/>
-              <stop offset="55%" stop-color="#efc3a1"/>
-              <stop offset="100%" stop-color="#dba37d"/>
-            </linearGradient>
-            <linearGradient id="hairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#334155"/>
-              <stop offset="60%" stop-color="#1e293b"/>
-              <stop offset="100%" stop-color="#0f172a"/>
-            </linearGradient>
-            <linearGradient id="outerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="${outerCol.light}"/>
-              <stop offset="48%" stop-color="${outerCol.hex}"/>
-              <stop offset="100%" stop-color="${outerCol.dark}"/>
-            </linearGradient>
-            <linearGradient id="topGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="${topCol.light}"/>
-              <stop offset="50%" stop-color="${topCol.hex}"/>
-              <stop offset="100%" stop-color="${topCol.dark}"/>
-            </linearGradient>
-            <linearGradient id="bottomGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="${bottomCol.light}"/>
-              <stop offset="50%" stop-color="${bottomCol.hex}"/>
-              <stop offset="100%" stop-color="${bottomCol.dark}"/>
-            </linearGradient>
-            <linearGradient id="shoesGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="${shoesCol.light}"/>
-              <stop offset="65%" stop-color="${shoesCol.hex}"/>
-              <stop offset="100%" stop-color="${shoesCol.dark}"/>
-            </linearGradient>
-          </defs>
-
-          <!-- 바닥 룩북 스튜디오 그림자 -->
-          <ellipse cx="${cx}" cy="${soleY + 3}" rx="${38 + hipDelta * 0.9}" ry="5.5" fill="#64748b" opacity="0.32" />
-          <ellipse cx="${cx}" cy="${soleY + 2}" rx="${24 + hipDelta * 0.6}" ry="3" fill="#334155" opacity="0.28" />
-
+        <svg id="lookbook-svg" viewBox="0 0 224 328" width="224" height="310" xmlns="http://www.w3.org/2000/svg">
+          ${defsSvg}
+          <text x="12" y="23" font-family="-apple-system, sans-serif" font-size="13" font-weight="900" font-style="italic" fill="#1e293b" opacity="0.16">FIT CHECK</text>
+          <ellipse cx="${cx}" cy="${soleY + 2}" rx="${30 + hipDelta * 0.65}" ry="4" fill="#0f172a" opacity="0.12" />
           ${bottomSvg}
           ${shoesSvg}
           ${topSvg}
@@ -1171,202 +1237,241 @@
       `;
     }
 
-    function renderSummaryStrip() {
-      const strip = document.getElementById("summary-strip");
-      strip.innerHTML = PART_META.map(meta => {
-        const ps = state.parts[meta.key];
-        const item = getItemObj(meta.key, ps.itemId);
-        const hex = getHexByName(ps.colorName);
-        const label = item.style === "none" ? "생략" : `${ps.colorName} ${item.kw || item.label}`;
-        const active = state.focusPart === meta.key ? "active" : "";
-        return `
-          <div class="sum-cell ${active}" onclick="setFocusPart('${meta.key}')">
-            <span class="sum-dot" style="background:${hex}"></span>
-            <div class="sum-text">
-              <div class="sum-part">${meta.label}</div>
-              <div class="sum-val">${label}</div>
-            </div>
+    function renderModelArea() {
+      const preview = document.getElementById("mannequin-preview");
+      if (state.customImageUrl) {
+        preview.innerHTML = `
+          <div class="custom-img-wrap">
+            <img id="custom-uploaded-img" src="${state.customImageUrl}" alt="내 룩북 캐릭터">
+            <button type="button" class="reset-img-btn" onclick="resetCustomImage()">기본 모델로 복귀</button>
           </div>
         `;
-      }).join("");
+      } else {
+        preview.innerHTML = renderModelPoseSVG();
+      }
     }
 
-    function renderPartsEditor() {
+    // [1번 기능] 우측 부위별 컨트롤 + 타쇼핑몰 선택 & 견적 입력 UI
+    function renderPartsEditor(ngPartsSet) {
       const container = document.getElementById("parts-editor-list");
       container.innerHTML = PART_META.map(meta => {
-        const partState = state.parts[meta.key];
+        const ps = state.parts[meta.key];
+        const isAnchor = state.anchorPart === meta.key;
+        const isNg = ngPartsSet.has(meta.key);
         const catalog = CLOTHING_CATALOG[meta.key];
-        const isFocused = state.focusPart === meta.key;
 
         const optionsHtml = catalog.map(opt =>
-          `<option value="${opt.id}" ${partState.itemId === opt.id ? "selected" : ""}>${opt.label}</option>`
+          `<option value="${opt.id}" ${ps.itemId === opt.id ? "selected" : ""}>${opt.label}</option>`
         ).join("");
 
         const swatchesHtml = COLOR_PALETTE.map(c => `
           <button type="button"
-                  class="swatch-btn ${partState.colorName === c.name ? "selected" : ""}"
+                  class="swatch-btn ${ps.colorName === c.name ? "selected" : ""}"
                   style="background:${c.hex}"
                   title="${c.name}"
-                  onclick="onSelectPartColor('${meta.key}', '${c.name}')">
-          </button>
+                  onclick="onSelectPartColor('${meta.key}', '${c.name}')"></button>
         `).join("");
 
+        const mallOptionsHtml = MALL_SOURCES.map(m =>
+          `<option value="${m.id}" ${ps.mall === m.id ? "selected" : ""}>${m.label}</option>`
+        ).join("");
+
         return `
-          <div class="part-editor ${isFocused ? "focus-part" : ""}" onclick="setFocusPart('${meta.key}')">
+          <div class="part-editor ${isNg ? "ng-part" : (isAnchor ? "anchor-part" : "")}">
             <div class="part-top-row">
-              <span class="part-badge-name">${meta.label}</span>
-              <select class="item-select"
-                      onchange="onChangePartItem('${meta.key}', this.value)"
-                      onclick="event.stopPropagation()">
-                ${optionsHtml}
-              </select>
+              <div class="part-name-wrap">
+                <span class="part-badge-name">${meta.label}</span>
+                ${isAnchor ? `<span class="anchor-tag">내 옷 기준</span>` : ""}
+                ${isNg ? `<span class="ng-tag">⚠️ TPO 수정 권장</span>` : ""}
+              </div>
+              <span class="selected-color-text">${ps.colorName}</span>
             </div>
+
+            <select class="item-select" onchange="onChangePartItem('${meta.key}', this.value)">
+              ${optionsHtml}
+            </select>
+
             <div class="swatch-row">
-              <div class="swatch-list" onclick="event.stopPropagation()">${swatchesHtml}</div>
-              <span class="selected-color-text">${partState.colorName}</span>
+              <div class="swatch-list">${swatchesHtml}</div>
+            </div>
+
+            <div class="mall-budget-row">
+              <select class="mall-source-select" onchange="onChangePartMall('${meta.key}', this.value)">
+                ${mallOptionsHtml}
+              </select>
+              <div class="price-input-box">
+                <input type="number" class="price-input"
+                       value="${ps.mall === "owned" ? 0 : ps.price}"
+                       ${ps.mall === "owned" ? "disabled" : ""}
+                       step="1000" min="0"
+                       onchange="onChangePartPrice('${meta.key}', this.value)">
+                <span class="price-unit">원</span>
+              </div>
             </div>
           </div>
         `;
       }).join("");
     }
 
-    function switchRecTab(tab) {
-      state.activeRecTab = tab;
-      document.getElementById("tab-color-btn").classList.toggle("active", tab === "color");
-      document.getElementById("tab-item-btn").classList.toggle("active", tab === "item");
-      document.getElementById("color-rec-pane").style.display = tab === "color" ? "block" : "none";
-      document.getElementById("item-rec-pane").style.display = tab === "item" ? "block" : "none";
+    function onChangePartItem(partKey, newItemId) {
+      state.parts[partKey].itemId = newItemId;
+      if (newItemId === "none") {
+        state.parts[partKey].mall = "owned";
+        state.parts[partKey].price = 0;
+      }
+      if (partKey === state.anchorPart) renderAnchorSetupUI();
+      renderAllResultViews();
     }
 
-    function getSanitizedColorRecs(chosenColor) {
-      const baseList = COLOR_HARMONY_MAP[chosenColor] || COLOR_HARMONY_MAP["블랙"];
-      return baseList.map(rec => {
-        const cleanColors = rec.colors.map(c => sanitizeColorForContext(c, state.temp));
-        return {
-          title: rec.title,
-          colors: cleanColors,
-          desc: cleanColors.join(" + ")
-        };
+    function onSelectPartColor(partKey, colorName) {
+      state.parts[partKey].colorName = colorName;
+      if (partKey === state.anchorPart) renderAnchorSetupUI();
+      renderAllResultViews();
+    }
+
+    function onChangePartMall(partKey, mallId) {
+      state.parts[partKey].mall = mallId;
+      if (mallId === "owned") {
+        state.parts[partKey].price = 0;
+      } else if (!state.parts[partKey].price) {
+        state.parts[partKey].price = DEFAULT_PRICES[partKey] || 35000;
+      }
+      renderAllResultViews();
+    }
+
+    function onChangePartPrice(partKey, val) {
+      state.parts[partKey].price = Math.max(0, Number(val) || 0);
+      renderBudgetSummary();
+    }
+
+    function renderBudgetSummary() {
+      let total = 0;
+      const activeMalls = [];
+      PART_META.forEach(m => {
+        const ps = state.parts[m.key];
+        const itemObj = getItemObj(m.key, ps.itemId);
+        if (itemObj.style === "none" || ps.mall === "owned") return;
+        total += Number(ps.price) || 0;
+        const mallObj = MALL_SOURCES.find(x => x.id === ps.mall);
+        if (mallObj) activeMalls.push(`${mallObj.label.replace(" 구매 예정", "")}(${m.label})`);
+      });
+
+      document.getElementById("total-budget-amount").innerText = `총 ${total.toLocaleString()}원`;
+      document.getElementById("budget-malls-summary").innerText =
+        activeMalls.length > 0 ? `믹스매치 조합: ${activeMalls.join(" + ")}` : "모든 부위 내 옷장 보유 아이템 (추가 지출 0원)";
+    }
+
+    // [3번 기능] 내 옷장 등록 & 주간(월~금) 돌려입기 캘린더 생성
+    function addCurrentOutfitToWardrobe() {
+      PART_META.forEach(m => {
+        const ps = state.parts[m.key];
+        const itemObj = getItemObj(m.key, ps.itemId);
+        if (itemObj.style === "none") return;
+        const exists = state.wardrobe.some(w => w.part === m.key && w.itemId === ps.itemId && w.colorName === ps.colorName);
+        if (!exists) {
+          state.wardrobe.push({ part: m.key, itemId: ps.itemId, colorName: ps.colorName });
+        }
+      });
+      generateWeeklyCalendar();
+      renderWardrobeAndCalendar();
+    }
+
+    function removeWardrobeItem(idx) {
+      state.wardrobe.splice(idx, 1);
+      generateWeeklyCalendar();
+      renderWardrobeAndCalendar();
+    }
+
+    function generateWeeklyCalendar() {
+      const outers = state.wardrobe.filter(w => w.part === "outer");
+      const tops = state.wardrobe.filter(w => w.part === "top");
+      const bottoms = state.wardrobe.filter(w => w.part === "bottom");
+      const shoes = state.wardrobe.filter(w => w.part === "shoes");
+
+      const days = ["월요일", "화요일", "수요일", "목요일", "금요일"];
+      state.weeklyPlans = days.map((dayName, i) => {
+        const o = outers.length ? outers[i % outers.length] : { part: "outer", itemId: "none", colorName: "블랙" };
+        const t = tops.length ? tops[i % tops.length] : { part: "top", itemId: "crew_knit", colorName: "화이트" };
+        const b = bottoms.length ? bottoms[(i + 1) % bottoms.length] : { part: "bottom", itemId: "wide_slacks", colorName: "블랙" };
+        const s = shoes.length ? shoes[i % shoes.length] : { part: "shoes", itemId: "german_sneakers", colorName: "화이트" };
+
+        const ownedCount = [o, t, b, s].filter(x => x.itemId !== "none").length;
+        return { dayName, outer: o, top: t, bottom: b, shoes: s, ownedCount };
       });
     }
 
-    function renderColorRecommendations() {
-      const focusKey = state.focusPart;
-      const focusLabel = PART_META.find(m => m.key === focusKey).label;
-      const chosenColor = state.parts[focusKey].colorName;
+    function applyWeeklyPlan(dayIdx) {
+      const plan = state.weeklyPlans[dayIdx];
+      if (!plan) return;
+      ["outer", "top", "bottom", "shoes"].forEach(k => {
+        state.parts[k].itemId = plan[k].itemId;
+        state.parts[k].colorName = plan[k].colorName;
+        state.parts[k].mall = "owned";
+        state.parts[k].price = 0;
+      });
+      renderAllResultViews();
+    }
 
-      document.getElementById("color-rec-title").innerText =
-        `🎨 ${focusLabel} '${chosenColor}' 기준 추천 색조합`;
-
-      const list = getSanitizedColorRecs(chosenColor);
-      const grid = document.getElementById("color-rec-grid");
-
-      grid.innerHTML = list.map((rec, idx) => {
-        const chips = rec.colors.map((cName, i) => {
-          if (i === 0 && state.parts.outer.itemId === "none") return "";
-          return `<span class="mini-chip" style="background:${getHexByName(cName)}" title="${cName}"></span>`;
-        }).join("");
-
+    function renderWardrobeAndCalendar() {
+      const chipsEl = document.getElementById("wardrobe-chips");
+      chipsEl.innerHTML = state.wardrobe.map((w, idx) => {
+        const itemObj = getItemObj(w.part, w.itemId);
         return `
-          <button type="button"
-                  class="rec-card ${state.activeColorRecIdx === idx ? "active" : ""}"
-                  onclick="applyColorHarmony(${idx})">
-            <div class="rec-card-title">${idx + 1}. ${rec.title}</div>
-            <div class="chips-line">${chips}</div>
-            <div class="rec-card-desc">${rec.desc}</div>
+          <span class="w-chip">
+            <span class="w-chip-dot" style="background:${getHexByName(w.colorName)}"></span>
+            ${w.colorName} ${itemObj.label}
+            <button type="button" class="w-chip-del" onclick="removeWardrobeItem(${idx})">×</button>
+          </span>
+        `;
+      }).join("");
+
+      const gridEl = document.getElementById("week-calendar-grid");
+      gridEl.innerHTML = state.weeklyPlans.map((p, idx) => {
+        const topName = `${p.top.colorName} ${getItemObj("top", p.top.itemId).kw || "상의"}`;
+        const botName = `${p.bottom.colorName} ${getItemObj("bottom", p.bottom.itemId).kw || "하의"}`;
+        return `
+          <button type="button" class="day-card" onclick="applyWeeklyPlan(${idx})">
+            <div class="day-badge">${p.dayName}</div>
+            <div class="day-desc">${topName}<br>+ ${botName}</div>
+            <div class="day-sub">클릭해 피팅 👉</div>
           </button>
         `;
       }).join("");
     }
 
-    function renderItemRecommendations() {
-      const focusKey = state.focusPart;
-      const focusLabel = PART_META.find(m => m.key === focusKey).label;
-      const currentItem = getItemObj(focusKey, state.parts[focusKey].itemId);
-
-      document.getElementById("item-rec-title").innerText =
-        `🧥 '${currentItem.label}'(${focusLabel}) 기준 추천 옷 조합`;
-
-      const combos = getItemCombinationsFor(focusKey, currentItem.id, state.temp, state.tpo, state.bodyType, state.height);
-      const grid = document.getElementById("item-rec-grid");
-
-      grid.innerHTML = combos.map((combo, idx) => `
-        <button type="button"
-                class="rec-card ${state.activeItemRecIdx === idx ? "active" : ""}"
-                onclick="applyItemCombination(${idx})">
-          <div class="rec-card-title">${idx + 1}. ${combo.name}</div>
-          <div class="rec-card-desc">${combo.desc}</div>
-        </button>
-      `).join("");
-    }
-
-    function setFocusPart(partKey) {
-      if (state.focusPart === partKey) return;
-      state.focusPart = partKey;
-      state.activeColorRecIdx = -1;
-      state.activeItemRecIdx = -1;
-      renderAllResultViews();
-    }
-
-    function onSelectPartColor(partKey, colorName) {
-      state.focusPart = partKey;
-      state.parts[partKey].colorName = sanitizeColorForContext(colorName, state.temp);
-      state.activeColorRecIdx = -1;
-      renderAllResultViews();
-    }
-
-    function applyColorHarmony(recIdx) {
-      const chosenColor = state.parts[state.focusPart].colorName;
-      const list = getSanitizedColorRecs(chosenColor);
-      const rec = list[recIdx];
-      if (!rec) return;
-
-      state.activeColorRecIdx = recIdx;
-      PART_META.forEach((m, idx) => {
-        state.parts[m.key].colorName = rec.colors[idx];
-      });
-      renderAllResultViews();
-    }
-
-    function onChangePartItem(partKey, newItemId) {
-      state.focusPart = partKey;
-      state.parts[partKey].itemId = sanitizeItemForContext(partKey, newItemId, state.temp, state.tpo, state.bodyType, state.height);
-      state.activeItemRecIdx = -1;
-      renderAllResultViews();
-    }
-
-    function applyItemCombination(comboIdx) {
-      const focusKey = state.focusPart;
-      const currentItem = getItemObj(focusKey, state.parts[focusKey].itemId);
-      const combos = getItemCombinationsFor(focusKey, currentItem.id, state.temp, state.tpo, state.bodyType, state.height);
-      const combo = combos[comboIdx];
-      if (!combo) return;
-
-      state.activeItemRecIdx = comboIdx;
-      PART_META.forEach((m, idx) => {
-        state.parts[m.key].itemId = combo.ids[idx];
-      });
-      renderAllResultViews();
-    }
-
-    function renderOutfitList() {
+    function renderChecklist() {
       const listEl = document.getElementById("res-list");
       listEl.innerHTML = PART_META.map(meta => {
-        const partState = state.parts[meta.key];
-        const itemObj = getItemObj(meta.key, partState.itemId);
-        const hex = getHexByName(partState.colorName);
-        const isNone = itemObj.style === "none";
+        const ps = state.parts[meta.key];
+        const itemObj = getItemObj(meta.key, ps.itemId);
+        const hex = getHexByName(ps.colorName);
 
-        const displayName = isNone ? itemObj.label : `${partState.colorName} ${itemObj.label}`;
-        const links = buildMallLinks(state.gender, state.bodyType, state.height, meta.key, partState.colorName, itemObj);
+        if (itemObj.style === "none") {
+          return `
+            <li class="outfit-item">
+              <div class="item-left">
+                <span class="color-dot" style="background:#e2e8f0"></span>
+                <span class="item-part">${meta.label}</span>
+                <span class="item-name" style="color:#94a3b8;">착용 안 함 (생략)</span>
+              </div>
+            </li>
+          `;
+        }
 
-        const actionHtml = links
-          ? `
+        const displayName = `${ps.colorName} ${itemObj.label}`;
+        let rightHtml = "";
+
+        if (ps.mall === "owned") {
+          rightHtml = `<span class="owned-badge">✓ 내 옷장 보유 (0원)</span>`;
+        } else {
+          const links = buildMallLinks(meta.key, ps.colorName, itemObj, ps.mall);
+          rightHtml = `
             <div class="mall-links">
+              <span style="font-size:11px; font-weight:800; color:#475569;">${Number(ps.price).toLocaleString()}원</span>
               ${links.map(l => `<a href="${l.url}" target="_blank" rel="noopener noreferrer" class="mall-btn ${l.cls}">${l.label}</a>`).join("")}
             </div>
-          `
-          : `<span style="font-size:12px; color:#94a3b8;">생략</span>`;
+          `;
+        }
 
         return `
           <li class="outfit-item">
@@ -1375,127 +1480,287 @@
               <span class="item-part">${meta.label}</span>
               <span class="item-name">${displayName}</span>
             </div>
-            ${actionHtml}
+            ${rightHtml}
           </li>
         `;
       }).join("");
     }
 
     function renderAllResultViews() {
-      const bodyProf = BODY_PROFILES[state.bodyType] || BODY_PROFILES.standard;
-      const sizeRec = getSizeRecommendation(state.gender, state.height, state.weight, state.bodyType);
+      const diag = evaluateComprehensiveCoordi();
 
-      document.getElementById("res-title").innerText = state.title;
-      document.getElementById("body-guide-banner").innerHTML = `${bodyProf.banner} <br><strong>📏 스펙 추천:</strong> ${state.height}cm · ${state.weight}kg 기준 <strong>${sizeRec}</strong>`;
-      document.getElementById("res-tip").innerHTML = `<strong>💡 코디 포인트:</strong> ${state.tip} ${bodyProf.tip}`;
+      document.getElementById("res-title").innerText =
+        `[${TPO_META[state.tpo].label}] 코디 정밀 진단 리포트`;
+      document.getElementById("res-subtitle").innerText =
+        `${state.gender === "female" ? "여성" : "남성"} · ${state.height}cm/${state.weight}kg · ${TEMP_META[state.temp].label} · ${getBodyLabel(state.bodyType)}`;
+
+      const badgeBox = document.getElementById("score-badge-box");
+      badgeBox.className = `score-badge-box ${diag.gradeClass}`;
+      document.getElementById("fit-score-num").innerText = `${diag.totalScore}점`;
+      document.getElementById("fit-score-grade").innerHTML = diag.gradeText;
+
+      // 4대 세부 점수 브레이크다운 렌더링
+      const bdItems = [
+        { title: "TPO 격식·매너", val: diag.tpoScore, max: 35 },
+        { title: "체형·기장 비율", val: diag.bodyScore, max: 25 },
+        { title: "기온·계절 적합", val: diag.tempScore, max: 20 },
+        { title: "컬러 조화 밸런스", val: diag.colorScore, max: 20 }
+      ];
+      document.getElementById("breakdown-grid").innerHTML = bdItems.map(b => {
+        const pct = b.val / b.max;
+        const cls = pct >= 0.85 ? "high" : (pct >= 0.65 ? "mid" : "low");
+        return `
+          <div class="bd-card">
+            <div class="bd-title">${b.title}</div>
+            <div class="bd-val ${cls}">${b.val} / ${b.max}</div>
+          </div>
+        `;
+      }).join("");
+
+      const reportBox = document.getElementById("report-box");
+      reportBox.className = `report-box ${diag.gradeClass}`;
+      reportBox.innerHTML = `
+        <div class="report-title">${diag.reportTitle}</div>
+        <ul class="report-list">
+          ${diag.comments.map(c => `<li>${c}</li>`).join("")}
+        </ul>
+      `;
+
+      document.getElementById("model-ratio-pill").innerText = diag.ratioText;
+      document.getElementById("ratio-upper-fill").style.width = `${diag.upperPct}%`;
+      document.getElementById("ratio-lower-fill").style.width = `${diag.lowerPct}%`;
+      document.getElementById("ratio-upper-txt").innerText = `상체 ${diag.upperPct}%`;
+      document.getElementById("ratio-lower-txt").innerText = `하체 ${diag.lowerPct}%`;
 
       const outerObj = getItemObj("outer", state.parts.outer.itemId);
       const bottomObj = getItemObj("bottom", state.parts.bottom.itemId);
-      const fitLabel = outerObj.style === "none"
-        ? (bottomObj.style.includes("wide") ? "와이드 핏" : "스탠다드 핏")
-        : (bottomObj.style.includes("wide") ? "레이어드 와이드" : "밸런스 세미");
+      document.getElementById("cmp-len-crop").classList.toggle("active", outerObj.lengthType === "crop");
+      document.getElementById("cmp-len-long").classList.toggle("active", outerObj.lengthType === "long");
+      document.getElementById("cmp-fit-slim").classList.toggle("active", bottomObj.fitType === "slim");
+      document.getElementById("cmp-fit-wide").classList.toggle("active", bottomObj.fitType === "wide");
 
-      document.getElementById("model-fit-tag").innerText = fitLabel;
-      document.getElementById("model-body-label").innerText = bodyProf.shortLabel;
-      document.getElementById("model-spec-footer").innerText = `${state.height}cm · ${state.weight}kg · ${sizeRec}`;
+      document.getElementById("model-spec-footer").innerText =
+        `${state.height}cm · ${state.weight}kg · ${getBodyLabel(state.bodyType)}`;
 
-      renderSummaryStrip();
-      document.getElementById("mannequin-preview").innerHTML = renderModelPoseSVG();
-      renderPartsEditor();
-      renderColorRecommendations();
-      renderItemRecommendations();
-      renderOutfitList();
+      renderModelArea();
+      renderPartsEditor(diag.ngParts);
+      renderBudgetSummary();
+      renderWardrobeAndCalendar();
+      renderChecklist();
     }
 
-    function generateOutfit() {
-      const gender = document.querySelector("#gender-group .active").dataset.val;
-      const height = Math.min(210, Math.max(140, Number(document.getElementById("height-input").value) || 175));
-      const weight = Math.min(150, Math.max(35, Number(document.getElementById("weight-input").value) || 68));
-      const bodyType = document.querySelector("#body-group .active").dataset.val;
-      const temp = document.querySelector("#temp-group .active").dataset.val;
-      const tpo = document.querySelector("#tpo-group .active").dataset.val;
+    function runFullDiagnosis() {
+      state.gender = document.querySelector("#gender-group .active").dataset.val;
+      state.height = Math.min(210, Math.max(140, Number(document.getElementById("height-input").value) || 165));
+      state.weight = Math.min(150, Math.max(35, Number(document.getElementById("weight-input").value) || 52));
+      state.tpo = document.querySelector("#tpo-group .active").dataset.val;
+      state.temp = document.querySelector("#temp-group .active").dataset.val;
+      state.bodyType = document.querySelector("#body-group .active").dataset.val;
 
-      const tpoDef = TPO_DEFAULT_PARTS[tpo] || TPO_DEFAULT_PARTS.daily;
-      const bodyProf = BODY_PROFILES[bodyType] || BODY_PROFILES.standard;
+      const anchor = state.anchorPart;
+      const defaultMall = state.gender === "male" ? "musinsa" : "ably";
 
-      const tempLabels = {
-        cold: "한파(4°C↓)",
-        chilly: "쌀쌀(5~11°C)",
-        mild: "선선(12~19°C)",
-        warm: "더움(20°C↑)"
-      };
-      const tpoLabels = {
-        daily: "데일리",
-        date: "데이트",
-        wedding: "하객룩",
-        office: "출근·면접",
-        travel: "여행",
-        workout: "운동·산책"
-      };
+      PART_META.forEach(m => {
+        if (m.key === anchor) {
+          state.parts[m.key].mall = "owned";
+          state.parts[m.key].price = 0;
+        } else {
+          state.parts[m.key].mall = defaultMall;
+          state.parts[m.key].price = DEFAULT_PRICES[m.key];
+        }
+      });
 
-      document.getElementById("res-context-label").innerText =
-        `${gender === "male" ? "남성" : "여성"} · ${height}cm/${weight}kg · ${bodyProf.shortLabel} · ${tempLabels[temp]} · ${tpoLabels[tpo]}`;
-
-      let rawOuter = (temp === "warm" && tpo !== "wedding" && tpo !== "office") ? "none" : tpoDef.outer;
-      let rawTop = (temp === "warm" && (tpo === "daily" || tpo === "workout")) ? "short_tee" : tpoDef.top;
-      let rawBottom = (temp === "cold" && tpo === "date") ? "corduroy" : tpoDef.bottom;
-      let rawShoes = tpoDef.shoes;
-      let rawColors = [...tpoDef.colors];
-
-      if (bodyType === "slim") {
-        if (rawOuter === "blouson") rawOuter = "shirt_jacket";
-        if (rawBottom === "tapered_slacks" && tpo !== "wedding" && tpo !== "office") rawBottom = "wide_slacks";
-        if (rawColors[1] === "블랙") rawColors[1] = "아이보리";
-      } else if (bodyType === "muscular") {
-        if (rawOuter === "short_padding") rawOuter = "blouson";
-        if (rawTop === "turtleneck") rawTop = "crew_knit";
-        if (rawBottom === "tapered_slacks" && tpo !== "wedding") rawBottom = "wide_slacks";
-      } else if (bodyType === "chubby") {
-        if (rawOuter === "short_padding" || rawOuter === "blouson") rawOuter = "coat";
-        if (rawTop === "turtleneck" || rawTop === "hoodie") rawTop = "shirt";
-        if (rawBottom === "cargo") rawBottom = "wide_slacks";
-        if (rawColors[0] === "아이보리" || rawColors[0] === "베이지") rawColors[0] = "차콜";
+      // 상황(TPO) + 기온에 맞춘 초기 코디 추천 세팅
+      if (anchor !== "outer") {
+        if (state.temp === "hot") {
+          state.parts.outer.itemId = "none";
+          state.parts.outer.mall = "owned";
+          state.parts.outer.price = 0;
+        } else if (state.tpo === "wedding" || state.tpo === "parents") {
+          state.parts.outer.itemId = state.temp === "cold" ? "coat" : "blazer";
+          state.parts.outer.colorName = "네이비";
+        } else if (state.temp === "cold") {
+          state.parts.outer.itemId = state.height < 166 ? "short_padding" : "coat";
+        } else {
+          state.parts.outer.itemId = state.height < 166 ? "blouson" : "cardigan";
+        }
       }
 
-      state = {
-        gender,
-        height,
-        weight,
-        bodyType,
-        temp,
-        tpo,
-        focusPart: "top",
-        activeRecTab: state.activeRecTab || "color",
-        activeColorRecIdx: -1,
-        activeItemRecIdx: -1,
-        title: `${height}cm · ${weight}kg (${bodyProf.shortLabel}) ${tpoLabels[tpo]} 코디`,
-        tip: tpoDef.tip,
-        parts: {
-          outer: {
-            itemId: sanitizeItemForContext("outer", rawOuter, temp, tpo, bodyType, height),
-            colorName: sanitizeColorForContext(rawColors[0], temp)
-          },
-          top: {
-            itemId: sanitizeItemForContext("top", rawTop, temp, tpo, bodyType, height),
-            colorName: sanitizeColorForContext(rawColors[1], temp)
-          },
-          bottom: {
-            itemId: sanitizeItemForContext("bottom", rawBottom, temp, tpo, bodyType, height),
-            colorName: sanitizeColorForContext(rawColors[2], temp)
-          },
-          shoes: {
-            itemId: sanitizeItemForContext("shoes", rawShoes, temp, tpo, bodyType, height),
-            colorName: sanitizeColorForContext(rawColors[3], temp)
-          }
+      if (anchor !== "top") {
+        if (state.tpo === "wedding") {
+          state.parts.top.itemId = "crew_knit";
+          state.parts.top.colorName = "그레이"; // 하객룩 민폐 컬러 자동 회피
+        } else if (state.tpo === "parents" || state.tpo === "office") {
+          state.parts.top.itemId = "shirt";
+          state.parts.top.colorName = "화이트";
+        } else {
+          state.parts.top.itemId = state.temp === "hot" ? "short_tee" : "crew_knit";
+          state.parts.top.colorName = "아이보리";
         }
-      };
+      }
 
+      if (anchor !== "bottom") {
+        if (state.tpo === "wedding" || state.tpo === "parents") {
+          state.parts.bottom.itemId = "tapered_slacks";
+          state.parts.bottom.colorName = "차콜";
+        } else {
+          state.parts.bottom.itemId = (state.bodyType === "muscular" || state.bodyType === "slim") ? "wide_slacks" : "straight_denim";
+          state.parts.bottom.colorName = "차콜";
+        }
+      }
+
+      if (anchor !== "shoes") {
+        if (state.tpo === "wedding" || state.tpo === "parents" || state.tpo === "office") {
+          state.parts.shoes.itemId = "loafer";
+          state.parts.shoes.colorName = "블랙";
+        } else {
+          state.parts.shoes.itemId = "german_sneakers";
+          state.parts.shoes.colorName = "화이트";
+        }
+      }
+
+      generateWeeklyCalendar();
       renderAllResultViews();
 
       const resArea = document.getElementById("result-area");
       resArea.style.display = "block";
       resArea.scrollIntoView({ behavior: "smooth" });
     }
+
+    function downloadLookbookCard() {
+      const canvas = document.createElement("canvas");
+      canvas.width = 760;
+      canvas.height = 460;
+      const ctx = canvas.getContext("2d");
+
+      ctx.fillStyle = "#f8fafc";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = "#cbd5e1";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(12, 12, canvas.width - 24, canvas.height - 24);
+
+      const diag = evaluateComprehensiveCoordi();
+      ctx.fillStyle = "#0f172a";
+      ctx.font = "800 22px sans-serif";
+      ctx.fillText(`FIT CHECK PRO | ${TPO_META[state.tpo].label} 코디 리포트`, 36, 54);
+
+      ctx.fillStyle = "#2563eb";
+      ctx.font = "800 15px sans-serif";
+      ctx.fillText(`${state.gender === "female" ? "여성" : "남성"} · ${state.height}cm ${state.weight}kg · ${TEMP_META[state.temp].label}`, 36, 82);
+
+      ctx.fillStyle = "#eff6ff";
+      ctx.fillRect(580, 30, 144, 54);
+      ctx.fillStyle = "#1d4ed8";
+      ctx.font = "900 22px sans-serif";
+      ctx.fillText(`종합 ${diag.totalScore}점`, 600, 65);
+
+      let yPos = 136;
+      PART_META.forEach(meta => {
+        const ps = state.parts[meta.key];
+        const itemObj = getItemObj(meta.key, ps.itemId);
+        if (itemObj.style === "none") return;
+
+        ctx.fillStyle = getHexByName(ps.colorName);
+        ctx.beginPath();
+        ctx.arc(315, yPos - 6, 10, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = "#334155";
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        ctx.fillStyle = "#64748b";
+        ctx.font = "700 15px sans-serif";
+        ctx.fillText(meta.label, 336, yPos);
+
+        ctx.fillStyle = "#0f172a";
+        ctx.font = "800 16px sans-serif";
+        const tag = ps.mall === "owned" ? " [보유중]" : ` [${Number(ps.price).toLocaleString()}원]`;
+        ctx.fillText(`${ps.colorName} ${itemObj.label}${tag}`, 392, yPos);
+
+        yPos += 48;
+      });
+
+      const triggerDownload = () => {
+        const link = document.createElement("a");
+        link.download = `fitcheck-${state.tpo}-${diag.totalScore}pt.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      };
+
+      const svgEl = document.getElementById("lookbook-svg");
+      const svgData = new XMLSerializer().serializeToString(svgEl);
+      const svgBlob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
+      const url = URL.createObjectURL(svgBlob);
+      const img = new Image();
+      img.onload = () => {
+        ctx.drawImage(img, 45, 105, 224, 310);
+        URL.revokeObjectURL(url);
+        triggerDownload();
+      };
+      img.src = url;
+    }
+
+    function copyShareableUrl() {
+      const params = new URLSearchParams();
+      params.set("g", state.gender);
+      params.set("h", state.height);
+      params.set("w", state.weight);
+      params.set("tpo", state.tpo);
+      params.set("t", state.temp);
+      params.set("b", state.bodyType);
+      PART_META.forEach(m => {
+        params.set(`${m.key}_i`, state.parts[m.key].itemId);
+        params.set(`${m.key}_c`, state.parts[m.key].colorName);
+        params.set(`${m.key}_m`, state.parts[m.key].mall);
+        params.set(`${m.key}_p`, state.parts[m.key].price);
+      });
+
+      const shareUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        const btn = document.getElementById("copy-link-btn");
+        const orig = btn.innerText;
+        btn.innerText = "✅ 링크 복사 완료! 친구에게 보내보세요";
+        setTimeout(() => { btn.innerText = orig; }, 2200);
+      }).catch(() => {
+        prompt("아래 링크를 복사해 공유하세요:", shareUrl);
+      });
+    }
+
+    function restoreFromUrlParams() {
+      const params = new URLSearchParams(window.location.search);
+      if (!params.has("g")) return;
+
+      state.gender = params.get("g") || "female";
+      state.height = Number(params.get("h")) || 165;
+      state.weight = Number(params.get("w")) || 52;
+      state.tpo = params.get("tpo") || "daily";
+      state.temp = params.get("t") || "cool";
+      state.bodyType = params.get("b") || "standard";
+
+      document.getElementById("height-input").value = state.height;
+      document.getElementById("weight-input").value = state.weight;
+      onHWChange(false);
+
+      document.querySelectorAll("#gender-group .option-btn").forEach(b => b.classList.toggle("active", b.dataset.val === state.gender));
+      document.querySelectorAll("#tpo-group .option-btn").forEach(b => b.classList.toggle("active", b.dataset.val === state.tpo));
+      document.querySelectorAll("#temp-group .option-btn").forEach(b => b.classList.toggle("active", b.dataset.val === state.temp));
+      document.querySelectorAll("#body-group .option-btn").forEach(b => b.classList.toggle("active", b.dataset.val === state.bodyType));
+
+      PART_META.forEach(m => {
+        if (params.has(`${m.key}_i`)) state.parts[m.key].itemId = params.get(`${m.key}_i`);
+        if (params.has(`${m.key}_c`)) state.parts[m.key].colorName = params.get(`${m.key}_c`);
+        if (params.has(`${m.key}_m`)) state.parts[m.key].mall = params.get(`${m.key}_m`);
+        if (params.has(`${m.key}_p`)) state.parts[m.key].price = Number(params.get(`${m.key}_p`)) || 0;
+      });
+
+      generateWeeklyCalendar();
+      renderAnchorSetupUI();
+      renderAllResultViews();
+      document.getElementById("result-area").style.display = "block";
+    }
+
+    renderAnchorSetupUI();
+    restoreFromUrlParams();
   </script>
 </body>
 </html>
