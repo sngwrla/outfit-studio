@@ -35,7 +35,7 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif; }
     body { background-color: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 18px 14px 56px; }
-    .container { width: 100%; max-width: 780px; }
+    .container { width: 100%; max-width: 800px; }
 
     .ad-box {
       background: #e2e8f0; color: #64748b; font-size: 12px; text-align: center;
@@ -47,7 +47,7 @@
       display: inline-block; background: #dbeafe; color: #1d4ed8; font-size: 11px;
       font-weight: 800; padding: 3px 10px; border-radius: 999px; margin-bottom: 6px;
     }
-    header h1 { font-size: 22px; font-weight: 800; color: var(--primary); margin-bottom: 4px; letter-spacing: -0.5px; }
+    header h1 { font-size: 22px; font-weight: 900; color: var(--primary); margin-bottom: 4px; letter-spacing: -0.5px; }
     header p { font-size: 13px; color: var(--sub); }
 
     .card {
@@ -56,7 +56,7 @@
       border: 1px solid rgba(226, 232, 240, 0.9);
     }
 
-    /* 입력 그리드 */
+    /* 기본 체형/상황 입력 그리드 (원래 방향 유지) */
     .setup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
     .setup-block { background: #f8fafc; border: 1px solid var(--border); border-radius: 13px; padding: 12px; }
     .setup-block.full { grid-column: 1 / -1; }
@@ -143,10 +143,8 @@
     .score-badge-box.excellent .score-num { color: var(--green); }
     .score-label { font-size: 11px; font-weight: 800; color: var(--text); line-height: 1.25; }
 
-    /* 4대 항목 세부 점수 브레이크다운 바 */
-    .breakdown-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin-bottom: 12px;
-    }
+    /* 4대 항목 세부 점수 */
+    .breakdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin-bottom: 12px; }
     .bd-card {
       background: #f8fafc; border: 1px solid var(--border); border-radius: 10px;
       padding: 8px 9px; text-align: center;
@@ -157,7 +155,7 @@
     .bd-val.mid { color: var(--amber); }
     .bd-val.high { color: var(--green); }
 
-    /* TPO 실수 방지 & 상세 코디 리포트 박스 */
+    /* 상세 코디 리포트 박스 */
     .report-box {
       border-radius: 13px; padding: 13px 14px; margin-bottom: 12px;
       font-size: 12.5px; line-height: 1.6; border: 1.5px solid;
@@ -165,24 +163,14 @@
     .report-box.excellent { background: var(--green-soft); border-color: #86efac; color: #14532d; }
     .report-box.warn { background: var(--amber-soft); border-color: #fde68a; color: #78350f; }
     .report-box.danger { background: var(--red-soft); border-color: #fca5a5; color: #7f1d1d; }
-    .report-title { font-size: 13.5px; font-weight: 900; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .report-title { font-size: 13.5px; font-weight: 900; margin-bottom: 6px; }
     .report-list { padding-left: 16px; display: flex; flex-direction: column; gap: 4px; }
 
-    /* 공유 액션 바 */
-    .share-action-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
-    .action-pill-btn {
-      padding: 9px 12px; border-radius: 10px; font-size: 12.5px; font-weight: 800;
-      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
-      border: 1.5px solid; transition: all 0.15s;
-    }
-    .btn-save-img { background: var(--accent); color: #fff; border-color: var(--accent); }
-    .btn-copy-link { background: #fff; color: var(--primary); border-color: #cbd5e1; }
-
-    /* 스튜디오 2단 레이아웃 */
+    /* 스튜디오 2단 레이아웃 (좌측 모델 / 우측 부위별 색조합 + 쇼핑몰 링크 자동견적) */
     .studio-grid {
       display: grid; grid-template-columns: 266px 1fr; gap: 12px;
       background: #f8fafc; border: 1px solid var(--border); border-radius: 16px;
-      padding: 12px; margin-bottom: 14px; align-items: start;
+      padding: 12px; margin-bottom: 12px; align-items: start;
     }
     .model-panel {
       background-color: #ffffff;
@@ -233,7 +221,7 @@
       padding: 5px 6px; margin-top: 6px; border: 1px solid #e2e8f0;
     }
 
-    /* 우측 부위별 컨트롤 + 타쇼핑몰 믹스매치 & 견적 */
+    /* 우측 부위별 에디터 + 쇼핑몰 링크 붙여넣기 자동 견적 */
     .parts-panel { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
     .part-editor {
       background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 11px;
@@ -242,7 +230,7 @@
     .part-editor.anchor-part { border-color: #93c5fd; background: #f8fbff; }
     .part-editor.ng-part { border-color: #fca5a5; background: #fffafa; }
 
-    .part-top-row { display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-bottom: 6px; }
+    .part-top-row { display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-bottom: 5px; }
     .part-name-wrap { display: flex; align-items: center; gap: 5px; }
     .part-badge-name { font-size: 12px; font-weight: 800; color: var(--primary); }
     .anchor-tag { font-size: 9.5px; font-weight: 800; color: #1d4ed8; background: #dbeafe; padding: 1px 6px; border-radius: 4px; }
@@ -262,80 +250,86 @@
     .swatch-btn.selected { box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px var(--accent); transform: scale(1.1); }
     .selected-color-text { font-size: 11px; font-weight: 700; color: var(--accent); white-space: nowrap; }
 
-    /* 타쇼핑몰 출처 & 견적 입력 행 (1번 기능) */
-    .mall-budget-row {
-      display: grid; grid-template-columns: 1fr 94px; gap: 6px; align-items: center;
-      padding-top: 6px; border-top: 1px dashed #e2e8f0;
+    /* 쇼핑몰 링크 붙여넣기 + 자동 견적 입력 영역 */
+    .link-parse-box {
+      background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px; padding: 6px;
+      display: flex; flex-direction: column; gap: 5px;
     }
-    .mall-source-select {
-      padding: 4px 6px; border-radius: 6px; border: 1px solid #cbd5e1;
-      font-size: 11px; font-weight: 700; color: var(--text); background: #f8fafc;
+    .link-url-row { display: grid; grid-template-columns: 1fr 52px; gap: 4px; }
+    .url-paste-input {
+      width: 100%; padding: 4px 7px; border-radius: 5px; border: 1px solid #cbd5e1;
+      font-size: 11px; color: var(--text); background: #fff; outline: none;
     }
-    .price-input-box {
-      display: flex; align-items: center; background: #f8fafc; border: 1px solid #cbd5e1;
-      border-radius: 6px; padding: 3px 6px;
+    .url-paste-input:focus { border-color: var(--accent); }
+    .url-parse-btn {
+      background: var(--primary); color: #fff; border: none; border-radius: 5px;
+      font-size: 10.5px; font-weight: 800; cursor: pointer;
+    }
+    .mall-price-row { display: grid; grid-template-columns: 1fr 92px; gap: 5px; align-items: center; }
+    .mall-select {
+      padding: 3px 6px; border-radius: 5px; border: 1px solid #cbd5e1;
+      font-size: 11px; font-weight: 700; background: #fff; color: var(--text);
+    }
+    .price-box {
+      display: flex; align-items: center; background: #fff; border: 1px solid #cbd5e1;
+      border-radius: 5px; padding: 2px 6px;
     }
     .price-input {
-      width: 100%; border: none; background: transparent; text-align: right;
-      font-size: 11.5px; font-weight: 800; color: var(--primary); outline: none;
+      width: 100%; border: none; text-align: right; font-size: 11.5px; font-weight: 800;
+      color: var(--primary); outline: none;
     }
-    .price-unit { font-size: 10.5px; color: var(--sub); font-weight: 700; margin-left: 2px; }
+    .price-unit { font-size: 10px; color: var(--sub); font-weight: 700; margin-left: 2px; }
 
-    /* 타쇼핑몰 합산 견적 요약 바 */
-    .total-budget-banner {
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
-      background: #0f172a; color: #fff; border-radius: 12px; padding: 11px 14px; margin-bottom: 14px;
+    /* 타쇼핑몰 합산 총견적 배너 */
+    .budget-summary-bar {
+      background: #0f172a; color: #fff; border-radius: 12px; padding: 11px 14px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+      gap: 8px; margin-bottom: 14px;
     }
-    .budget-left { font-size: 12px; color: #cbd5e1; }
-    .budget-left strong { color: #fff; font-size: 13px; }
-    .budget-right { font-size: 16px; font-weight: 900; color: #60a5fa; }
+    .budget-info { font-size: 12px; color: #cbd5e1; }
+    .budget-info strong { color: #fff; font-size: 13px; }
+    .budget-total { font-size: 17px; font-weight: 900; color: #60a5fa; }
 
-    /* 3번 기능: 내 옷장 등록 & 주간 돌려입기 캘린더 */
-    .wardrobe-card {
-      background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 14px;
-      padding: 13px; margin-bottom: 14px;
+    /* 코디 등록하기 바 (커뮤니티 피드 연동) */
+    .publish-box {
+      background: #eff6ff; border: 1.5px solid #93c5fd; border-radius: 13px;
+      padding: 12px 13px; margin-bottom: 14px;
     }
-    .wardrobe-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px; }
-    .wardrobe-title { font-size: 13px; font-weight: 800; color: var(--primary); }
-    .add-wardrobe-btn {
-      font-size: 11px; font-weight: 800; background: var(--primary); color: #fff;
-      border: none; border-radius: 7px; padding: 5px 10px; cursor: pointer;
+    .publish-title { font-size: 13px; font-weight: 900; color: #1e3a8a; margin-bottom: 7px; }
+    .publish-form { display: grid; grid-template-columns: 95px 1fr 130px; gap: 6px; }
+    .pub-input {
+      padding: 8px 10px; border-radius: 8px; border: 1px solid #bfdbfe;
+      font-size: 12.5px; font-weight: 700; background: #fff; outline: none;
     }
-    .wardrobe-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
-    .w-chip {
-      display: inline-flex; align-items: center; gap: 5px; background: #fff;
-      border: 1px solid #cbd5e1; border-radius: 999px; padding: 3px 9px;
-      font-size: 11px; font-weight: 700; color: var(--text);
+    .pub-btn {
+      background: var(--accent); color: #fff; border: none; border-radius: 8px;
+      font-size: 12.5px; font-weight: 800; cursor: pointer;
     }
-    .w-chip-dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.2); }
-    .w-chip-del { border: none; background: none; color: #94a3b8; font-weight: 900; cursor: pointer; font-size: 12px; }
+    .pub-btn:hover { background: #1d4ed8; }
 
-    .week-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
-    .day-card {
-      background: #fff; border: 1.5px solid #e2e8f0; border-radius: 10px;
-      padding: 8px 7px; cursor: pointer; text-align: left; transition: all 0.14s;
+    /* 공유 및 체크리스트 */
+    .share-action-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+    .action-pill-btn {
+      padding: 9px 12px; border-radius: 10px; font-size: 12.5px; font-weight: 800;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
+      border: 1.5px solid;
     }
-    .day-card:hover { border-color: var(--accent); transform: translateY(-1px); }
-    .day-badge { font-size: 10.5px; font-weight: 900; color: var(--accent); margin-bottom: 3px; }
-    .day-desc { font-size: 10.5px; font-weight: 600; color: var(--text); line-height: 1.35; }
-    .day-sub { font-size: 9.5px; color: var(--green); font-weight: 700; margin-top: 4px; }
+    .btn-save-img { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .btn-copy-link { background: #fff; color: var(--primary); border-color: #cbd5e1; }
 
-    /* 최종 체크리스트 */
-    .checklist-title { font-size: 13px; font-weight: 800; color: var(--primary); margin-bottom: 8px; }
-    .outfit-list { list-style: none; border-top: 1px solid var(--border); margin-bottom: 10px; }
+    .outfit-list { list-style: none; border-top: 1px solid var(--border); margin-bottom: 8px; }
     .outfit-item {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 9px 0; border-bottom: 1px solid var(--border); gap: 8px; flex-wrap: wrap;
+      padding: 8px 0; border-bottom: 1px solid var(--border); gap: 8px; flex-wrap: wrap;
     }
     .item-left { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1; }
-    .color-dot { width: 15px; height: 15px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.22); flex-shrink: 0; }
+    .color-dot { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.22); flex-shrink: 0; }
     .item-part { font-size: 11.5px; font-weight: 700; color: var(--sub); width: 40px; flex-shrink: 0; }
     .item-name { font-size: 12.5px; font-weight: 600; color: var(--primary); }
     .owned-badge {
       font-size: 11px; font-weight: 700; color: #15803d; background: #f0fdf4;
       border: 1px solid #bbf7d0; padding: 3px 9px; border-radius: 6px;
     }
-
     .mall-links { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
     .mall-btn {
       font-size: 11px; font-weight: 700; text-decoration: none;
@@ -343,17 +337,69 @@
     }
     .mall-aff { color: #ffffff; background: #dc2626; }
     .mall-m1 { color: #ffffff; background: #111827; }
-    .mall-m2 { color: #1e3a8a; background: #dbeafe; }
 
-    .notice-line { font-size: 11px; color: var(--sub); margin-top: 8px; line-height: 1.45; }
+    /* =================================================================
+       하단 유저 등록 코디 피드 (좋아요 / 별로예요 평가 섹션)
+       ================================================================= */
+    .feed-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 12px; flex-wrap: wrap; gap: 6px;
+    }
+    .feed-header h2 { font-size: 16px; font-weight: 900; color: var(--primary); }
+    .feed-sub { font-size: 12px; color: var(--sub); }
+
+    .feed-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .feed-card {
+      background: #f8fafc; border: 1.5px solid var(--border); border-radius: 15px;
+      padding: 12px; display: flex; flex-direction: column; gap: 9px;
+      transition: transform 0.14s, border-color 0.14s;
+    }
+    .feed-card:hover { border-color: #93c5fd; }
+
+    .feed-top-meta { display: flex; justify-content: space-between; align-items: center; font-size: 11px; }
+    .feed-user { font-weight: 800; color: var(--primary); }
+    .feed-tpo-badge {
+      background: #dbeafe; color: #1d4ed8; font-weight: 800; padding: 2px 7px; border-radius: 999px;
+    }
+
+    .feed-body-row { display: grid; grid-template-columns: 96px 1fr; gap: 10px; align-items: center; }
+    .feed-mini-model {
+      width: 96px; height: 136px; background: #fff; border: 1px solid #e2e8f0;
+      border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .feed-details { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    .feed-caption { font-size: 12.5px; font-weight: 800; color: var(--primary); line-height: 1.35; }
+    .feed-items-txt { font-size: 11px; color: var(--sub); line-height: 1.4; }
+    .feed-price-tag { font-size: 11px; font-weight: 800; color: var(--accent); }
+
+    /* 좋아요 / 별로예요 버튼 + 내 모델에 입혀보기 */
+    .feed-actions {
+      display: grid; grid-template-columns: 1fr 1fr auto; gap: 6px;
+      padding-top: 8px; border-top: 1px solid #e2e8f0;
+    }
+    .react-btn {
+      padding: 6px 8px; border-radius: 8px; border: 1.5px solid #cbd5e1;
+      background: #fff; font-size: 11.5px; font-weight: 800; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 4px;
+      transition: all 0.12s;
+    }
+    .react-btn.like:hover, .react-btn.like.active {
+      border-color: var(--accent); background: var(--accent-soft); color: var(--accent);
+    }
+    .react-btn.dislike:hover, .react-btn.dislike.active {
+      border-color: var(--red); background: var(--red-soft); color: var(--red);
+    }
+    .try-on-btn {
+      padding: 6px 9px; border-radius: 8px; border: none; background: var(--primary);
+      color: #fff; font-size: 11px; font-weight: 800; cursor: pointer;
+    }
 
     @media (max-width: 680px) {
-      .setup-grid { grid-template-columns: 1fr; }
+      .setup-grid, .feed-grid { grid-template-columns: 1fr; }
       .btn-group.quad-group, .btn-group.penta-group, .breakdown-grid { grid-template-columns: repeat(2, 1fr); }
       .studio-grid { grid-template-columns: 1fr; }
       .model-panel { position: static; width: 100%; }
-      .week-grid { grid-template-columns: repeat(2, 1fr); }
-      .share-action-bar { grid-template-columns: 1fr; }
+      .publish-form, .share-action-bar { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -362,14 +408,14 @@
     <div class="ad-box">광고 영역 (구글 애드센스 상단 배너 위치)</div>
 
     <header>
-      <span class="brand-pill">TPO 실수 방지 · 타쇼핑몰 견적 믹스매치 · 주간 옷장 캘린더</span>
-      <h1>오늘 뭐 입지? 핏체크 프로</h1>
-      <p>중요한 약속 자리 NG 방지부터 여러 쇼핑몰 합산 견적·내 옷장 주간 돌려입기까지 한 번에 진단합니다</p>
+      <span class="brand-pill">체형 비율 시뮬레이터 · 쇼핑몰 링크 자동견적 · 코디 좋아요/별로예요</span>
+      <h1>오늘 뭐 입지? 핏체크 스튜디오</h1>
+      <p>내 체형 모델에 쇼핑몰 링크 옷을 입혀 비율·견적을 확인하고, 코디를 등록해 다른 사람들의 평가를 받아보세요</p>
     </header>
 
+    <!-- 1단계: 내 체형·상황·기준 아이템 입력 (원래 뼈대 유지) -->
     <div class="card">
       <div class="setup-grid">
-        <!-- 1. 성별 -->
         <div class="setup-block">
           <div class="section-title">1. 성별</div>
           <div class="btn-group" id="gender-group">
@@ -378,7 +424,6 @@
           </div>
         </div>
 
-        <!-- 2. 키 · 몸무게 -->
         <div class="setup-block">
           <div class="section-title">
             <span>2. 키 · 몸무게</span>
@@ -409,11 +454,10 @@
           </div>
         </div>
 
-        <!-- 3. 상황·TPO (2번 차별화 기능: 민폐/실수 방지 기준) -->
         <div class="setup-block full">
           <div class="section-title">
-            <span>3. 오늘의 약속 상황 · 드레스코드 (실수·민폐 방지 기준)</span>
-            <span class="sub-hint">상황에 맞지 않는 옷·색상을 입으면 즉시 경고합니다</span>
+            <span>3. 약속 상황 · 드레스코드 (TPO)</span>
+            <span class="sub-hint">상황별 격식·매너 기준을 반영해 점수를 채점합니다</span>
           </div>
           <div class="btn-group penta-group" id="tpo-group">
             <button type="button" class="option-btn active" data-val="daily">
@@ -426,7 +470,7 @@
             </button>
             <button type="button" class="option-btn" data-val="date">
               <span>소개팅·데이트</span>
-              <span class="btn-sub">호감형 깔끔 무드</span>
+              <span class="btn-sub">호감형 무드</span>
             </button>
             <button type="button" class="option-btn" data-val="wedding">
               <span>결혼식 하객</span>
@@ -434,38 +478,33 @@
             </button>
             <button type="button" class="option-btn" data-val="parents">
               <span>상견례·어른인사</span>
-              <span class="btn-sub">단정·신뢰감 1순위</span>
+              <span class="btn-sub">단정·신뢰감</span>
             </button>
           </div>
         </div>
 
-        <!-- 4. 오늘 기온 -->
         <div class="setup-block full">
-          <div class="section-title">
-            <span>4. 오늘 기온 · 날씨</span>
-            <span class="sub-hint">기온 대비 너무 춥거나 더운 착장을 감점 진단합니다</span>
-          </div>
+          <div class="section-title">4. 오늘 기온 · 날씨</div>
           <div class="btn-group quad-group" id="temp-group">
             <button type="button" class="option-btn" data-val="cold">
               <span>추움 (5°C↓)</span>
-              <span class="btn-sub">한겨울 보온</span>
+              <span class="btn-sub">코트·패딩</span>
             </button>
             <button type="button" class="option-btn active" data-val="cool">
               <span>선선 (6~15°C)</span>
-              <span class="btn-sub">자켓·코트 환절기</span>
+              <span class="btn-sub">자켓·가디건</span>
             </button>
             <button type="button" class="option-btn" data-val="mild">
               <span>적당 (16~22°C)</span>
-              <span class="btn-sub">니트·가디건</span>
+              <span class="btn-sub">니트·셔츠</span>
             </button>
             <button type="button" class="option-btn" data-val="hot">
               <span>더움 (23°C↑)</span>
-              <span class="btn-sub">아우터 생략</span>
+              <span class="btn-sub">반팔·아우터 생략</span>
             </button>
           </div>
         </div>
 
-        <!-- 5. 체형 실루엣 -->
         <div class="setup-block full">
           <div class="section-title">
             <span>5. 내 체형 실루엣</span>
@@ -491,11 +530,10 @@
           </div>
         </div>
 
-        <!-- 6. 오늘 옷장에서 꺼낸 기준 아이템 1개 -->
         <div class="setup-block full">
           <div class="section-title">
             <span>6. 오늘 입을 '내 옷장 기준 아이템' 1개 선택</span>
-            <span class="sub-hint">선택한 옷을 고정하고 상황·날씨·체형에 맞게 정밀 진단합니다</span>
+            <span class="sub-hint">기준 아이템을 고정하고 나머지 부위를 매칭합니다</span>
           </div>
           <div class="btn-group quad-group" id="anchor-part-group">
             <button type="button" class="option-btn active" data-val="outer" onclick="onChangeAnchorPart('outer')">아우터 기준</button>
@@ -512,10 +550,10 @@
         </div>
       </div>
 
-      <button type="button" class="submit-btn" onclick="runFullDiagnosis()">TPO 실수 방지 · 체형 비율 · 견적 정밀 진단하기</button>
+      <button type="button" class="submit-btn" onclick="runStudioDiagnosis()">내 체형 모델에 입혀보고 코디·견적 진단하기</button>
     </div>
 
-    <!-- 결과 스튜디오 -->
+    <!-- 2단계: 결과 스튜디오 (원래 모델 시뮬레이션 + 쇼핑몰 링크 붙여넣기 자동견적 + 피드 등록) -->
     <div class="card" id="result-area">
       <div class="score-header">
         <div class="score-left">
@@ -528,28 +566,15 @@
         </div>
       </div>
 
-      <!-- 4대 항목 세부 점수 카드 (점수 변별력 시각화) -->
       <div class="breakdown-grid" id="breakdown-grid"></div>
-
-      <!-- 상황별 NG 경고 및 구체적 코디 총평 리포트 -->
       <div class="report-box excellent" id="report-box"></div>
 
-      <!-- 공유 액션 바 -->
-      <div class="share-action-bar">
-        <button type="button" class="action-pill-btn btn-save-img" onclick="downloadLookbookCard()">
-          📸 룩북 진단 카드 저장 (PNG)
-        </button>
-        <button type="button" class="action-pill-btn btn-copy-link" id="copy-link-btn" onclick="copyShareableUrl()">
-          🔗 이 코디 & 견적 링크 복사
-        </button>
-      </div>
-
-      <!-- 좌측 모델 시뮬레이터 / 우측 부위별 믹스매치 & 쇼핑몰 견적 설정 -->
+      <!-- 모델 피팅 + 우측 쇼핑몰 링크 붙여넣기 & 색조합 에디터 -->
       <div class="studio-grid">
         <div class="model-panel">
           <div class="model-top-bar">
             <span class="ratio-pill" id="model-ratio-pill">상·하 3.9 : 6.1</span>
-            <label class="upload-custom-btn" title="내 캐릭터/룩북 이미지 넣기">
+            <label class="upload-custom-btn" title="내 캐릭터/착샷 이미지 넣기">
               + 내 이미지
               <input type="file" id="custom-model-input" accept="image/*" style="display:none;" onchange="onUploadCustomImage(event)">
             </label>
@@ -591,32 +616,46 @@
         <div class="parts-panel" id="parts-editor-list"></div>
       </div>
 
-      <!-- 1번 기능: 여러 쇼핑몰 합산 총 견적 배너 -->
-      <div class="total-budget-banner">
-        <div class="budget-left">
+      <!-- 타쇼핑몰 링크 합산 자동 견적 바 -->
+      <div class="budget-summary-bar">
+        <div class="budget-info">
           🛒 <strong>타쇼핑몰 믹스매치 합산 견적</strong> (보유중 내 옷 0원 제외)<br>
-          <span id="budget-malls-summary">선택한 쇼핑몰별 구매 예정 아이템 합계</span>
+          <span id="budget-malls-summary">각 부위에 쇼핑몰 상품 링크나 가격을 넣으면 자동 합산됩니다</span>
         </div>
-        <div class="budget-right" id="total-budget-amount">총 0원</div>
+        <div class="budget-total" id="total-budget-amount">총 0원</div>
       </div>
 
-      <!-- 3번 기능: 내 옷장 아이템 등록 & 주간(월~금) 돌려입기 캘린더 -->
-      <div class="wardrobe-card">
-        <div class="wardrobe-header">
-          <div class="wardrobe-title">📅 내 옷장 등록 & 주간(월~금) 돌려입기 캘린더</div>
-          <button type="button" class="add-wardrobe-btn" onclick="addCurrentOutfitToWardrobe()">+ 현재 코디 옷장에 일괄 등록</button>
+      <!-- 내 코디 등록하기 (피드에 올려서 좋아요 / 별로예요 받기) -->
+      <div class="publish-box">
+        <div class="publish-title">📢 완성한 코디를 아래 피드에 등록하고 '좋아요 / 별로예요' 평가받기</div>
+        <div class="publish-form">
+          <input type="text" id="pub-nickname" class="pub-input" value="165패피" placeholder="닉네임">
+          <input type="text" id="pub-caption" class="pub-input" placeholder="한 줄 설명 (예: 하객룩 비율 맞춰봤는데 어때요?)">
+          <button type="button" class="pub-btn" onclick="publishCoordiToFeed()">코디 피드 등록</button>
         </div>
-        <div class="wardrobe-chips" id="wardrobe-chips"></div>
-        <div class="week-grid" id="week-calendar-grid"></div>
       </div>
 
-      <!-- 최종 코디 점검 & 쇼핑몰 바로가기 -->
-      <div class="checklist-title">📋 부위별 최종 점검 & 쇼핑몰 바로가기</div>
+      <div class="share-action-bar">
+        <button type="button" class="action-pill-btn btn-save-img" onclick="downloadLookbookCard()">
+          📸 룩북 카드 이미지 저장 (PNG)
+        </button>
+        <button type="button" class="action-pill-btn btn-copy-link" id="copy-link-btn" onclick="copyShareableUrl()">
+          🔗 이 코디 & 견적 링크 복사
+        </button>
+      </div>
+
       <ul class="outfit-list" id="res-list"></ul>
+    </div>
 
-      <p class="notice-line">
-        * '내 옷장 보유'로 설정된 부위는 비용에서 제외되며, 구매 예정인 타 쇼핑몰 아이템만 합산 견적과 검색/제휴 링크로 연결됩니다.
-      </p>
+    <!-- 3단계: 실시간 유저 등록 코디 피드 (좋아요 / 별로예요 버튼 + 내 모델에 입혀보기) -->
+    <div class="card">
+      <div class="feed-header">
+        <div>
+          <h2>🔥 실시간 유저 등록 코디 피드</h2>
+          <p class="feed-sub">다른 사람들이 만든 코디에 '좋아요 / 별로예요'를 누르거나 내 체형 모델에 바로 입혀보세요</p>
+        </div>
+      </div>
+      <div class="feed-grid" id="community-feed-grid"></div>
     </div>
 
     <div class="ad-box">광고 영역 (구글 애드센스 하단 배너 위치)</div>
@@ -630,31 +669,26 @@
 
     const MALL_SOURCES = [
       { id: "owned", label: "내 옷장 보유 (0원)" },
-      { id: "musinsa", label: "무신사 구매 예정" },
-      { id: "ably", label: "에이블리 구매 예정" },
-      { id: "zigzag", label: "지그재그 구매 예정" },
-      { id: "29cm", label: "29CM/W컨셉 예정" },
-      { id: "coupang", label: "쿠팡/기타 쇼핑몰" }
+      { id: "musinsa", label: "무신사" },
+      { id: "ably", label: "에이블리" },
+      { id: "zigzag", label: "지그재그" },
+      { id: "29cm", label: "29CM / W컨셉" },
+      { id: "coupang", label: "쿠팡 / 기타몰" }
     ];
 
-    const DEFAULT_PRICES = {
-      outer: 69000,
-      top: 32000,
-      bottom: 39000,
-      shoes: 65000
-    };
+    const DEFAULT_PRICES = { outer: 69000, top: 32000, bottom: 39000, shoes: 65000 };
 
     const COLOR_PALETTE = [
-      { name: "블랙", hex: "#232326", light: "#3f3f46", dark: "#111113", tone: "neutral" },
-      { name: "화이트", hex: "#f8fafc", light: "#ffffff", dark: "#cbd5e1", tone: "neutral" },
-      { name: "아이보리", hex: "#f5f0dc", light: "#fdfbf0", dark: "#d6ccb0", tone: "warm" },
-      { name: "그레이", hex: "#9ca3af", light: "#d1d5db", dark: "#6b7280", tone: "neutral" },
-      { name: "차콜", hex: "#374151", light: "#6b7280", dark: "#1f2937", tone: "neutral" },
-      { name: "네이비", hex: "#1e3a8a", light: "#3b82f6", dark: "#172554", tone: "cool" },
-      { name: "데님블루", hex: "#4a6fa5", light: "#7399cf", dark: "#2a456e", tone: "cool" },
-      { name: "카키", hex: "#556640", light: "#788c5e", dark: "#344026", tone: "warm" },
-      { name: "베이지", hex: "#d6c3a5", light: "#eadbc4", dark: "#a89272", tone: "warm" },
-      { name: "버건디", hex: "#7f1d1d", light: "#b91c1c", dark: "#450a0a", tone: "warm" }
+      { name: "블랙", hex: "#232326", light: "#3f3f46", dark: "#111113" },
+      { name: "화이트", hex: "#f8fafc", light: "#ffffff", dark: "#cbd5e1" },
+      { name: "아이보리", hex: "#f5f0dc", light: "#fdfbf0", dark: "#d6ccb0" },
+      { name: "그레이", hex: "#9ca3af", light: "#d1d5db", dark: "#6b7280" },
+      { name: "차콜", hex: "#374151", light: "#6b7280", dark: "#1f2937" },
+      { name: "네이비", hex: "#1e3a8a", light: "#3b82f6", dark: "#172554" },
+      { name: "데님블루", hex: "#4a6fa5", light: "#7399cf", dark: "#2a456e" },
+      { name: "카키", hex: "#556640", light: "#788c5e", dark: "#344026" },
+      { name: "베이지", hex: "#d6c3a5", light: "#eadbc4", dark: "#a89272" },
+      { name: "버건디", hex: "#7f1d1d", light: "#b91c1c", dark: "#450a0a" }
     ];
 
     function getColorObj(name) {
@@ -664,7 +698,6 @@
       return getColorObj(name).hex;
     }
 
-    // formality: 1(매우 캐주얼) ~ 5(포멀/격식), warmth: 1(여름) ~ 4(한겨울)
     const CLOTHING_CATALOG = {
       outer: [
         { id: "none", label: "아우터 없음 (단독 착용)", kw: "", style: "none", lengthType: "none", formality: 3, warmth: 1 },
@@ -714,11 +747,11 @@
     ];
 
     const TPO_META = {
-      daily: { label: "일상·캠퍼스", minFormality: 1 },
-      office: { label: "출근·오피스", minFormality: 3 },
-      date: { label: "소개팅·데이트", minFormality: 3 },
-      wedding: { label: "결혼식 하객", minFormality: 4 },
-      parents: { label: "상견례·부모님 인사", minFormality: 4 }
+      daily: { label: "일상·캠퍼스" },
+      office: { label: "출근·오피스" },
+      date: { label: "소개팅·데이트" },
+      wedding: { label: "결혼식 하객" },
+      parents: { label: "상견례·어른인사" }
     };
 
     const TEMP_META = {
@@ -738,25 +771,58 @@
       anchorPart: "outer",
       customImageUrl: null,
       parts: {
-        outer: { itemId: "blouson", colorName: "블랙", mall: "owned", price: 0 },
-        top: { itemId: "crew_knit", colorName: "아이보리", mall: "ably", price: 32000 },
-        bottom: { itemId: "wide_slacks", colorName: "차콜", mall: "zigzag", price: 39000 },
-        shoes: { itemId: "derby", colorName: "블랙", mall: "owned", price: 0 }
-      },
-      // 기본 샘플 내 옷장 아이템 (주간 캘린더 즉시 체험용)
-      wardrobe: [
-        { part: "outer", itemId: "blouson", colorName: "블랙" },
-        { part: "outer", itemId: "coat", colorName: "네이비" },
-        { part: "top", itemId: "crew_knit", colorName: "아이보리" },
-        { part: "top", itemId: "shirt", colorName: "화이트" },
-        { part: "top", itemId: "sweatshirt", colorName: "그레이" },
-        { part: "bottom", itemId: "wide_slacks", colorName: "차콜" },
-        { part: "bottom", itemId: "straight_denim", colorName: "데님블루" },
-        { part: "shoes", itemId: "derby", colorName: "블랙" },
-        { part: "shoes", itemId: "german_sneakers", colorName: "화이트" }
-      ],
-      weeklyPlans: []
+        outer: { itemId: "blouson", colorName: "블랙", mall: "owned", price: 0, customUrl: "" },
+        top: { itemId: "crew_knit", colorName: "아이보리", mall: "ably", price: 32000, customUrl: "" },
+        bottom: { itemId: "wide_slacks", colorName: "차콜", mall: "zigzag", price: 39000, customUrl: "" },
+        shoes: { itemId: "derby", colorName: "블랙", mall: "owned", price: 0, customUrl: "" }
+      }
     };
+
+    // 초기 커뮤니티 유저 등록 코디 샘플 데이터 (좋아요 / 별로예요 평가 기능)
+    let communityFeed = [
+      {
+        id: 1,
+        nickname: "162슬림핏",
+        spec: "여성 · 162cm/48kg",
+        tpo: "결혼식 하객",
+        caption: "신부 컬러 피해서 네이비 블레이저 + 그레이 니트 + 차콜 슬랙스로 맞춰봤어요!",
+        likes: 24,
+        dislikes: 2,
+        userReaction: null, // 'like' | 'dislike' | null
+        totalBudget: 118000,
+        gender: "female",
+        height: 162,
+        weight: 48,
+        bodyType: "slim",
+        parts: {
+          outer: { itemId: "blazer", colorName: "네이비", mall: "29cm", price: 79000, customUrl: "" },
+          top: { itemId: "crew_knit", colorName: "그레이", mall: "owned", price: 0, customUrl: "" },
+          bottom: { itemId: "tapered_slacks", colorName: "차콜", mall: "zigzag", price: 39000, customUrl: "" },
+          shoes: { itemId: "loafer", colorName: "블랙", mall: "owned", price: 0, customUrl: "" }
+        }
+      },
+      {
+        id: 2,
+        nickname: "178역삼각",
+        spec: "남성 · 178cm/76kg",
+        tpo: "소개팅·데이트",
+        caption: "어깨 넓은 체형이라 크롭 블루종 + 와이드 슬랙스로 하체 볼륨 밸런스 잡았습니다",
+        likes: 19,
+        dislikes: 3,
+        userReaction: null,
+        totalBudget: 94000,
+        gender: "male",
+        height: 178,
+        weight: 76,
+        bodyType: "muscular",
+        parts: {
+          outer: { itemId: "blouson", colorName: "블랙", mall: "musinsa", price: 59000, customUrl: "" },
+          top: { itemId: "shirt", colorName: "화이트", mall: "owned", price: 0, customUrl: "" },
+          bottom: { itemId: "wide_slacks", colorName: "차콜", mall: "musinsa", price: 35000, customUrl: "" },
+          shoes: { itemId: "derby", colorName: "블랙", mall: "owned", price: 0, customUrl: "" }
+        }
+      }
+    ];
 
     function getItemObj(partKey, itemId) {
       return CLOTHING_CATALOG[partKey].find(x => x.id === itemId) || CLOTHING_CATALOG[partKey][0];
@@ -865,7 +931,102 @@
     }
 
     // =========================================================================
-    // [핵심 개선] 다차원 정밀 평가 엔진 (42점 ~ 99점 넓은 변별력 + 구체적 처방전)
+    // [기능 1] 쇼핑몰 링크 붙여넣기 자동 견적 & 색조합·아이템 파싱 엔진
+    // =========================================================================
+    function parseShoppingUrl(partKey) {
+      const inputEl = document.getElementById(`url-input-${partKey}`);
+      const raw = (inputEl.value || "").trim();
+      if (!raw) return;
+
+      const lower = raw.toLowerCase();
+      state.parts[partKey].customUrl = raw.startsWith("http") ? raw : "";
+
+      // 1. 도메인별 쇼핑몰 자동 판별
+      let detectedMall = state.parts[partKey].mall === "owned" ? "musinsa" : state.parts[partKey].mall;
+      if (lower.includes("musinsa")) detectedMall = "musinsa";
+      else if (lower.includes("a-bly") || lower.includes("ably")) detectedMall = "ably";
+      else if (lower.includes("zigzag")) detectedMall = "zigzag";
+      else if (lower.includes("29cm") || lower.includes("wconcept")) detectedMall = "29cm";
+      else if (lower.includes("coupang")) detectedMall = "coupang";
+      state.parts[partKey].mall = detectedMall;
+
+      // 2. URL 또는 붙여넣은 상품 텍스트 속 색상 키워드 자동 인식
+      const colorKeywords = [
+        { k: ["black", "블랙", "검정"], c: "블랙" },
+        { k: ["white", "화이트", "흰색"], c: "화이트" },
+        { k: ["ivory", "아이보리", "크림"], c: "아이보리" },
+        { k: ["charcoal", "차콜", "먹색"], c: "차콜" },
+        { k: ["gray", "grey", "그레이", "회색"], c: "그레이" },
+        { k: ["navy", "네이비", "곤색"], c: "네이비" },
+        { k: ["denim", "blue", "데님", "청바지", "블루"], c: "데님블루" },
+        { k: ["khaki", "olive", "카키", "올리브"], c: "카키" },
+        { k: ["beige", "sand", "베이지", "모카"], c: "베이지" },
+        { k: ["burgundy", "wine", "버건디", "와인"], c: "버건디" }
+      ];
+      for (const entry of colorKeywords) {
+        if (entry.k.some(word => lower.includes(word))) {
+          state.parts[partKey].colorName = entry.c;
+          break;
+        }
+      }
+
+      // 3. URL 또는 텍스트 속 의류 품목 키워드 자동 인식
+      const itemKeywords = {
+        outer: [
+          { k: ["blouson", "블루종", "크롭자켓"], id: "blouson" },
+          { k: ["coat", "코트", "발마칸"], id: "coat" },
+          { k: ["blazer", "블레이저", "자켓"], id: "blazer" },
+          { k: ["cardigan", "가디건"], id: "cardigan" },
+          { k: ["padding", "패딩", "푸퍼"], id: "short_padding" },
+          { k: ["wind", "바람막이", "윈드"], id: "windbreaker" }
+        ],
+        top: [
+          { k: ["knit", "니트", "스웨터"], id: "crew_knit" },
+          { k: ["turtle", "터틀넥", "목폴라"], id: "turtleneck" },
+          { k: ["shirt", "셔츠", "남방"], id: "shirt" },
+          { k: ["hood", "후드"], id: "hoodie" },
+          { k: ["sweat", "맨투맨", "스웻"], id: "sweatshirt" },
+          { k: ["tee", "반팔", "티셔츠"], id: "short_tee" },
+          { k: ["blouse", "블라우스"], id: "blouse" }
+        ],
+        bottom: [
+          { k: ["wide", "와이드슬랙스"], id: "wide_slacks" },
+          { k: ["slacks", "슬랙스"], id: "tapered_slacks" },
+          { k: ["denim", "jean", "데님", "청바지"], id: "straight_denim" },
+          { k: ["chino", "면바지", "치노"], id: "chino" },
+          { k: ["cargo", "카고"], id: "cargo" },
+          { k: ["jogger", "조거"], id: "jogger" },
+          { k: ["skirt", "스커트", "치마"], id: "shorts_skirt" }
+        ],
+        shoes: [
+          { k: ["derby", "더비", "구두"], id: "derby" },
+          { k: ["loafer", "로퍼"], id: "loafer" },
+          { k: ["boots", "부츠", "첼시"], id: "ankle_boots" },
+          { k: ["running", "러닝"], id: "running_shoes" },
+          { k: ["sneaker", "스니커즈", "운동화", "독일군"], id: "german_sneakers" }
+        ]
+      };
+      for (const entry of (itemKeywords[partKey] || [])) {
+        if (entry.k.some(word => lower.includes(word))) {
+          state.parts[partKey].itemId = entry.id;
+          break;
+        }
+      }
+
+      // 4. 텍스트 내 숫자(가격, 예: 49,000원 또는 49000) 자동 추출, 없으면 기본 시세 적용
+      const priceMatch = raw.replace(/,/g, "").match(/(\d{4,6})원?/);
+      if (priceMatch) {
+        state.parts[partKey].price = Number(priceMatch[1]);
+      } else if (!state.parts[partKey].price) {
+        state.parts[partKey].price = DEFAULT_PRICES[partKey];
+      }
+
+      if (partKey === state.anchorPart) renderAnchorSetupUI();
+      renderAllResultViews();
+    }
+
+    // =========================================================================
+    // 다차원 정밀 채점 엔진 (40점 ~ 99점 변별력 확보)
     // =========================================================================
     function evaluateComprehensiveCoordi() {
       const outerObj = getItemObj("outer", state.parts.outer.itemId);
@@ -881,66 +1042,49 @@
       const ngParts = new Set();
       const comments = [];
 
-      // 1. TPO 격식 & 민폐/실수 평가 (만점 35점)
+      // 1. TPO 격식·매너 (35점)
       let tpoScore = 35;
       const tpo = state.tpo;
-
       if (tpo === "wedding") {
-        // 신부 색상(화이트·아이보리 상의/아우터) 차단
         if ((outerObj.style === "none" && (topCol === "화이트" || topCol === "아이보리")) ||
             (outerObj.style !== "none" && (outerCol === "화이트" || outerCol === "아이보리"))) {
           tpoScore -= 18;
           ngParts.add(outerObj.style === "none" ? "top" : "outer");
-          comments.push(`<strong>🚨 [하객룩 민폐 경고]</strong> 상체 메인 컬러가 <strong>${outerObj.style === "none" ? topCol : outerCol}</strong>입니다. 신부 드레스와 겹치는 밝은 흰색 계열은 피하고 <strong>네이비·차콜·베이지</strong>로 변경하세요.`);
+          comments.push(`<strong>🚨 [하객룩 민폐 컬러 경고]</strong> 상체 메인 색상이 <strong>${outerObj.style === "none" ? topCol : outerCol}</strong>입니다. 신부 드레스와 겹치는 밝은 흰색 계열 대신 <strong>네이비·차콜·베이지</strong>로 변경하세요.`);
         }
-        if (topObj.style === "hoodie" || topObj.style === "sweat" || bottomObj.style === "cargo" || bottomObj.style === "jogger" || outerObj.style === "wind" || outerObj.style === "puffer") {
+        if (topObj.formality <= 2 || bottomObj.formality <= 2 || (outerObj.style !== "none" && outerObj.formality <= 2)) {
           tpoScore -= 15;
           if (topObj.formality <= 2) ngParts.add("top");
           if (bottomObj.formality <= 2) ngParts.add("bottom");
-          if (outerObj.formality <= 2 && outerObj.style !== "none") ngParts.add("outer");
-          comments.push(`<strong>🚨 [하객 격식 NG]</strong> 후드·조거·카고·패딩 등 스트릿 캐주얼 아이템은 예식장 분위기와 어긋납니다. <strong>블레이저/코트 + 슬랙스 + 로퍼/구두</strong> 조합이 필수입니다.`);
-        }
-        if (shoesObj.style === "sneaker" && shoesObj.id === "running_shoes") {
-          tpoScore -= 7;
-          ngParts.add("shoes");
-          comments.push(`<strong>⚠️ [신발 NG]</strong> 결혼식 하객룩에 러닝화는 격식이 떨어집니다. <strong>더비슈즈나 로퍼</strong>로 교체하면 격식 점수가 즉시 올라갑니다.`);
+          if (outerObj.style !== "none" && outerObj.formality <= 2) ngParts.add("outer");
+          comments.push(`<strong>🚨 [하객 격식 NG]</strong> 후드·맨투맨·조거·카고·패딩은 결혼식 격식에 어긋납니다. <strong>블레이저/코트 + 슬랙스 + 로퍼/더비슈즈</strong> 조합을 권장합니다.`);
         }
       } else if (tpo === "parents") {
-        if (bottomObj.style === "wide_denim" || bottomObj.style === "cargo" || bottomObj.style === "jogger" || bottomObj.style === "short_bot") {
-          tpoScore -= 16;
-          ngParts.add("bottom");
-          comments.push(`<strong>🚨 [어른 인사 하의 NG]</strong> 부모님 인사·상견례 자리에 데님·카고·짧은 하의는 가벼워 보입니다. <strong>차콜·네이비·베이지 슬랙스</strong>로 단정함을 주세요.`);
-        }
-        if (topObj.style === "hoodie" || topObj.style === "sweat" || outerObj.style === "wind") {
-          tpoScore -= 14;
-          ngParts.add("top");
-          comments.push(`<strong>🚨 [상의 격식 주의]</strong> 어른을 뵙는 자리에는 후드·맨투맨보다 <strong>옥스포드 셔츠나 단정한 크루넥 니트</strong>가 훨씬 신뢰감을 줍니다.`);
+        if (bottomObj.formality <= 3 || topObj.formality <= 2) {
+          tpoScore -= 15;
+          if (bottomObj.formality <= 3) ngParts.add("bottom");
+          if (topObj.formality <= 2) ngParts.add("top");
+          comments.push(`<strong>🚨 [상견례·어른 인사 주의]</strong> 청바지·카고·후드티보다 <strong>단정한 셔츠/니트 + 슬랙스</strong> 조합이 신뢰감을 줍니다.`);
         }
       } else if (tpo === "office") {
-        if (bottomObj.style === "jogger" || bottomObj.style === "cargo" || topObj.style === "hoodie" || outerObj.style === "wind") {
+        if (bottomObj.formality <= 1 || topObj.formality <= 1) {
           tpoScore -= 14;
-          if (bottomObj.formality <= 1) ngParts.add("bottom");
-          if (topObj.formality <= 1) ngParts.add("top");
-          comments.push(`<strong>⚠️ [오피스 복장 주의]</strong> 조거팬츠·카고팬츠·후드티는 비즈니스 환경에서 너무 자유분방해 보입니다. <strong>치노팬츠나 슬랙스</strong>로 정돈해 보세요.`);
+          ngParts.add(bottomObj.formality <= 1 ? "bottom" : "top");
+          comments.push(`<strong>⚠️ [오피스 복장 주의]</strong> 조거·카고팬츠나 후드티는 출근룩으로 너무 캐주얼합니다. 치노팬츠나 슬랙스로 정돈하세요.`);
         }
       } else if (tpo === "date") {
         if (shoesObj.id === "running_shoes" || bottomObj.style === "jogger") {
           tpoScore -= 12;
           ngParts.add("shoes");
-          comments.push(`<strong>💡 [소개팅 감점 요인]</strong> 첫만남에 운동복 느낌의 조거팬츠나 러닝화는 성의 없어 보일 수 있습니다. <strong>레더 스니커즈나 로퍼</strong>만 신어도 호감도가 크게 상승합니다.`);
-        }
-        if (outerCol === "블랙" && topCol === "블랙" && bottomCol === "블랙" && shoesCol === "블랙") {
-          tpoScore -= 7;
-          comments.push(`<strong>💡 [소개팅 컬러 팁]</strong> 머리부터 발끝까지 올블랙은 첫만남에서 다소 차갑고 무거워 보일 수 있습니다. 이너를 <strong>아이보리나 화이트</strong>로 밝히면 인상이 부드러워집니다.`);
+          comments.push(`<strong>💡 [소개팅 감점 요인]</strong> 트레이닝복 느낌의 조거팬츠·러닝화 대신 <strong>레더 스니커즈나 로퍼</strong>를 매치하면 호감도가 크게 올라갑니다.`);
         }
       }
-
       if (tpoScore >= 33) {
-        comments.push(`<strong>✅ [TPO 합격]</strong> <strong>${TPO_META[tpo].label}</strong> 자리에 딱 맞는 격식과 매너를 갖춘 착장입니다.`);
+        comments.push(`<strong>✅ [TPO 합격]</strong> <strong>${TPO_META[tpo].label}</strong> 자리에 어울리는 격식과 매너를 갖춘 착장입니다.`);
       }
       tpoScore = Math.max(5, tpoScore);
 
-      // 2. 체형 & 기장 비율 평가 (만점 25점)
+      // 2. 체형·기장 비율 (25점)
       let bodyScore = 25;
       let upperPct = 39;
       let ratioText = "상·하 3.9 : 6.1";
@@ -949,11 +1093,11 @@
         bodyScore -= 10;
         upperPct = 52;
         ratioText = "상·하 5.2 : 4.8 (기장 주의)";
-        comments.push(`<strong>⚠️ [체형·기장 감점]</strong> ${state.height}cm 키에 롱 기장(${outerObj.label})은 무게중심이 아래로 쏠려 다리가 짧아 보입니다. <strong>숏 블루종이나 크롭 가디건</strong>으로 바꾸면 비율이 극적으로 좋아집니다.`);
+        comments.push(`<strong>⚠️ [체형·기장 감점]</strong> ${state.height}cm 키에 롱 기장(${outerObj.label})은 무게중심이 아래로 쏠려 다리가 짧아 보입니다. <strong>숏 블루종·크롭 가디건</strong>으로 바꾸면 비율이 개선됩니다.`);
       } else if (outerObj.lengthType === "crop") {
         upperPct = 35;
         ratioText = "상·하 3.5 : 6.5 (황금 비율)";
-        comments.push(`<strong>✅ [황금 비율 달성]</strong> 크롭/숏 기장 아우터가 허리선을 높여주어 ${state.height}cm 체형에서 다리가 가장 길어 보이는 비율입니다.`);
+        comments.push(`<strong>✅ [황금 비율]</strong> 크롭/숏 기장 아우터가 허리선을 높여주어 ${state.height}cm 체형에서 다리가 가장 길어 보이는 비율입니다.`);
       } else if (outerObj.lengthType === "long") {
         upperPct = 45;
         ratioText = "상·하 4.5 : 5.5 (롱 실루엣)";
@@ -961,17 +1105,14 @@
 
       if (state.bodyType === "muscular" && bottomObj.fitType === "slim") {
         bodyScore -= 8;
-        comments.push(`<strong>⚠️ [역삼각 체형 감점]</strong> 상체 근육 대비 슬림한 하의(${bottomObj.label})는 상체만 과도하게 부각됩니다. <strong>와이드 슬랙스/와이드 데님</strong>으로 하체 볼륨 균형을 맞추세요.`);
-      } else if (state.bodyType === "slim" && bottomObj.fitType === "slim" && outerObj.style === "none") {
-        bodyScore -= 7;
-        comments.push(`<strong>💡 [슬림 체형 보완]</strong> 아우터 없이 상·하의 모두 슬림하면 왜소해 보일 수 있습니다. <strong>와이드 팬츠</strong>로 실루엣에 여유를 주는 것을 추천합니다.`);
+        comments.push(`<strong>⚠️ [역삼각 체형 감점]</strong> 상체 볼륨 대비 슬림한 바지는 상체만 부각됩니다. <strong>와이드 슬랙스/와이드 데님</strong>으로 하체 균형을 맞추세요.`);
       } else if (state.bodyType === "chubby" && outerObj.style === "puffer") {
         bodyScore -= 8;
-        comments.push(`<strong>💡 [통통 체형 부피 주의]</strong> 숏/롱패딩은 상체 부피를 키웁니다. <strong>오픈 발마칸 코트나 블레이저</strong>로 세로 절개 라인을 만들어 주세요.`);
+        comments.push(`<strong>💡 [통통 체형 부피 주의]</strong> 패딩은 상체 부피를 키웁니다. <strong>오픈 코트나 블레이저</strong>로 세로 절개 라인을 만들어 주세요.`);
       }
       bodyScore = Math.max(5, bodyScore);
 
-      // 3. 기온·계절 적합도 평가 (만점 20점)
+      // 3. 기온 적합도 (20점)
       let tempScore = 20;
       const targetW = TEMP_META[state.temp].targetWarmth;
       const actualW = outerObj.style === "none" ? topObj.warmth : Math.max(outerObj.warmth, topObj.warmth);
@@ -979,17 +1120,17 @@
       if (state.temp === "hot" && outerObj.style !== "none") {
         tempScore -= 14;
         ngParts.add("outer");
-        comments.push(`<strong>🥵 [기온 NG]</strong> 23°C 이상 더운 날씨에 아우터(${outerObj.label})를 착용하면 땀이 차고 답답해 보입니다. 아우터를 <strong>착용 안 함</strong>으로 바꾸세요.`);
+        comments.push(`<strong>🥵 [기온 NG]</strong> 23°C 이상 더운 날씨에 아우터를 착용하면 답답해 보입니다. 아우터를 <strong>착용 안 함</strong>으로 바꾸세요.`);
       } else if (state.temp === "cold" && actualW <= 2) {
         tempScore -= 13;
-        comments.push(`<strong>🥶 [보온성 부족]</strong> 5°C 이하 추운 날씨에 보온성이 약한 옷차림입니다. <strong>코트·패딩 아우터와 터틀넥 니트</strong>를 레이어드하세요.`);
+        comments.push(`<strong>🥶 [보온성 부족]</strong> 5°C 이하 추운 날씨에 보온이 약합니다. 코트·패딩과 터틀넥 니트를 레이어드하세요.`);
       } else if (Math.abs(targetW - actualW) >= 2) {
         tempScore -= 7;
         comments.push(`<strong>🌡️ [계절감 차이]</strong> 현재 기온(${TEMP_META[state.temp].label}) 대비 옷 두께감이 다소 어긋납니다.`);
       }
       tempScore = Math.max(4, tempScore);
 
-      // 4. 컬러 매칭 조화도 평가 (만점 20점)
+      // 4. 컬러 조화 (20점)
       let colorScore = 20;
       const activeColors = PART_META
         .filter(m => !(m.key === "outer" && outerObj.style === "none"))
@@ -998,58 +1139,40 @@
 
       if (uniqueColors.size >= 4) {
         colorScore -= 8;
-        comments.push(`<strong>🎨 [컬러 분산 감점]</strong> 한 코디에 ${uniqueColors.size}가지 색상이 섞여 시선이 산만합니다. 신발이나 하의 색을 상의와 통일해 <strong>3색 이내</strong>로 줄이세요.`);
+        comments.push(`<strong>🎨 [컬러 분산 감점]</strong> 한 코디에 ${uniqueColors.size}가지 색상이 섞여 산만합니다. 신발이나 하의 색을 맞춰 <strong>3색 이내</strong>로 줄이세요.`);
       }
       if ((topCol === "카키" && bottomCol === "버건디") || (outerCol === "버건디" && bottomCol === "카키")) {
         colorScore -= 9;
-        comments.push(`<strong>🎨 [보색 충돌 주의]</strong> 카키와 버건디의 강한 대비는 촌스러워 보일 위험이 큽니다. 한쪽을 <strong>블랙·차콜·아이보리</strong> 무채색으로 눌러주세요.`);
+        comments.push(`<strong>🎨 [보색 충돌 주의]</strong> 카키와 버건디의 강한 대비는 촌스러워 보일 수 있습니다. 한쪽을 <strong>블랙·차콜·아이보리</strong>로 눌러주세요.`);
       }
       if (uniqueColors.size <= 3 && colorScore === 20) {
-        comments.push(`<strong>🎨 [컬러 밸런스 우수]</strong> ${Array.from(uniqueColors).join(" · ")} 조합이 3색 이내로 깔끔하게 정돈되어 세련된 인상을 줍니다.`);
+        comments.push(`<strong>🎨 [컬러 밸런스 우수]</strong> ${Array.from(uniqueColors).join(" · ")} 조합이 3색 이내로 깔끔하게 정돈되었습니다.`);
       }
       colorScore = Math.max(4, colorScore);
 
       const totalScore = Math.min(99, Math.max(38, tpoScore + bodyScore + tempScore + colorScore));
-
-      let gradeClass = "excellent";
-      let gradeText = "완벽에 가까운<br>베스트 코디";
-      let reportTitle = "✅ 상황·체형·컬러를 모두 잡은 완성형 코디입니다";
-
+      let gradeClass = "excellent", gradeText = "완벽에 가까운<br>베스트 코디", reportTitle = "✅ 상황·체형·컬러를 모두 잡은 완성형 코디입니다";
       if (totalScore < 68) {
-        gradeClass = "danger";
-        gradeText = "실수 위험!<br>수정 필수";
-        reportTitle = "🚨 이대로 나가면 실수할 확률이 높습니다! 아래 항목을 수정하세요";
+        gradeClass = "danger"; gradeText = "실수 위험!<br>수정 필수"; reportTitle = "🚨 이대로 나가면 감점 요인이 큽니다! 아래 항목을 수정하세요";
       } else if (totalScore < 85) {
-        gradeClass = "warn";
-        gradeText = "무난하지만<br>보완 권장";
-        reportTitle = "💡 괜찮은 조합이지만, 한두 가지만 고치면 훨씬 세련돼집니다";
+        gradeClass = "warn"; gradeText = "무난하지만<br>보완 권장"; reportTitle = "💡 괜찮은 조합이지만, 한두 가지만 고치면 훨씬 세련돼집니다";
       }
 
-      return {
-        totalScore,
-        tpoScore,
-        bodyScore,
-        tempScore,
-        colorScore,
-        gradeClass,
-        gradeText,
-        reportTitle,
-        comments,
-        ngParts,
-        upperPct,
-        lowerPct: 100 - upperPct,
-        ratioText
-      };
+      return { totalScore, tpoScore, bodyScore, tempScore, colorScore, gradeClass, gradeText, reportTitle, comments, ngParts, upperPct, lowerPct: 100 - upperPct, ratioText };
     }
 
-    function buildMallLinks(partKey, colorName, itemObj, selectedMall) {
-      if (!itemObj || !itemObj.kw || selectedMall === "owned") return null;
+    function buildMallLinks(partKey, colorName, itemObj, ps) {
+      if (!itemObj || !itemObj.kw || ps.mall === "owned") return null;
 
       const links = [];
-      const exactAffKey = `${itemObj.id}_${colorName}`;
-      const affEntry = AFFILIATE_LINKS[exactAffKey] || AFFILIATE_LINKS[itemObj.id];
-      if (affEntry) {
-        links.push({ label: affEntry.label, cls: "mall-aff", url: affEntry.url });
+      if (ps.customUrl) {
+        links.push({ label: "붙여넣은 상품 바로가기 ↗", cls: "mall-aff", url: ps.customUrl });
+      } else {
+        const exactAffKey = `${itemObj.id}_${colorName}`;
+        const affEntry = AFFILIATE_LINKS[exactAffKey] || AFFILIATE_LINKS[itemObj.id];
+        if (affEntry) {
+          links.push({ label: affEntry.label, cls: "mall-aff", url: affEntry.url });
+        }
       }
 
       const prefix = state.gender === "male" ? "남자 " : "여자 ";
@@ -1057,14 +1180,13 @@
       const enc = encodeURIComponent(q);
 
       const mallMap = {
-        musinsa: { label: "무신사 바로검색", url: `https://www.musinsa.com/search/goods?keyword=${enc}` },
-        ably: { label: "에이블리 바로검색", url: `https://a-bly.com/search?query=${enc}` },
-        zigzag: { label: "지그재그 바로검색", url: `https://zigzag.kr/search?keyword=${enc}` },
-        "29cm": { label: "29CM 바로검색", url: `https://search.29cm.co.kr/?keyword=${enc}` },
-        coupang: { label: "쿠팡 최저가 검색", url: `https://www.coupang.com/np/search?q=${enc}` }
+        musinsa: { label: "무신사 검색", url: `https://www.musinsa.com/search/goods?keyword=${enc}` },
+        ably: { label: "에이블리 검색", url: `https://a-bly.com/search?query=${enc}` },
+        zigzag: { label: "지그재그 검색", url: `https://zigzag.kr/search?keyword=${enc}` },
+        "29cm": { label: "29CM 검색", url: `https://search.29cm.co.kr/?keyword=${enc}` },
+        coupang: { label: "쿠팡 최저가", url: `https://www.coupang.com/np/search?q=${enc}` }
       };
-
-      const target = mallMap[selectedMall] || (state.gender === "male" ? mallMap.musinsa : mallMap.ably);
+      const target = mallMap[ps.mall] || mallMap.musinsa;
       links.push({ label: target.label, cls: "mall-m1", url: target.url });
       return links;
     }
@@ -1086,29 +1208,27 @@
       renderModelArea();
     }
 
-    function renderModelPoseSVG() {
-      const outerObj = getItemObj("outer", state.parts.outer.itemId);
-      const topObj = getItemObj("top", state.parts.top.itemId);
-      const bottomObj = getItemObj("bottom", state.parts.bottom.itemId);
-      const shoesObj = getItemObj("shoes", state.parts.shoes.itemId);
+    // 마네킹 SVG 생성기 (메인 스튜디오 & 피드 미니 카드 공용)
+    function buildModelSvgHtml(cfg, width = 224, heightPx = 310, uid = "main") {
+      const outerObj = getItemObj("outer", cfg.parts.outer.itemId);
+      const topObj = getItemObj("top", cfg.parts.top.itemId);
+      const bottomObj = getItemObj("bottom", cfg.parts.bottom.itemId);
+      const shoesObj = getItemObj("shoes", cfg.parts.shoes.itemId);
 
-      const outerCol = getColorObj(state.parts.outer.colorName);
-      const topCol = getColorObj(state.parts.top.colorName);
-      const bottomCol = getColorObj(state.parts.bottom.colorName);
-      const shoesCol = getColorObj(state.parts.shoes.colorName);
+      const outerCol = getColorObj(cfg.parts.outer.colorName);
+      const topCol = getColorObj(cfg.parts.top.colorName);
+      const bottomCol = getColorObj(cfg.parts.bottom.colorName);
+      const shoesCol = getColorObj(cfg.parts.shoes.colorName);
 
       const hasOuter = outerObj.style !== "none";
-      const isFemale = state.gender === "female";
-      const bodyType = state.bodyType;
-      const height = state.height;
+      const isFemale = cfg.gender === "female";
+      const bodyType = cfg.bodyType || "standard";
+      const hVal = cfg.height || 165;
 
-      const lineHair = "#231a18";
-      const lineSkin = "#c89d8c";
-      const lineCloth = "#18181b";
-
+      const lineHair = "#231a18", lineSkin = "#c89d8c", lineCloth = "#18181b";
       let shoulderDelta = 0, waistDelta = 0, hipDelta = 0, legScale = 1.0;
-      if (height >= 180) legScale = 1.03;
-      else if (height <= 165) legScale = 0.96;
+      if (hVal >= 180) legScale = 1.03;
+      else if (hVal <= 165) legScale = 0.96;
 
       if (bodyType === "slim") { shoulderDelta = -2.5; waistDelta = -2.8; hipDelta = -2.2; }
       else if (bodyType === "muscular") { shoulderDelta = 6.0; waistDelta = -0.5; hipDelta = 1.8; }
@@ -1127,26 +1247,26 @@
 
       const defsSvg = `
         <defs>
-          <linearGradient id="skinGrad" x1="0" y1="0" x2="1" y2="0">
+          <linearGradient id="skin_${uid}" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stop-color="#f9dfd3"/>
             <stop offset="65%" stop-color="#fdece4"/>
             <stop offset="100%" stop-color="#f2cfc0"/>
           </linearGradient>
-          <linearGradient id="hairGrad" x1="0" y1="0" x2="0" y2="1">
+          <linearGradient id="hair_${uid}" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="#382926"/>
             <stop offset="50%" stop-color="#261b19"/>
             <stop offset="100%" stop-color="#1a1211"/>
           </linearGradient>
-          <linearGradient id="outerGrad" x1="0" y1="0" x2="1" y2="0.3">
+          <linearGradient id="outer_${uid}" x1="0" y1="0" x2="1" y2="0.3">
             <stop offset="0%" stop-color="${outerCol.light}" stop-opacity="0.3"/>
             <stop offset="35%" stop-color="${outerCol.hex}"/>
             <stop offset="100%" stop-color="${outerCol.dark}"/>
           </linearGradient>
-          <linearGradient id="topGrad" x1="0" y1="0" x2="1" y2="0">
+          <linearGradient id="top_${uid}" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stop-color="${topCol.hex}"/>
             <stop offset="100%" stop-color="${topCol.dark}"/>
           </linearGradient>
-          <linearGradient id="botGrad" x1="0" y1="0" x2="1" y2="0">
+          <linearGradient id="bot_${uid}" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stop-color="${bottomCol.hex}"/>
             <stop offset="85%" stop-color="${bottomCol.dark}"/>
           </linearGradient>
@@ -1156,21 +1276,19 @@
       const headSvg = `
         <g>
           ${isFemale ? `
-            <path d="M${cx - 16} 18 C${cx - 28} 44, ${cx - 32} 84, ${cx - 22} 118 C${cx - 17} 105, ${cx - 16} 88, ${cx - 13} 72 L${cx + 13} 72 C${cx + 15} 90, ${cx + 16} 106, ${cx + 21} 116 C${cx + 29} 84, ${cx + 26} 44, ${cx + 16} 18 Z" fill="url(#hairGrad)" stroke="${lineHair}" stroke-width="0.9"/>
+            <path d="M${cx - 16} 18 C${cx - 28} 44, ${cx - 32} 84, ${cx - 22} 118 C${cx - 17} 105, ${cx - 16} 88, ${cx - 13} 72 L${cx + 13} 72 C${cx + 15} 90, ${cx + 16} 106, ${cx + 21} 116 C${cx + 29} 84, ${cx + 26} 44, ${cx + 16} 18 Z" fill="url(#hair_${uid})" stroke="${lineHair}" stroke-width="0.9"/>
           ` : `
-            <path d="M${cx - 14} 17 C${cx - 18} 29, ${cx - 16} 43, ${cx - 10} 49 L${cx + 10} 49 C${cx + 16} 43, ${cx + 18} 29, ${cx + 14} 17 Z" fill="url(#hairGrad)" stroke="${lineHair}" stroke-width="0.9"/>
+            <path d="M${cx - 14} 17 C${cx - 18} 29, ${cx - 16} 43, ${cx - 10} 49 L${cx + 10} 49 C${cx + 16} 43, ${cx + 18} 29, ${cx + 14} 17 Z" fill="url(#hair_${uid})" stroke="${lineHair}" stroke-width="0.9"/>
           `}
-          <path d="M${cx - 4.5} 37 L${cx - 5.5} 55 Q${cx} 58 ${cx + 5.5} 55 L${cx + 4.5} 37 Z" fill="url(#skinGrad)" stroke="${lineSkin}" stroke-width="0.75"/>
-          <path d="M${cx - 11.2} 21 C${cx - 11.5} 9, ${cx + 11.5} 9, ${cx + 11.2} 21 C${cx + 11.2} 30, ${cx + 7} 37.5, ${cx} 39.2 C${cx - 7} 37.5, ${cx - 11.2} 30, ${cx - 11.2} 21 Z" fill="url(#skinGrad)" stroke="${lineSkin}" stroke-width="0.8"/>
+          <path d="M${cx - 4.5} 37 L${cx - 5.5} 55 Q${cx} 58 ${cx + 5.5} 55 L${cx + 4.5} 37 Z" fill="url(#skin_${uid})" stroke="${lineSkin}" stroke-width="0.75"/>
+          <path d="M${cx - 11.2} 21 C${cx - 11.5} 9, ${cx + 11.5} 9, ${cx + 11.2} 21 C${cx + 11.2} 30, ${cx + 7} 37.5, ${cx} 39.2 C${cx - 7} 37.5, ${cx - 11.2} 30, ${cx - 11.2} 21 Z" fill="url(#skin_${uid})" stroke="${lineSkin}" stroke-width="0.8"/>
           <ellipse cx="${cx - 5.2}" cy="25.2" rx="2.3" ry="2.5" fill="#2c1e1b"/>
-          <circle cx="${cx - 5.9}" cy="24.2" r="0.85" fill="#ffffff"/>
           <ellipse cx="${cx + 5.2}" cy="25.2" rx="2.3" ry="2.5" fill="#2c1e1b"/>
-          <circle cx="${cx + 4.5}" cy="24.2" r="0.85" fill="#ffffff"/>
           <path d="M${cx - 2.2} 33.8 Q${cx} 33.1 ${cx + 2.2} 33.8 Q${cx} 35.1 ${cx - 2.2} 33.8 Z" fill="#e58a8a"/>
           ${isFemale ? `
-            <path d="M${cx - 13.5} 24 C${cx - 15} 7, ${cx + 15} 7, ${cx + 13.5} 24 C${cx + 12} 16, ${cx + 6} 14, ${cx + 1.5} 20 C${cx - 2} 14, ${cx - 9} 16, ${cx - 13.5} 24 Z" fill="url(#hairGrad)" stroke="${lineHair}" stroke-width="0.85"/>
+            <path d="M${cx - 13.5} 24 C${cx - 15} 7, ${cx + 15} 7, ${cx + 13.5} 24 C${cx + 12} 16, ${cx + 6} 14, ${cx + 1.5} 20 C${cx - 2} 14, ${cx - 9} 16, ${cx - 13.5} 24 Z" fill="url(#hair_${uid})" stroke="${lineHair}" stroke-width="0.85"/>
           ` : `
-            <path d="M${cx - 13} 23 C${cx - 14} 7, ${cx + 14} 7, ${cx + 13} 23 C${cx + 10} 15, ${cx + 4} 14, ${cx + 1} 21 C${cx - 3} 14, ${cx - 9} 15, ${cx - 13} 23 Z" fill="url(#hairGrad)" stroke="${lineHair}" stroke-width="0.85"/>
+            <path d="M${cx - 13} 23 C${cx - 14} 7, ${cx + 14} 7, ${cx + 13} 23 C${cx + 10} 15, ${cx + 4} 14, ${cx + 1} 21 C${cx - 3} 14, ${cx - 9} 15, ${cx - 13} 23 Z" fill="url(#hair_${uid})" stroke="${lineHair}" stroke-width="0.85"/>
           `}
         </g>
       `;
@@ -1178,15 +1296,15 @@
       let bottomSvg = "";
       if (bottomObj.style === "short_bot") {
         bottomSvg = `
-          <path d="M${cx - 14} ${kneeY - 12} L${cx - 12} ${ankleY} L${cx - 4} ${ankleY} L${cx - 3} ${kneeY - 12} Z" fill="url(#skinGrad)"/>
-          <path d="M${cx + 3} ${kneeY - 12} L${cx + 4} ${ankleY} L${cx + 12} ${ankleY} L${cx + 14} ${kneeY - 12} Z" fill="url(#skinGrad)"/>
-          <path d="M${hL} ${waistY} L${hR} ${waistY} L${hR + 13} ${kneeY - 10} Q${cx} ${kneeY - 5} ${hL - 13} ${kneeY - 10} Z" fill="url(#botGrad)" stroke="${lineCloth}" stroke-width="0.95"/>
+          <path d="M${cx - 14} ${kneeY - 12} L${cx - 12} ${ankleY} L${cx - 4} ${ankleY} L${cx - 3} ${kneeY - 12} Z" fill="url(#skin_${uid})"/>
+          <path d="M${cx + 3} ${kneeY - 12} L${cx + 4} ${ankleY} L${cx + 12} ${ankleY} L${cx + 14} ${kneeY - 12} Z" fill="url(#skin_${uid})"/>
+          <path d="M${hL} ${waistY} L${hR} ${waistY} L${hR + 13} ${kneeY - 10} Q${cx} ${kneeY - 5} ${hL - 13} ${kneeY - 10} Z" fill="url(#bot_${uid})" stroke="${lineCloth}" stroke-width="0.95"/>
         `;
       } else {
         const isWide = bottomObj.fitType === "wide";
         const hemW = (isWide ? 26 : 16.5) + hipDelta * 0.6;
         bottomSvg = `
-          <path d="M${hL - 1} ${waistY} L${hR + 1} ${waistY} C${hR + 5} ${kneeY}, ${cx + hemW + 1} ${ankleY - 24}, ${cx + hemW} ${ankleY} L${cx + 3} ${ankleY} L${cx} ${hipY + 16} L${cx - 3} ${ankleY} L${cx - hemW} ${ankleY} C${cx - hemW - 1} ${ankleY - 24}, ${hL - 5} ${kneeY}, ${hL - 1} ${waistY} Z" fill="url(#botGrad)" stroke="${lineCloth}" stroke-width="0.95"/>
+          <path d="M${hL - 1} ${waistY} L${hR + 1} ${waistY} C${hR + 5} ${kneeY}, ${cx + hemW + 1} ${ankleY - 24}, ${cx + hemW} ${ankleY} L${cx + 3} ${ankleY} L${cx} ${hipY + 16} L${cx - 3} ${ankleY} L${cx - hemW} ${ankleY} C${cx - hemW - 1} ${ankleY - 24}, ${hL - 5} ${kneeY}, ${hL - 1} ${waistY} Z" fill="url(#bot_${uid})" stroke="${lineCloth}" stroke-width="0.95"/>
         `;
       }
 
@@ -1200,12 +1318,12 @@
       const rHandX = cx + 31 + shoulderDelta, rHandY = 148;
 
       const topSvg = `
-        <path d="M${sL} ${shoulderY} Q${cx - 9} ${neckY + 2} ${cx - 6} ${neckY + 3} Q${cx} ${neckY + 11} ${cx + 6} ${neckY + 3} Q${cx + 9} ${neckY + 2} ${sR} ${shoulderY} L${wR} ${waistY + 2} L${wL} ${waistY + 2} Z" fill="url(#topGrad)" stroke="${lineCloth}" stroke-width="0.9"/>
+        <path d="M${sL} ${shoulderY} Q${cx - 9} ${neckY + 2} ${cx - 6} ${neckY + 3} Q${cx} ${neckY + 11} ${cx + 6} ${neckY + 3} Q${cx + 9} ${neckY + 2} ${sR} ${shoulderY} L${wR} ${waistY + 2} L${wL} ${waistY + 2} Z" fill="url(#top_${uid})" stroke="${lineCloth}" stroke-width="0.9"/>
         ${topObj.style === "turtleneck" ? `<rect x="${cx - 6.5}" y="${neckY - 7}" width="13" height="14" rx="3" fill="${topCol.hex}" stroke="${lineCloth}" stroke-width="0.9"/>` : ""}
         ${!hasOuter ? `
-          <path d="M${sL} ${shoulderY} C${lElbowX - 4} ${lElbowY - 4}, ${lElbowX - 3} ${lElbowY + 6}, ${lPocketX} ${lPocketY + 3} L${lPocketX + 4} ${lPocketY - 5} L${sL + 2} 82 Z" fill="url(#topGrad)" stroke="${lineCloth}" stroke-width="0.9"/>
-          <path d="M${sR} ${shoulderY} Q${rHandX + 3} 105 ${rHandX + 1} ${rHandY - 6} L${rHandX - 6} ${rHandY - 4} L${sR - 2} 82 Z" fill="url(#topGrad)" stroke="${lineCloth}" stroke-width="0.9"/>
-          <ellipse cx="${rHandX - 2.5}" cy="${rHandY}" rx="2.5" ry="4.5" fill="url(#skinGrad)" stroke="${lineSkin}" stroke-width="0.7"/>
+          <path d="M${sL} ${shoulderY} C${lElbowX - 4} ${lElbowY - 4}, ${lElbowX - 3} ${lElbowY + 6}, ${lPocketX} ${lPocketY + 3} L${lPocketX + 4} ${lPocketY - 5} L${sL + 2} 82 Z" fill="url(#top_${uid})" stroke="${lineCloth}" stroke-width="0.9"/>
+          <path d="M${sR} ${shoulderY} Q${rHandX + 3} 105 ${rHandX + 1} ${rHandY - 6} L${rHandX - 6} ${rHandY - 4} L${sR - 2} 82 Z" fill="url(#top_${uid})" stroke="${lineCloth}" stroke-width="0.9"/>
+          <ellipse cx="${rHandX - 2.5}" cy="${rHandY}" rx="2.5" ry="4.5" fill="url(#skin_${uid})" stroke="${lineSkin}" stroke-width="0.7"/>
         ` : ""}
       `;
 
@@ -1215,18 +1333,17 @@
         const hemY = isLong ? kneeY - 12 : waistY + 4;
         const oSL = sL - 4.5, oSR = sR + 4.5, oWL = wL - 8, oWR = wR + 8;
         outerSvg = `
-          <path d="M${oSL} ${shoulderY} L${cx - 7} ${neckY + 2} L${cx - 9} ${hemY} L${oWL} ${hemY} Z" fill="url(#outerGrad)" stroke="${lineCloth}" stroke-width="0.95"/>
-          <path d="M${oSR} ${shoulderY} L${cx + 7} ${neckY + 2} L${cx + 9} ${hemY} L${oWR} ${hemY} Z" fill="url(#outerGrad)" stroke="${lineCloth}" stroke-width="0.95"/>
-          <path d="M${oSL} ${shoulderY} C${oSL - 14} ${lElbowY - 4}, ${oSL - 12} ${lElbowY + 12}, ${lPocketX - 1} ${lPocketY + 3} L${lPocketX + 3} ${lPocketY - 6} L${sL + 1} 84 Z" fill="url(#outerGrad)" stroke="${lineCloth}" stroke-width="0.95"/>
-          <path d="M${oSR} ${shoulderY} C${oSR + 12} 102, ${rHandX + 4} ${rHandY - 18}, ${rHandX + 2} ${rHandY - 8} L${rHandX - 6} ${rHandY - 6} L${sR - 1} 84 Z" fill="url(#outerGrad)" stroke="${lineCloth}" stroke-width="0.95"/>
-          <ellipse cx="${rHandX - 2}" cy="${rHandY - 1}" rx="2.5" ry="4.5" fill="url(#skinGrad)" stroke="${lineSkin}" stroke-width="0.7"/>
+          <path d="M${oSL} ${shoulderY} L${cx - 7} ${neckY + 2} L${cx - 9} ${hemY} L${oWL} ${hemY} Z" fill="url(#outer_${uid})" stroke="${lineCloth}" stroke-width="0.95"/>
+          <path d="M${oSR} ${shoulderY} L${cx + 7} ${neckY + 2} L${cx + 9} ${hemY} L${oWR} ${hemY} Z" fill="url(#outer_${uid})" stroke="${lineCloth}" stroke-width="0.95"/>
+          <path d="M${oSL} ${shoulderY} C${oSL - 14} ${lElbowY - 4}, ${oSL - 12} ${lElbowY + 12}, ${lPocketX - 1} ${lPocketY + 3} L${lPocketX + 3} ${lPocketY - 6} L${sL + 1} 84 Z" fill="url(#outer_${uid})" stroke="${lineCloth}" stroke-width="0.95"/>
+          <path d="M${oSR} ${shoulderY} C${oSR + 12} 102, ${rHandX + 4} ${rHandY - 18}, ${rHandX + 2} ${rHandY - 8} L${rHandX - 6} ${rHandY - 6} L${sR - 1} 84 Z" fill="url(#outer_${uid})" stroke="${lineCloth}" stroke-width="0.95"/>
+          <ellipse cx="${rHandX - 2}" cy="${rHandY - 1}" rx="2.5" ry="4.5" fill="url(#skin_${uid})" stroke="${lineSkin}" stroke-width="0.7"/>
         `;
       }
 
       return `
-        <svg id="lookbook-svg" viewBox="0 0 224 328" width="224" height="310" xmlns="http://www.w3.org/2000/svg">
+        <svg ${uid === "main" ? 'id="lookbook-svg"' : ""} viewBox="0 0 224 328" width="${width}" height="${heightPx}" xmlns="http://www.w3.org/2000/svg">
           ${defsSvg}
-          <text x="12" y="23" font-family="-apple-system, sans-serif" font-size="13" font-weight="900" font-style="italic" fill="#1e293b" opacity="0.16">FIT CHECK</text>
           <ellipse cx="${cx}" cy="${soleY + 2}" rx="${30 + hipDelta * 0.65}" ry="4" fill="#0f172a" opacity="0.12" />
           ${bottomSvg}
           ${shoesSvg}
@@ -1247,11 +1364,10 @@
           </div>
         `;
       } else {
-        preview.innerHTML = renderModelPoseSVG();
+        preview.innerHTML = buildModelSvgHtml(state, 224, 310, "main");
       }
     }
 
-    // [1번 기능] 우측 부위별 컨트롤 + 타쇼핑몰 선택 & 견적 입력 UI
     function renderPartsEditor(ngPartsSet) {
       const container = document.getElementById("parts-editor-list");
       container.innerHTML = PART_META.map(meta => {
@@ -1295,17 +1411,26 @@
               <div class="swatch-list">${swatchesHtml}</div>
             </div>
 
-            <div class="mall-budget-row">
-              <select class="mall-source-select" onchange="onChangePartMall('${meta.key}', this.value)">
-                ${mallOptionsHtml}
-              </select>
-              <div class="price-input-box">
-                <input type="number" class="price-input"
-                       value="${ps.mall === "owned" ? 0 : ps.price}"
-                       ${ps.mall === "owned" ? "disabled" : ""}
-                       step="1000" min="0"
-                       onchange="onChangePartPrice('${meta.key}', this.value)">
-                <span class="price-unit">원</span>
+            <!-- 쇼핑몰 링크 붙여넣기 자동 견적 & 색조합 매칭 영역 -->
+            <div class="link-parse-box">
+              <div class="link-url-row">
+                <input type="text" id="url-input-${meta.key}" class="url-paste-input"
+                       value="${ps.customUrl || ""}"
+                       placeholder="쇼핑몰 상품 URL 또는 '무신사 네이비 니트 39000원' 붙여넣기">
+                <button type="button" class="url-parse-btn" onclick="parseShoppingUrl('${meta.key}')">적용</button>
+              </div>
+              <div class="mall-price-row">
+                <select class="mall-select" onchange="onChangePartMall('${meta.key}', this.value)">
+                  ${mallOptionsHtml}
+                </select>
+                <div class="price-box">
+                  <input type="number" class="price-input"
+                         value="${ps.mall === "owned" ? 0 : ps.price}"
+                         ${ps.mall === "owned" ? "disabled" : ""}
+                         step="1000" min="0"
+                         onchange="onChangePartPrice('${meta.key}', this.value)">
+                  <span class="price-unit">원</span>
+                </div>
               </div>
             </div>
           </div>
@@ -1331,11 +1456,8 @@
 
     function onChangePartMall(partKey, mallId) {
       state.parts[partKey].mall = mallId;
-      if (mallId === "owned") {
-        state.parts[partKey].price = 0;
-      } else if (!state.parts[partKey].price) {
-        state.parts[partKey].price = DEFAULT_PRICES[partKey] || 35000;
-      }
+      if (mallId === "owned") state.parts[partKey].price = 0;
+      else if (!state.parts[partKey].price) state.parts[partKey].price = DEFAULT_PRICES[partKey] || 35000;
       renderAllResultViews();
     }
 
@@ -1344,99 +1466,32 @@
       renderBudgetSummary();
     }
 
-    function renderBudgetSummary() {
+    function calculateTotalBudget() {
       let total = 0;
+      PART_META.forEach(m => {
+        const ps = state.parts[m.key];
+        const itemObj = getItemObj(m.key, ps.itemId);
+        if (itemObj.style !== "none" && ps.mall !== "owned") {
+          total += Number(ps.price) || 0;
+        }
+      });
+      return total;
+    }
+
+    function renderBudgetSummary() {
+      const total = calculateTotalBudget();
       const activeMalls = [];
       PART_META.forEach(m => {
         const ps = state.parts[m.key];
         const itemObj = getItemObj(m.key, ps.itemId);
         if (itemObj.style === "none" || ps.mall === "owned") return;
-        total += Number(ps.price) || 0;
         const mallObj = MALL_SOURCES.find(x => x.id === ps.mall);
-        if (mallObj) activeMalls.push(`${mallObj.label.replace(" 구매 예정", "")}(${m.label})`);
+        if (mallObj) activeMalls.push(`${mallObj.label}(${m.label})`);
       });
 
       document.getElementById("total-budget-amount").innerText = `총 ${total.toLocaleString()}원`;
       document.getElementById("budget-malls-summary").innerText =
         activeMalls.length > 0 ? `믹스매치 조합: ${activeMalls.join(" + ")}` : "모든 부위 내 옷장 보유 아이템 (추가 지출 0원)";
-    }
-
-    // [3번 기능] 내 옷장 등록 & 주간(월~금) 돌려입기 캘린더 생성
-    function addCurrentOutfitToWardrobe() {
-      PART_META.forEach(m => {
-        const ps = state.parts[m.key];
-        const itemObj = getItemObj(m.key, ps.itemId);
-        if (itemObj.style === "none") return;
-        const exists = state.wardrobe.some(w => w.part === m.key && w.itemId === ps.itemId && w.colorName === ps.colorName);
-        if (!exists) {
-          state.wardrobe.push({ part: m.key, itemId: ps.itemId, colorName: ps.colorName });
-        }
-      });
-      generateWeeklyCalendar();
-      renderWardrobeAndCalendar();
-    }
-
-    function removeWardrobeItem(idx) {
-      state.wardrobe.splice(idx, 1);
-      generateWeeklyCalendar();
-      renderWardrobeAndCalendar();
-    }
-
-    function generateWeeklyCalendar() {
-      const outers = state.wardrobe.filter(w => w.part === "outer");
-      const tops = state.wardrobe.filter(w => w.part === "top");
-      const bottoms = state.wardrobe.filter(w => w.part === "bottom");
-      const shoes = state.wardrobe.filter(w => w.part === "shoes");
-
-      const days = ["월요일", "화요일", "수요일", "목요일", "금요일"];
-      state.weeklyPlans = days.map((dayName, i) => {
-        const o = outers.length ? outers[i % outers.length] : { part: "outer", itemId: "none", colorName: "블랙" };
-        const t = tops.length ? tops[i % tops.length] : { part: "top", itemId: "crew_knit", colorName: "화이트" };
-        const b = bottoms.length ? bottoms[(i + 1) % bottoms.length] : { part: "bottom", itemId: "wide_slacks", colorName: "블랙" };
-        const s = shoes.length ? shoes[i % shoes.length] : { part: "shoes", itemId: "german_sneakers", colorName: "화이트" };
-
-        const ownedCount = [o, t, b, s].filter(x => x.itemId !== "none").length;
-        return { dayName, outer: o, top: t, bottom: b, shoes: s, ownedCount };
-      });
-    }
-
-    function applyWeeklyPlan(dayIdx) {
-      const plan = state.weeklyPlans[dayIdx];
-      if (!plan) return;
-      ["outer", "top", "bottom", "shoes"].forEach(k => {
-        state.parts[k].itemId = plan[k].itemId;
-        state.parts[k].colorName = plan[k].colorName;
-        state.parts[k].mall = "owned";
-        state.parts[k].price = 0;
-      });
-      renderAllResultViews();
-    }
-
-    function renderWardrobeAndCalendar() {
-      const chipsEl = document.getElementById("wardrobe-chips");
-      chipsEl.innerHTML = state.wardrobe.map((w, idx) => {
-        const itemObj = getItemObj(w.part, w.itemId);
-        return `
-          <span class="w-chip">
-            <span class="w-chip-dot" style="background:${getHexByName(w.colorName)}"></span>
-            ${w.colorName} ${itemObj.label}
-            <button type="button" class="w-chip-del" onclick="removeWardrobeItem(${idx})">×</button>
-          </span>
-        `;
-      }).join("");
-
-      const gridEl = document.getElementById("week-calendar-grid");
-      gridEl.innerHTML = state.weeklyPlans.map((p, idx) => {
-        const topName = `${p.top.colorName} ${getItemObj("top", p.top.itemId).kw || "상의"}`;
-        const botName = `${p.bottom.colorName} ${getItemObj("bottom", p.bottom.itemId).kw || "하의"}`;
-        return `
-          <button type="button" class="day-card" onclick="applyWeeklyPlan(${idx})">
-            <div class="day-badge">${p.dayName}</div>
-            <div class="day-desc">${topName}<br>+ ${botName}</div>
-            <div class="day-sub">클릭해 피팅 👉</div>
-          </button>
-        `;
-      }).join("");
     }
 
     function renderChecklist() {
@@ -1464,7 +1519,7 @@
         if (ps.mall === "owned") {
           rightHtml = `<span class="owned-badge">✓ 내 옷장 보유 (0원)</span>`;
         } else {
-          const links = buildMallLinks(meta.key, ps.colorName, itemObj, ps.mall);
+          const links = buildMallLinks(meta.key, ps.colorName, itemObj, ps);
           rightHtml = `
             <div class="mall-links">
               <span style="font-size:11px; font-weight:800; color:#475569;">${Number(ps.price).toLocaleString()}원</span>
@@ -1489,8 +1544,7 @@
     function renderAllResultViews() {
       const diag = evaluateComprehensiveCoordi();
 
-      document.getElementById("res-title").innerText =
-        `[${TPO_META[state.tpo].label}] 코디 정밀 진단 리포트`;
+      document.getElementById("res-title").innerText = `[${TPO_META[state.tpo].label}] 코디 정밀 진단 리포트`;
       document.getElementById("res-subtitle").innerText =
         `${state.gender === "female" ? "여성" : "남성"} · ${state.height}cm/${state.weight}kg · ${TEMP_META[state.temp].label} · ${getBodyLabel(state.bodyType)}`;
 
@@ -1499,7 +1553,6 @@
       document.getElementById("fit-score-num").innerText = `${diag.totalScore}점`;
       document.getElementById("fit-score-grade").innerHTML = diag.gradeText;
 
-      // 4대 세부 점수 브레이크다운 렌더링
       const bdItems = [
         { title: "TPO 격식·매너", val: diag.tpoScore, max: 35 },
         { title: "체형·기장 비율", val: diag.bodyScore, max: 25 },
@@ -1545,11 +1598,10 @@
       renderModelArea();
       renderPartsEditor(diag.ngParts);
       renderBudgetSummary();
-      renderWardrobeAndCalendar();
       renderChecklist();
     }
 
-    function runFullDiagnosis() {
+    function runStudioDiagnosis() {
       state.gender = document.querySelector("#gender-group .active").dataset.val;
       state.height = Math.min(210, Math.max(140, Number(document.getElementById("height-input").value) || 165));
       state.weight = Math.min(150, Math.max(35, Number(document.getElementById("weight-input").value) || 52));
@@ -1570,7 +1622,6 @@
         }
       });
 
-      // 상황(TPO) + 기온에 맞춘 초기 코디 추천 세팅
       if (anchor !== "outer") {
         if (state.temp === "hot") {
           state.parts.outer.itemId = "none";
@@ -1589,7 +1640,7 @@
       if (anchor !== "top") {
         if (state.tpo === "wedding") {
           state.parts.top.itemId = "crew_knit";
-          state.parts.top.colorName = "그레이"; // 하객룩 민폐 컬러 자동 회피
+          state.parts.top.colorName = "그레이";
         } else if (state.tpo === "parents" || state.tpo === "office") {
           state.parts.top.itemId = "shirt";
           state.parts.top.colorName = "화이트";
@@ -1619,12 +1670,129 @@
         }
       }
 
-      generateWeeklyCalendar();
+      renderAllResultViews();
+      const resArea = document.getElementById("result-area");
+      resArea.style.display = "block";
+      resArea.scrollIntoView({ behavior: "smooth" });
+    }
+
+    // =========================================================================
+    // [기능 2] 내 코디 피드 등록 & '좋아요 / 별로예요' 상호작용 엔진
+    // =========================================================================
+    function publishCoordiToFeed() {
+      const nick = (document.getElementById("pub-nickname").value || "").trim() || "익명패피";
+      const caption = (document.getElementById("pub-caption").value || "").trim() ||
+        `${TPO_META[state.tpo].label}용으로 맞춰본 코디인데 어떤가요?`;
+
+      const clonedParts = JSON.parse(JSON.stringify(state.parts));
+      const newEntry = {
+        id: Date.now(),
+        nickname: nick,
+        spec: `${state.gender === "female" ? "여성" : "남성"} · ${state.height}cm/${state.weight}kg`,
+        tpo: TPO_META[state.tpo].label,
+        caption,
+        likes: 1,
+        dislikes: 0,
+        userReaction: "like",
+        totalBudget: calculateTotalBudget(),
+        gender: state.gender,
+        height: state.height,
+        weight: state.weight,
+        bodyType: state.bodyType,
+        parts: clonedParts
+      };
+
+      communityFeed.unshift(newEntry);
+      document.getElementById("pub-caption").value = "";
+      renderCommunityFeed();
+
+      const feedGrid = document.getElementById("community-feed-grid");
+      feedGrid.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function toggleFeedReaction(feedId, type) {
+      const item = communityFeed.find(x => x.id === feedId);
+      if (!item) return;
+
+      if (item.userReaction === type) {
+        // 이미 누른 버튼 다시 누르면 취소
+        if (type === "like") item.likes = Math.max(0, item.likes - 1);
+        else item.dislikes = Math.max(0, item.dislikes - 1);
+        item.userReaction = null;
+      } else {
+        // 기존 반대 반응이 있었다면 차감
+        if (item.userReaction === "like") item.likes = Math.max(0, item.likes - 1);
+        if (item.userReaction === "dislike") item.dislikes = Math.max(0, item.dislikes - 1);
+
+        if (type === "like") item.likes += 1;
+        else item.dislikes += 1;
+        item.userReaction = type;
+      }
+      renderCommunityFeed();
+    }
+
+    function applyFeedOutfitToMyModel(feedId) {
+      const item = communityFeed.find(x => x.id === feedId);
+      if (!item) return;
+
+      state.parts = JSON.parse(JSON.stringify(item.parts));
+      renderAnchorSetupUI();
       renderAllResultViews();
 
       const resArea = document.getElementById("result-area");
       resArea.style.display = "block";
       resArea.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function renderCommunityFeed() {
+      const grid = document.getElementById("community-feed-grid");
+      grid.innerHTML = communityFeed.map(item => {
+        const outerObj = getItemObj("outer", item.parts.outer.itemId);
+        const topObj = getItemObj("top", item.parts.top.itemId);
+        const bottomObj = getItemObj("bottom", item.parts.bottom.itemId);
+
+        const summaryLines = [
+          outerObj.style !== "none" ? `${item.parts.outer.colorName} ${outerObj.kw}` : null,
+          `${item.parts.top.colorName} ${topObj.kw}`,
+          `${item.parts.bottom.colorName} ${bottomObj.kw}`
+        ].filter(Boolean).join(" · ");
+
+        return `
+          <div class="feed-card">
+            <div class="feed-top-meta">
+              <span class="feed-user">@${item.nickname} (${item.spec})</span>
+              <span class="feed-tpo-badge">${item.tpo}</span>
+            </div>
+
+            <div class="feed-body-row">
+              <div class="feed-mini-model">
+                ${buildModelSvgHtml(item, 96, 134, `feed_${item.id}`)}
+              </div>
+              <div class="feed-details">
+                <div class="feed-caption">"${item.caption}"</div>
+                <div class="feed-items-txt">${summaryLines}</div>
+                <div class="feed-price-tag">추가 구매 견적: ${item.totalBudget.toLocaleString()}원</div>
+              </div>
+            </div>
+
+            <div class="feed-actions">
+              <button type="button"
+                      class="react-btn like ${item.userReaction === "like" ? "active" : ""}"
+                      onclick="toggleFeedReaction(${item.id}, 'like')">
+                👍 좋아요 ${item.likes}
+              </button>
+              <button type="button"
+                      class="react-btn dislike ${item.userReaction === "dislike" ? "active" : ""}"
+                      onclick="toggleFeedReaction(${item.id}, 'dislike')">
+                👎 별로예요 ${item.dislikes}
+              </button>
+              <button type="button" class="try-on-btn" onclick="applyFeedOutfitToMyModel(${item.id})">
+                내 체형에 피팅
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
     }
 
     function downloadLookbookCard() {
@@ -1642,11 +1810,11 @@
       const diag = evaluateComprehensiveCoordi();
       ctx.fillStyle = "#0f172a";
       ctx.font = "800 22px sans-serif";
-      ctx.fillText(`FIT CHECK PRO | ${TPO_META[state.tpo].label} 코디 리포트`, 36, 54);
+      ctx.fillText(`FIT CHECK STUDIO | ${TPO_META[state.tpo].label}`, 36, 54);
 
       ctx.fillStyle = "#2563eb";
       ctx.font = "800 15px sans-serif";
-      ctx.fillText(`${state.gender === "female" ? "여성" : "남성"} · ${state.height}cm ${state.weight}kg · ${TEMP_META[state.temp].label}`, 36, 82);
+      ctx.fillText(`${state.gender === "female" ? "여성" : "남성"} · ${state.height}cm ${state.weight}kg · 총견적 ${calculateTotalBudget().toLocaleString()}원`, 36, 82);
 
       ctx.fillStyle = "#eff6ff";
       ctx.fillRect(580, 30, 144, 54);
@@ -1676,7 +1844,6 @@
         ctx.font = "800 16px sans-serif";
         const tag = ps.mall === "owned" ? " [보유중]" : ` [${Number(ps.price).toLocaleString()}원]`;
         ctx.fillText(`${ps.colorName} ${itemObj.label}${tag}`, 392, yPos);
-
         yPos += 48;
       });
 
@@ -1753,13 +1920,13 @@
         if (params.has(`${m.key}_p`)) state.parts[m.key].price = Number(params.get(`${m.key}_p`)) || 0;
       });
 
-      generateWeeklyCalendar();
       renderAnchorSetupUI();
       renderAllResultViews();
       document.getElementById("result-area").style.display = "block";
     }
 
     renderAnchorSetupUI();
+    renderCommunityFeed();
     restoreFromUrlParams();
   </script>
 </body>
